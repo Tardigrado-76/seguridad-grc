@@ -86,8 +86,7 @@ flowchart TD
 
 `ash
 # Clonar el repositorio
-git clone https://github.com/Tardigrado-76/seguridad-grc.git
-cd seguridad-grc
+# Repositorio privado enterprise (acceso confidencial bajo acuerdo NDA)
 
 # Despliegue del motor de auditoría rápida
 cd "1 - GRC-as-Code para DORA, NIS2, ENS y EU AI (Auditoria)"
@@ -104,3 +103,4 @@ pip install -r requirements.txt
 - **ENS**: Real Decreto 311/2022 (Esquema Nacional de Seguridad).
 - **EU AI Act**: Reglamento (UE) 2024/1689.
 - **NIST Post-Quantum Cryptography Standardization**.
+
