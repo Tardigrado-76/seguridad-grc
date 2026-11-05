@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-08-02T13:08:05.502028+00:00",
+  "frameworks": [
+    "NIST FIPS 203 (ML-KEM)",
+    "NIST FIPS 204 (ML-DSA)",
+    "NIST FIPS 205 (SLH-DSA)",
+    "CNSA 2.0"
+  ],
+  "target_dir": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"",
+  "scan_mode": "RotateHybridSimulated",
+  "dry_run": false,
+  "summary": {
+    "total_scanned": 3,
+    "vulnerable_legacy": 2,
+    "quantum_tolerant": 0,
+    "pqc_ready": 1
+  },
+  "scan_details": [
+    {
+      "file": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"\\dev_cert.key",
+      "algorithm": "RSA-2048",
+      "classification": "Vulnerable_Legacy",
+      "recommended_pqc_replacement": "ML-KEM-1024 (FIPS 203)"
+    },
+    {
+      "file": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"\\mtls_ca.crt",
+      "algorithm": "ECC-P256",
+      "classification": "Vulnerable_Legacy",
+      "recommended_pqc_replacement": "ML-DSA-87 (FIPS 204)"
+    },
+    {
+      "file": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"\\pqc_experiment.pem",
+      "algorithm": "ML-KEM (FIPS 203)",
+      "classification": "PQC_Ready",
+      "recommended_pqc_replacement": "Already PQC Compliant"
+    }
+  ],
+  "simulated_rotations": [
+    {
+      "target_file": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"\\dev_cert.key",
+      "original_algo": "RSA-2048",
+      "rotated_hybrid_spec": "RSA-2048 + ML-KEM-1024 (FIPS 203)",
+      "status": "Hybrid_Rotation_Simulated"
+    },
+    {
+      "target_file": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"\\mtls_ca.crt",
+      "original_algo": "ECC-P256",
+      "rotated_hybrid_spec": "ECC-P256 + ML-DSA-87 (FIPS 204)",
+      "status": "Hybrid_Rotation_Simulated"
+    }
+  ],
+  "evidence_sha256": "f4f84e0d8b781a9ba2261b31ec1d362bc826a36cce5a43f614e0c4053ba5d0f7"
+}

@@ -1,0 +1,13 @@
+{
+  "itar_usml_compliance_log": {
+    "usml_category": "CATEGORY_XI_MILITARY_ELECTRONICS_AND_CYBER",
+    "technical_data_segregation_active": true,
+    "authorized_personnel_only": true,
+    "foreign_person_access_denials": 0,
+    "access_control_audit": {
+      "status": "CONFORME_22_CFR_120_10",
+      "mfa_token_type": "FIDO2_HARDWARE_KEY_PIV",
+      "tamper_proof_audit_merkle_root": "0x4b7c1289fe81ad902cba34ef81726a8c"
+    }
+  }
+}

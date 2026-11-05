@@ -1,0 +1,80 @@
+[
+    {
+        "timestamp": "2026-08-25T14:03:10.758953",
+        "event_type": "SAFE",
+        "prompt": "que experiencia tiene",
+        "is_blocked": false,
+        "reason": "Safe",
+        "details": "",
+        "latency_ms": 1756.62,
+        "compliance_tags": [
+            "EU AI Act Cumplido",
+            "DORA Control RAG"
+        ]
+    },
+    {
+        "timestamp": "2026-08-25T14:02:57.449128",
+        "event_type": "INGEST_SAFE",
+        "prompt": "[DOC CARGADO] CV.docx (SHA-256 generado)",
+        "is_blocked": false,
+        "reason": "Carga Exitosa RAG",
+        "details": "",
+        "latency_ms": 41.18,
+        "compliance_tags": [
+            "EU AI Act Ingesta Segura",
+            "DORA Trazabilidad de Datos"
+        ]
+    },
+    {
+        "timestamp": "2026-08-25T13:57:18.056651",
+        "event_type": "SAFE",
+        "prompt": "Cuando se implementara el control de acceso biometrico?",
+        "is_blocked": false,
+        "reason": "Safe",
+        "details": "",
+        "latency_ms": 1364.2,
+        "compliance_tags": [
+            "EU AI Act Cumplido",
+            "DORA Control RAG"
+        ]
+    },
+    {
+        "timestamp": "2026-08-25T13:56:59.654237",
+        "event_type": "INGEST_SAFE",
+        "prompt": "[DOC CARGADO] safe_doc.txt (SHA-256 generado)",
+        "is_blocked": false,
+        "reason": "Carga Exitosa RAG",
+        "details": "",
+        "latency_ms": 47.12,
+        "compliance_tags": [
+            "EU AI Act Ingesta Segura",
+            "DORA Trazabilidad de Datos"
+        ]
+    },
+    {
+        "timestamp": "2026-08-25T13:56:37.079854",
+        "event_type": "INGEST_BLOCKED",
+        "prompt": "[DOC BLOQUEADO] unsafe_pii.txt",
+        "is_blocked": true,
+        "reason": "Documento contenía OWASP LLM02: Sensitive Information Disclosure",
+        "details": "Filtro activado por: DNI / NIE (España) (Encontrado: 1)",
+        "latency_ms": 39.53,
+        "compliance_tags": [
+            "EU AI Act Artículo 50 (Mitigación de Sesgos/Privacidad)",
+            "DORA Artículo 6 (Protección de Integridad de Datos)"
+        ]
+    },
+    {
+        "timestamp": "2026-08-25T13:56:15.206493",
+        "event_type": "INGEST_BLOCKED",
+        "prompt": "[INYECCIÓN BLOQUEADA] [DOC BLOQUEADO] unsafe_injection.txt...",
+        "is_blocked": true,
+        "reason": "Documento contenía OWASP LLM01: Prompt Injection",
+        "details": "Coincidencia con patrón de inyección regulado.",
+        "latency_ms": 43.53,
+        "compliance_tags": [
+            "EU AI Act Artículo 50 (Transparencia)",
+            "DORA Artículo 6 (Control de Riesgos TIC)"
+        ]
+    }
+]

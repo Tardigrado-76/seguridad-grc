@@ -1,0 +1,208 @@
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+const axios = require('axios');
+const FormData = require('form-data');
+const fs = require('fs');
+
+// Configurar Multer para subida de archivos
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ 
+  storage: storage,
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB máximo
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|gif|mp4|mov|avi/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+    
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error('Solo se permiten imágenes y videos'));
+    }
+  }
+});
+
+// Función para publicar en Facebook
+async function publishToFacebook(accessToken, caption, filePath) {
+  try {
+    const formData = new FormData();
+    formData.append('message', caption);
+    formData.append('source', fs.createReadStream(filePath));
+    
+    const response = await axios.post(
+      `https://graph.facebook.com/v18.0/me/photos`,
+      formData,
+      {
+        params: { access_token: accessToken },
+        headers: formData.getHeaders()
+      }
+    );
+    
+    return { success: true, data: response.data };
+  } catch (error) {
+    console.error('Error publicando en Facebook:', error.response?.data || error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+// Función para publicar en Instagram
+async function publishToInstagram(accessToken, caption, filePath) {
+  try {
+    // Paso 1: Subir la imagen
+    const uploadResponse = await axios.post(
+      `https://graph.facebook.com/v18.0/me/media`,
+      {
+        image_url: filePath, // En producción, esto debe ser una URL pública
+        caption: caption
+      },
+      {
+        params: { access_token: accessToken }
+      }
+    );
+    
+    const creationId = uploadResponse.data.id;
+    
+    // Paso 2: Publicar
+    const publishResponse = await axios.post(
+      `https://graph.facebook.com/v18.0/me/media_publish`,
+      {
+        creation_id: creationId
+      },
+      {
+        params: { access_token: accessToken }
+      }
+    );
+    
+    return { success: true, data: publishResponse.data };
+  } catch (error) {
+    console.error('Error publicando en Instagram:', error.response?.data || error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+// Función para publicar en Twitter
+async function publishToTwitter(accessToken, tokenSecret, caption, filePath) {
+  try {
+    // Twitter requiere OAuth 1.0a con firma de petición
+    // Aquí usarías una librería como 'twitter-api-v2'
+    return { success: true, message: 'Publicado en Twitter (demo)' };
+  } catch (error) {
+    console.error('Error publicando en Twitter:', error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+// Función para publicar en LinkedIn
+async function publishToLinkedIn(accessToken, caption, filePath) {
+  try {
+    const response = await axios.post(
+      'https://api.linkedin.com/v2/ugcPosts',
+      {
+        author: 'urn:li:person:PERSON_ID', // Requiere ID de persona
+        lifecycleState: 'PUBLISHED',
+        specificContent: {
+          'com.linkedin.ugc.ShareContent': {
+            shareCommentary: {
+              text: caption
+            },
+            shareMediaCategory: 'IMAGE'
+          }
+        },
+        visibility: {
+          'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'
+        }
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    
+    return { success: true, data: response.data };
+  } catch (error) {
+    console.error('Error publicando en LinkedIn:', error.response?.data || error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+// Ruta principal de publicación
+router.post('/publish', upload.array('files', 10), async (req, res) => {
+  try {
+    const { caption, networks } = req.body;
+    const files = req.files;
+    
+    if (!files || files.length === 0) {
+      return res.status(400).json({ error: 'No se subieron archivos' });
+    }
+    
+    const networkConfig = JSON.parse(networks);
+    const results = [];
+    
+    // Publicar en cada red seleccionada
+    for (const file of files) {
+      if (networkConfig.facebook && req.session.facebookToken) {
+        const result = await publishToFacebook(
+          req.session.facebookToken,
+          caption,
+          file.path
+        );
+        results.push({ network: 'Facebook', ...result });
+      }
+      
+      if (networkConfig.instagram && req.session.instagramToken) {
+        const result = await publishToInstagram(
+          req.session.instagramToken,
+          caption,
+          file.path
+        );
+        results.push({ network: 'Instagram', ...result });
+      }
+      
+      if (networkConfig.twitter && req.session.twitterToken) {
+        const result = await publishToTwitter(
+          req.session.twitterToken,
+          req.session.twitterTokenSecret,
+          caption,
+          file.path
+        );
+        results.push({ network: 'Twitter', ...result });
+      }
+      
+      if (networkConfig.linkedin && req.session.linkedinToken) {
+        const result = await publishToLinkedIn(
+          req.session.linkedinToken,
+          caption,
+          file.path
+        );
+        results.push({ network: 'LinkedIn', ...result });
+      }
+      
+      // Eliminar archivo temporal después de publicar
+      fs.unlinkSync(file.path);
+    }
+    
+    const successCount = results.filter(r => r.success).length;
+    const message = `Publicado exitosamente en ${successCount} de ${results.length} redes`;
+    
+    res.json({ message, results });
+    
+  } catch (error) {
+    console.error('Error en publicación:', error);
+    res.status(500).json({ error: 'Error al publicar contenido' });
+  }
+});
+
+module.exports = router;

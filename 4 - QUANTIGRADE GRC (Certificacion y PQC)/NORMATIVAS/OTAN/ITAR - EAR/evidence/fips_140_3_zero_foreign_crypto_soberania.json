@@ -1,0 +1,9 @@
+{
+  "fips_140_3_crypto_sovereignty": {
+    "security_level": "FIPS_140_3_LEVEL_3",
+    "zero_foreign_access_enforced": true,
+    "key_custody": "AIR_GAPPED_SOVEREIGN_HSM_NATIONAL",
+    "key_zeroization_on_tamper": true,
+    "extraterritorial_subpoena_immunity": true
+  }
+}

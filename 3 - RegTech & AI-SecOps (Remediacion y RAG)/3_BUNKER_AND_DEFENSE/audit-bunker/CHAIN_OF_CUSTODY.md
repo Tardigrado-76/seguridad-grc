@@ -1,0 +1,270 @@
+# ACTA MILITAR DE CIBERDEFENSA Y CADENA DE CUSTODIA CRIPTOGRÁFICA (PERFIL 3)
+**Perfil:** Perfil 3 - Aeroespacial / Defensa / IA Alto Riesgo / DORA / OTAN (PERFIL-3)
+**Modo de Ejecución:** DEMO (Simulación)
+**Timestamp Criptográfico UTC:** `2026-07-28T17:05:59.472641+00:00`
+**Operador Responsable:** `Tardigrado`
+**Host / Sistema Auditor:** `N16 (Windows 11)`
+
+---
+
+## 1. CUMPLIMIENTO REGULATORIO Y GRADO MILITAR
+- **Protección de la Información en Tránsito:** ENS RD 311/2022 Nivel Alto [mp.com.3] / OTAN
+- **Criptografía Post-Cuántica:** NIST FIPS 203 (ML-KEM) & FIPS 204 (ML-DSA)
+- **Seguridad en Hardware Criptográfico:** FIPS 140-3 Level 3/4 Zeroization & Self-Test
+- **Inmutabilidad y Trazabilidad:** SLSA v1.0 Level 3+ Provenance
+
+## 2. MATRIZ TÁCTICA Y DE CIBERDEFENSA
+| Fase | Módulo Técnico | Estado | Mapeo Ciberdefensa |
+| :---: | :--- | :---: | :--- |
+| 01 | Cifrado Cuántico (Hybrid TLS 1.3 - FIPS 203) | **SKIPPED** | NIST FIPS 203 (ML-KEM) | Hybrid TLS 1.3 | Criptografía Post-Cuántica |
+| 02 | Firma Post-Cuántica ML-DSA en Git | **SKIPPED** | NIST FIPS 204 (ML-DSA) | Firma Digital Post-Cuántica | Supply Chain Integrity |
+| 03 | Auditoría Zeroization en Criptomódulos | **SKIPPED** | FIPS 140-3 Level 3/4 | Zeroization & Self-Test en Criptomódulos / HSM |
+| 04 | Anti-Envenenamiento RAG/Vector DB | **SKIPPED** | OWASP LLM03 (Data Poisoning) | Protección Base Vectorial RAG / Pipeline IA |
+| 05 | Supervisión Humana IA (Art. 14) | **SKIPPED** | EU AI Act Art. 14 (Supervisión Humana) & Art. 27 (FRIA) | High-Risk AI |
+| 06 | Inyección de Caos DORA / TLPT | **SKIPPED** | DORA Art. 25 (Pruebas Avanzadas TLPT / Inyección de Caos) |
+| 07 | Simulador de Ejercicio Failover DORA | **FAILED** | DORA Art. 11/12 (Pruebas Automatizadas de Conmutación por Error Failover) |
+| 08 | Simulador DDoS de Alta Intensidad | **SKIPPED** | DORA Art. 25 (Resiliencia ante Ataques Volumétricos DDoS) |
+| 09 | Auditoría Cumplimiento IA (DPIA+FRIA) | **FAILED** | EU AI Act Art. 27 (Evaluación Unificada DPIA + FRIA para IA Alto Riesgo) |
+| 10 | Trampa Honeypot Jailbreak LLM | **SKIPPED** | OWASP LLM Top 10 (Jailbreak & Prompt Injection Honeypot) |
+| 11 | Verificador de Modo FIPS Kernel/OS | **SKIPPED** | FIPS 140-3 Mode Enforcer (NIST SP 800-53 CP-9 & SC-13) |
+| 12 | Gestor Agilidad Criptográfica PQC | **SKIPPED** | NIST PQC Readiness Score & Agilidad Criptográfica |
+| 13 | Hardening Respaldos Búnker ENS Alto | **SKIPPED** | ENS RD 311/2022 Nivel Alto (Hardening Respaldos e Inmutabilidad) |
+| 14 | Atestación Criptográfica SLSA L3+ | **SKIPPED** | SLSA v1.0 Level 3+ Provenance Attestation (CRA / OTAN) |
+
+## 3. MANIFIESTO DE ARTEFACTOS Y SELLADO CRIPTOGRÁFICO (SHA-256)
+| Archivo de Evidencia | SHA-256 Digest |
+| :--- | :--- |
+| `reports/ai_sec_guard_report_20260726_103012.json` | `cb4c2fe05ef96542b1a2d372b709435d72857a387a45047a29706479870d13f9` |
+| `reports/ai_sec_guard_report_20260726_103012.md` | `f26c1dd20e299c72aff2beb9a068ee8f21dfc24b37458312560c8a427bf2e9e2` |
+| `reports/ast_scan_report_20260728_092322.json` | `0c504c9961e3b872e9c8669541f3bed82fa8d88153ea352097dc1d521215359b` |
+| `reports/ast_scan_report_20260728_092322.md` | `a7df5f3487d121fe6bb5131c5e9aab86de878728cc7c5f8f2cb51a56b2f5fbc5` |
+| `reports/ast_scan_report_20260728_103250.json` | `1b7940017eb026a06c3ddcc3c0b66077818acab21d2e25c29e1ac74806e2be3a` |
+| `reports/ast_scan_report_20260728_103250.md` | `0f9fd2eaea99f4d51ae49b9c1baf7397595f1d078133e6c56989d5712620e4d9` |
+| `reports/ast_scan_report_20260728_103303.json` | `d088c7e5816902f4ff4cdce37ce4af4d720aa0056991c406d1c3b225e972fcf8` |
+| `reports/ast_scan_report_20260728_103303.md` | `292170620740c4cae98263912873df89720d983a89de2f0fdf9fc5449c85e65c` |
+| `reports/ast_scan_report_20260728_105247.json` | `227a78db750f6ffbbb9d583446104dc1861c3cdd42cf7c90d9228a7769476d1d` |
+| `reports/ast_scan_report_20260728_105247.md` | `4be1bb97fd612d96a5607da4298a8c0a65acc330b6e9f59f6d924c84b2a0a816` |
+| `reports/ast_scan_report_20260728_105319.json` | `62bcee6a5a0b9009471ae9f28e3e7b02fad451f2219adaa1bd27e3634b9b730f` |
+| `reports/ast_scan_report_20260728_105319.md` | `c915cb138ec89b7ab034c31931a6d9bea2dc661f4a71061f8cf5d05bffb374c2` |
+| `reports/ast_scan_report_20260728_105434.json` | `210671821d953fb251d8e86df5c0442529615387240db8ea075022ee21b7acf6` |
+| `reports/ast_scan_report_20260728_105434.md` | `22cb0f93dadf0f44c83164295f969f5304187117354efc694af63abb506d7566` |
+| `reports/ast_scan_report_20260728_105634.json` | `090f992f46dfe5bce4796cfca7655fdb8e117f1f2e28191b8f3b432dd27903b8` |
+| `reports/ast_scan_report_20260728_105634.md` | `df737fcead5c414f09d6bcdbccd431f488774ab7ad959f5877a117131ce55663` |
+| `reports/ast_scan_report_20260728_113152.json` | `e4795dca689221c65e0191a6eabfd7d11ddae762a18536376f4d23e2d8a7d1e4` |
+| `reports/ast_scan_report_20260728_113152.md` | `1e03b6ee32469d30af489123abbad4e8d57dbb47a9dedb7b659306fb020dca76` |
+| `reports/ast_scan_report_20260728_113430.json` | `5b84cf06b23d47a57c135ad3872705a42d5327d93159419e98553fd84dbb8811` |
+| `reports/ast_scan_report_20260728_113430.md` | `f316ae22480a12b7ab9b51af13cfa41234c8ba90ee9279ee8bae97c142e11518` |
+| `reports/AUDITORIA_CONSOLIDADA_HORIZON2035_DEMO.pdf` | `db78c985c3b45c8a141ec52f5a28b874f738b7b4cf8c9f0adab898a1b27513a1` |
+| `reports/AUDITORIA_CONSOLIDADA_HORIZON2035_PROD.pdf` | `c4e26d6c3c9b748702cc70ed9915ff2eadc96e06b1db24858ed18712c737a26c` |
+| `reports/AUDITORIA_CONSOLIDADA_PERFIL1_DEMO.pdf` | `cec9622c613cefd544abc8c831a753cced0050e45e64a378eaeea25e251110f5` |
+| `reports/AUDITORIA_CONSOLIDADA_PERFIL1_PROD.pdf` | `b3711542b5eb9452a007e3594c0f5db02eff70b4dfaf934c168eaaf1f8dd848b` |
+| `reports/AUDITORIA_CONSOLIDADA_PERFIL2_DEMO.pdf` | `6fe22e0a8b9f1cb1d7ad02dd0316d880eb0cfbca508116b894e889904c0e17af` |
+| `reports/AUDITORIA_CONSOLIDADA_PERFIL2_PROD.pdf` | `4a21522a60b3c617abbbb4b02f15556fe2052e9bba5bb8ba441cd9aeced1a1f0` |
+| `reports/AUDITORIA_CONSOLIDADA_PERFIL3_DEMO.pdf` | `12d49eb0fbf940d643e326424e8fd2aea6459978c204ff3948448bfee2001a23` |
+| `reports/AUDITORIA_CONSOLIDADA_PERFIL3_PROD.pdf` | `9c33b8ae2e1667c4bc52bf6bb61847a5f5f9984d202ea83ece284e7810283925` |
+| `reports/AUDITORIA_CONSOLIDADA_SUMMARY.md` | `2bbd3d989d8dfe4728081ed15a152f33cdfbc5fc4573678681cf0a5135970a9e` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144007.json` | `2fb7a22ea1a0b2241b3fbefe804b60bed6dfe3ebbed5477b3e51ae237780c63a` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144007.md` | `6af039352a76cf26ab157b819e4c5c35296e5354143237379cb8fdfa2984f904` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144035.json` | `4d9d0471a2e734355f1b4f6f3886ac3ea1b49c02e88df2022c430f85b116c83f` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144035.md` | `a2100a3e887f6fe3fb5c324eabd208ccb6472386548a96ea1cb060c9a7b79ffb` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144241.json` | `71b704e26086f1a39c9aaf67d3fd71041441d98d189a2a9bafe89ab0581d88b3` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144241.md` | `7305357382846709f73e8b4c83be8f7973f7f4ff4da405ce23c659c96c4fcff7` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144401.json` | `e177036851e32b7456ca31faf4be172df4664c1389b5f4e6ac8c9623f368f294` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144401.md` | `bcda37d4e69dc88582e836e053e20d5867e99a6b7eaaa3e8232c7b3561198910` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144532.json` | `eb2d8ad38d4974fb30780f53e66f41dd8238ca92a5c16a7ec5527afb7914ecdc` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144532.md` | `839ecfae42b2462fc0523cb32a8a590e21c8148d72d09952cc72d3f5466e29c2` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144548.json` | `b5d17326e6dd7dc0b1dafd53901d0d9ea45c07570d11df64b11afc039b04e090` |
+| `reports/Auditoria_Perfil1_Summary_20260726_144548.md` | `d5799b69c243df5bc498fbe5107a5810f96d4ec60797a4d2ad6d7d5a7b5de66e` |
+| `reports/Auditoria_Perfil1_Summary_20260726_172707.json` | `74ea32d1ff2405b80c90f8320b1aee1a31dd0323b515f54281eb290473cd6389` |
+| `reports/Auditoria_Perfil1_Summary_20260726_172707.md` | `821fb31d7da602c8e7002006e87352b43cca40d0d16b271d48c564bd68f3377a` |
+| `reports/Auditoria_Perfil1_Summary_20260726_172836.json` | `b9307b4857ba3b19f2382ecbe8dc3e90e4e9ce724b42a9a997a4128de987d1a9` |
+| `reports/Auditoria_Perfil1_Summary_20260726_172836.md` | `a4025e878e05bb334a6adcc0bb7389032151876a4e12369449857d4701618895` |
+| `reports/Auditoria_Perfil1_Summary_20260726_184127.json` | `5dca1d98f3d7776384104a40ec5effe776030392e5db1b7f68cd5da9fafdb053` |
+| `reports/Auditoria_Perfil1_Summary_20260726_184127.md` | `bf446ae1e0f49ce366f7e4f639302d4c328143b9b157d1a7cb9c8ca3846d150e` |
+| `reports/Auditoria_Perfil1_Summary_20260726_184328.json` | `03ad94917ab9db91954befd3209702e4ae984c575191e144be2f34ae3f8e2595` |
+| `reports/Auditoria_Perfil1_Summary_20260726_184328.md` | `10733a8f54702a6effc9603e5f7ae21c8b01df76184c09c82ec4234234df6f7b` |
+| `reports/Auditoria_Perfil2_Summary_20260726_184408.json` | `a9dfde7002cfc35b1efe6d57eee4011c46d1378ac878a23cf395ac0f496d5e59` |
+| `reports/Auditoria_Perfil2_Summary_20260726_184408.md` | `a04ea8fb4b8ebab11e2c246085fefa9bef100afd92a1e47e0cdb505ecde3a2c7` |
+| `reports/Auditoria_Perfil2_Summary_20260726_184427.json` | `44c9ae2b43cc34d2375c9a95e77692d70d2be6e17e9fdcb0cc6193c82e2df73d` |
+| `reports/Auditoria_Perfil2_Summary_20260726_184427.md` | `af86e6daddbcdc74748f144488f01d6d236ded036ad1eab9a141992f7cb4fbc9` |
+| `reports/Auditoria_Perfil3_Summary_20260726_184450.json` | `651728ddabe96f9d487ba079cef76e02bd3dd145240faa877ce653999c50fe46` |
+| `reports/Auditoria_Perfil3_Summary_20260726_184450.md` | `81b16c2381f09467dd9922c79b5a56f06f0266352edcb80df2d72dc9f51ac209` |
+| `reports/Auditoria_Perfil3_Summary_20260726_184540.json` | `46176645bef3248b3de9034723b77f4f9785caf1a15228af82dfda69ef845bbb` |
+| `reports/Auditoria_Perfil3_Summary_20260726_184540.md` | `c75a4bc4549e5c8ee4852c3dbda9ccbb90fcb3d7df93b3237650e883137ecb4e` |
+| `reports/BACKUP-JOB-20260726-204431_backup_report.json` | `162fcabaeb2a6c9ed82973ca7b07e7c73e21c23a43a5ad38a7509824fb82efdb` |
+| `reports/BACKUP-JOB-20260726-204431_backup_report.md` | `2fd28362db73873f8f6063afd9340b6ab686a846a87c1e2d4600d3e7bc46b080` |
+| `reports/BunkerOS_SBOM_v1.json` | `d8c6c1279920219b8473744602afc604c2edbd33ff6837b3763fe8ded67e838e` |
+| `reports/CHAIN_OF_CUSTODY.md` | `0f9c46d021535440e8051cc3249663727decdf483d115727e96956b869c3b532` |
+| `reports/commit-a1b2c3d4e5.mldsa` | `2145222e0ae8658f8e7dfebcb9fc21c47d1e657b88f87112de3bca1d4f6c6ca0` |
+| `reports/DORA-FAILOVER-20260726_184454.json` | `725d24451535ace10210c60b3aff7a5c79fbf43cc44f2a4a286a0216c3040f6a` |
+| `reports/DORA-FAILOVER-20260726_184454.md` | `a231c005f6fc06fb57bfaf60c0b9e4d864776264fb26291911ee5bc31d68ceae` |
+| `reports/DORA-FAILOVER-20260726_184543.json` | `8029b110a52f5c38403fb57f084d4ec0b5c9b7c27224f9ff0a395f021e9b1b73` |
+| `reports/DORA-FAILOVER-20260726_184543.md` | `3df890701a74ec01a4120860f5c8bec998447018b845cef1fdc8cf7a297652e0` |
+| `reports/dora_ict_third_party_risk_report_20260728_113333.json` | `700d693ddd7cf39b2deef8efc2d2cb6cd4fdf62fc849b32a859fa080d2a34524` |
+| `reports/dora_ict_third_party_risk_report_20260728_113333.md` | `9d5d6214889d7eca278e7d049f6b8d408f40d4b9f9133c0a293b5a8e64e9c2dd` |
+| `reports/DPIA_FRIA_AI_ASSESSMENT.md` | `a2abfa3f3769688f1f8165cbaab79150cf8d177714d13cd5a7f4336d25787ab6` |
+| `reports/ens_access_policy_report_20260728_094853.json` | `b9aeb71c3240b5177cade06a2d2e19f591506b812168a5a29cf6a90e027ae2b2` |
+| `reports/ens_access_policy_report_20260728_094853.md` | `3270d715762d2ab17c3b977a17ade8750b5b8f0f9d47737b6456cffb0fbb73c0` |
+| `reports/ens_access_policy_report_20260728_094909.json` | `440079d6311ec88dafbc91e4a012107e3492cb4788f2ee0996b942f891484fe1` |
+| `reports/ens_access_policy_report_20260728_094909.md` | `ad572b54b078115fb677a36ada6610bc157e79632ce5639694bf8b5c84ad7470` |
+| `reports/ens_access_policy_report_20260728_103909.json` | `2d38cf54074e7fd285be11976bbc3b53556708bd3b9638e784a8a2caded24262` |
+| `reports/ens_access_policy_report_20260728_103909.md` | `a4ba27d3fe086e40ce54686fdd35922ebc49cdc219a3bf91a5089249be90f35e` |
+| `reports/ens_access_policy_report_20260728_103932.json` | `339ebc992dba230fbcc4add19915eca74af17cd3f279951d2dd4ed6b01a216d8` |
+| `reports/ens_access_policy_report_20260728_103932.md` | `4206a97b494cdfc881832eca7de6e46778b749cde8cce85afd5e47b62bcfc197` |
+| `reports/ens_access_policy_report_20260728_103943.json` | `96fcdbe384b8d031c13554ad0e67576fa261bdc275996e230e02ce5cfd72eb99` |
+| `reports/ens_access_policy_report_20260728_103943.md` | `2402f6ace235b83483b85dc71a95c4c13e727b289fb45ac0bd8ac719959b5244` |
+| `reports/ens_access_policy_report_20260728_103952.json` | `e24d9af31154632d6007369eec7a106a1d16d54747d58292dd4ce2944b8d9d73` |
+| `reports/ens_access_policy_report_20260728_103952.md` | `9752ec9c14d7a7fe8a5ecae43821ede204dadd46045ea123c62bea82221a8449` |
+| `reports/ens_access_policy_report_20260728_105538.json` | `f1d2dd4778a41833c89f04740081fd71850444094ca381684edce58565180ece` |
+| `reports/ens_access_policy_report_20260728_105538.md` | `051643c11ec971d52236e1d328d64db23521a9c277cae9f2892c56847164fe34` |
+| `reports/ens_access_policy_report_20260728_105647.json` | `56f74268d29407bb2aef552747ad15009a74559fac67ff6b04d77f2fbe866a02` |
+| `reports/ens_access_policy_report_20260728_105647.md` | `8962cca914426ef02040330b5f9202e6fe3fd2d328db18fc1177a3668122e824` |
+| `reports/ens_access_policy_report_20260728_113206.json` | `a56bbb37a9e16bc86f5cfcd7d4d6457eca52bf64796c017e8b9ae30c274f1124` |
+| `reports/ens_access_policy_report_20260728_113206.md` | `73a7d5e62cc8e7c61228b601d69a152e97278ee4e0cba5fca45b90b7ad5affb1` |
+| `reports/ens_access_policy_report_20260728_113331.json` | `d49b11b711715cad25788c63f06c2500c29f4857b96976467510fef2bda6d710` |
+| `reports/ens_access_policy_report_20260728_113331.md` | `e96cf02deddf8c7ff7389d3d0bbe7296bd49dd398ae5ffcc0b0078008f376b20` |
+| `reports/EU-AI-WATERMARK-20260726_184453.json` | `8f349379cc3e942726ac436703cea133eb584f82b48c1af19561e31de8e3d500` |
+| `reports/EU-AI-WATERMARK-20260726_184453.md` | `909d10b68abed480be8e5a88b2f085b52f26b4eb1a44947e4ba65fcf3eecaa44` |
+| `reports/EU-AI-WATERMARK-20260726_184543.json` | `af9db1cf9d5e56a05f5b9ef3dcf0145593dd5b37bbe85dbecef0f36eefec5fbd` |
+| `reports/EU-AI-WATERMARK-20260726_184543.md` | `dfbdb7356b097e3a25e9fe8118f149090460fc1deb2b23541ac48bd48cb1216d` |
+| `reports/FIPS204-GIT-20260726_184454.json` | `94d9f139f7e295365505cbe4101dd42f1005c7466025f00549622559f9cef295` |
+| `reports/FIPS204-GIT-20260726_184454.md` | `fc25212a45c1f4a0fb1fb09bd1438d66f2e1d1a67513aac8bbd8cd533e74a519` |
+| `reports/FIPS204-GIT-20260726_184543.json` | `3e2d38661c363aa49ca703f8cf571e7a180d04e61dcd1d79efb131723cfc877d` |
+| `reports/FIPS204-GIT-20260726_184543.md` | `e8535f717e8905b0393682ff6581a8611c6c2c80330a049fc2d512f47e56e4ec` |
+| `reports/FIPS204-GIT-20260726_191415.json` | `e35352d4b7c7836de1dc96b7d248af1288367769161cbbfbfb3c91da12bac99a` |
+| `reports/FIPS204-GIT-20260726_191415.md` | `70f249b69494f3b442049b4f6b5397bae72675c6860d6421e7c77a08af2dc071` |
+| `reports/FIPS204-GIT-20260726_191429.json` | `c8795844411fbba24d77b5595c83f0c1b483dba6603aa9d2a0923779326b20d2` |
+| `reports/FIPS204-GIT-20260726_191429.md` | `a29e9880061af4d5b2f3961049abc4cc4318331e4d8e65397ee396cee728ebc0` |
+| `reports/FIPS204-GIT-20260726_191438.json` | `d662dcbbb2d8eced29daf560518507066c567bc555398a79974d631087f10c46` |
+| `reports/FIPS204-GIT-20260726_191438.md` | `f9ab7ecffb7f25fdd499ee83b6cc0f795d753dcf509b6c3186e752248647b6b6` |
+| `reports/Horizon2035_Summary_20260726_191415.json` | `cd7bedb07cb1c1fc74328b7f79a7c327f65eb53e827aa6585c5d495a6a31e64f` |
+| `reports/Horizon2035_Summary_20260726_191415.md` | `1f88a7e4513b661bfbc87b752178389e52d5689afbc1f1b88af47dea3104ebf1` |
+| `reports/Horizon2035_Summary_20260726_191429.json` | `bb5fa5fbd342c14c78fe46c1b2b8f21102194f90ef8ccb47636dcc62ddef8029` |
+| `reports/Horizon2035_Summary_20260726_191429.md` | `00ca14d1dfc1959781fdb9bac7dd59d55c12a9e017f5e074d0b5050d4b1e81c4` |
+| `reports/Horizon2035_Summary_20260726_191438.json` | `b7ae50e0252c744e63ebe66cfdd067e3365002e90a393fa59598bafbdc1e5a27` |
+| `reports/Horizon2035_Summary_20260726_191438.md` | `d568d123d18c00e9642c9740c3786efb154df1a06e45ad227890de0219741a31` |
+| `reports/LLM-HONEYPOT-20260726_184453.json` | `bc05a5a3e8b57b9c29b31d735b0b54796f8ce459b63601e42d8f66a3ef00399e` |
+| `reports/LLM-HONEYPOT-20260726_184453.md` | `1da488cad2372bbee529f114259078a19f403b34f80053683a1de2a92383505c` |
+| `reports/LLM-HONEYPOT-20260726_184543.json` | `f01bfde1ca6f279d7f626c4efa0acfc970176427157c33c03a4e9f16dd927f16` |
+| `reports/LLM-HONEYPOT-20260726_184543.md` | `7fa8c43476c93b1e6f3bb3511dd010d1459f5bbcef87685641a8a4a905b35024` |
+| `reports/LLM-HONEYPOT-20260726_191415.json` | `a0a7c797d59cffc572a2d390036c604650b70d1e7e8e4d94c015a58b553096fa` |
+| `reports/LLM-HONEYPOT-20260726_191415.md` | `47112e2c9209a0756b2f02464a40d3584c4eb7ea920358fb6ee489ea5b93f5c6` |
+| `reports/LLM-HONEYPOT-20260726_191429.json` | `abbfca2ead00e214829f4a219dd24951c70568d5e31933f3d4348cf136aefc7f` |
+| `reports/LLM-HONEYPOT-20260726_191429.md` | `1ac1ca2231d9b2bbcaec877021a824a70a853395bd857e3771b357ba74279936` |
+| `reports/LLM-HONEYPOT-20260726_191438.json` | `3bd48757a3a8d8bd0ac0a3a530f3d2173a6941292ea36293034cf6b48354daa7` |
+| `reports/LLM-HONEYPOT-20260726_191438.md` | `fcda0869d2ad9058cfee99537c63967105acdb16538f0b993e13a33e787f04e9` |
+| `reports/LLM-HONEYPOT-20260728_100551.json` | `9c1d9ddae32e8f00311209e4cb9f29e3875419840cc19d697b3100801ec14666` |
+| `reports/LLM-HONEYPOT-20260728_100551.md` | `a9d191c389a097314a06341514d26e60be3c523d19b2fcd7c95a8bde547e0757` |
+| `reports/LLM-HONEYPOT-20260728_100601.json` | `88b7d5256d6f575059ed8870b3bb2ec398b68d54d9ec5241abc8074b032114c9` |
+| `reports/LLM-HONEYPOT-20260728_100601.md` | `c06b29add9002081a4769abab220e40adaf21ecf22f3a3653d4f4f4f4d0be632` |
+| `reports/LLM-HONEYPOT-20260728_105605.json` | `82959d3b1a9442dca6bdbad1d6ed28f13dd713d5b7a011b51aac66da6da0a11e` |
+| `reports/LLM-HONEYPOT-20260728_105605.md` | `0b3d34079f4781069936ffb6ee7eccd9bae0127e18a2c156f25b0618033633e7` |
+| `reports/LLM-HONEYPOT-20260728_105728.json` | `ec9b612728714fae4e212a86324a0dc7dc34a6344c189be8122ca4475471e7f0` |
+| `reports/LLM-HONEYPOT-20260728_105728.md` | `405a140f8b5447c50415c9e8642a2ecdaeaaf971ac348e3a469a8129d084cb71` |
+| `reports/llm_prompt_guard_report_20260726_103031.json` | `4dffe25e5c69a0b4fb7ff67830bae3cbd6d6e040e4f82f8262e0f8ec911c95b7` |
+| `reports/llm_prompt_guard_report_20260726_103031.md` | `6be791de1720322731501ccaa4facb3583a24863469c7f18fdf9149bd65680da` |
+| `reports/llm_prompt_guard_report_20260726_144453.json` | `f943b4dd6605db377d31169ccfc933a13cfa3e03687beac2b184294029cf5843` |
+| `reports/llm_prompt_guard_report_20260726_144453.md` | `40a389be101018c2bea384b041bc149c5ba4762b53e5a39e1cd2adb37fd5549e` |
+| `reports/llm_prompt_guard_report_20260726_144542.json` | `1507e02e070cf9fccdb403e13a16cd9a50cc5f873e600bb37ea635d1bc125dc2` |
+| `reports/llm_prompt_guard_report_20260726_144542.md` | `f54861b6daae359f2643b99ddbdcb07291e154d2fb09c196d85201245b7b83cd` |
+| `reports/llm_prompt_guard_report_20260726_144603.json` | `b9ef220206306c542660532bb4b04009b72d4fa77b6bb832ad2fc9fbda41426c` |
+| `reports/llm_prompt_guard_report_20260726_144603.md` | `6bd784ca6b74708b4f08ee6d8f56e13eacb517dd58b52a08a823af36c4e954fb` |
+| `reports/llm_prompt_guard_report_20260726_144711.json` | `2aab50ca873f24d143385b13be1924c808ba5ff4531b69be96be2f91981b9efc` |
+| `reports/llm_prompt_guard_report_20260726_144711.md` | `67fb26702b6f85a8afcb93ece268c6ac1e48ed056e13280484f083501c3a98b2` |
+| `reports/llm_prompt_guard_report_20260726_172726.json` | `b63523b63865de0d6d5b88e1e7e9d107f944e0dd2cb984e2d4f2142652b151ad` |
+| `reports/llm_prompt_guard_report_20260726_172726.md` | `4959065a0148ad6586bee40f00920d95fcc8115375f34a7d66a03c892f0871d8` |
+| `reports/llm_prompt_guard_report_20260726_172845.json` | `c71f5a0d02547b2e0b3c7ccef8408467e916dfe9fbb8b1304d1323b94f420ebd` |
+| `reports/llm_prompt_guard_report_20260726_172845.md` | `85e37271a419f9da2a0af6fd626d9f04d39e3b1d1b85ba76a6d70cc1cbc730ba` |
+| `reports/llm_prompt_guard_report_20260726_184131.json` | `582c19d0e15ff874edc712d9c330d70e6cdf2004a54c4962e7c4c03ed36aeebe` |
+| `reports/llm_prompt_guard_report_20260726_184131.md` | `0999211410d50aa54d9500463c704eaea7a10415e32b7820016237d974698b56` |
+| `reports/llm_prompt_guard_report_20260726_184332.json` | `fecfe787aed3eec4735c170470133c50e5ebc8d36536a82796781689e0e8defd` |
+| `reports/llm_prompt_guard_report_20260726_184332.md` | `4f6c7591fd61f4dee213e59a37f26f3b45a9c6418a726d290967ae36908b9d27` |
+| `reports/MANIFEST.sha256` | `4e8fcf16bc49806457c59b932f16cd7d6ca687849ba1c893cbb37ae5010700a7` |
+| `reports/NIS2_INCIDENT_NOTIFICATION_24H.md` | `bfdb21ca1a682de72fb715cf62a41d4fcdc7ff7c9636d6a79522c8a3825281a5` |
+| `reports/pqc_agility_report_20260726_103104.json` | `91d99523afc101ac47a6eaa5ee26d99aedf2386ac40d3598047b981f8bc5501f` |
+| `reports/pqc_agility_report_20260726_103104.md` | `befa6969b68370091ffa20db1bdb7d96d17170351cb1e1564f40a7ddc9feafbf` |
+| `reports/RGPD-PURGE-20260726_144456.json` | `769c0410b7fd662202ad4bfcd2ccff5325140a62b5780d1b825c828278518ba1` |
+| `reports/RGPD-PURGE-20260726_144456.md` | `0720e75413aa9e50652b9e0e20b9f5eebd6663fef1c8cae61c451f7a196a8395` |
+| `reports/RGPD-PURGE-20260726_144546.json` | `1cbfed772d0613dc3ced2eac438132d1472d1b9d3908c2df939d7eec0e5b7cdc` |
+| `reports/RGPD-PURGE-20260726_144546.md` | `b2693f282751190b9111bc9983a7a26ab5d0a949e2848bcf48e14de5835717aa` |
+| `reports/RGPD-PURGE-20260726_144608.json` | `47d2cf19b4f7b0025f2fd7d74dcb782405e641d7776c7f8c5e18bbd28db53185` |
+| `reports/RGPD-PURGE-20260726_144608.md` | `4dfd3210bc546da88f92cf53f8cc7da07d46a22522dc5f09f868db4017ce232c` |
+| `reports/RGPD-PURGE-20260726_144714.json` | `58023318f7e475b194a8fe86b0176a972bea92689ea46e5a40f2088072398a59` |
+| `reports/RGPD-PURGE-20260726_144714.md` | `f9c0efbc2585d83d6956d9eda6789fcb6c7ee06a802345ac317907d20145ddf9` |
+| `reports/RGPD-PURGE-20260726_172729.json` | `503eb97852782bfe90813423e73d3e4beb06910e3d2a785ef702bfaf141f1a92` |
+| `reports/RGPD-PURGE-20260726_172729.md` | `0684d82b5a3a01d904d21821c64baf3c21d23bc4393852d79e4a4daccf918a71` |
+| `reports/RGPD-PURGE-20260726_172848.json` | `677fdeb1e792bb0e2d474a346e4718f3a7486ecaad6bdd1868bdaccd1ec63f6b` |
+| `reports/RGPD-PURGE-20260726_172848.md` | `299fd2b8cbf83387ad5f299a562892feee4874067c1209488a9888a5926f841f` |
+| `reports/RGPD-SAR-20260726_144455.json` | `519a7d9dc12553bf466e63642c62013e0c638524f3b63d2445ec2cea9722541f` |
+| `reports/RGPD-SAR-20260726_144455.md` | `f0ed90afba8e7c5b8cdfa200cf7ecf6f1d23f01555db4384562dccdbd1c7e67f` |
+| `reports/RGPD-SAR-20260726_144544.json` | `10d1a9c6badbe579759617765800e91540e94680c82b6984138f886a07537c7c` |
+| `reports/RGPD-SAR-20260726_144544.md` | `4b995abb2804685bf1bb0d0250345bd98bac04bc8a686700142d3d7e10d68101` |
+| `reports/RGPD-SAR-20260726_144606.json` | `a617159b7e0bab6ae9ed105a0eee37384bef39a636358a961e22628e43db008a` |
+| `reports/RGPD-SAR-20260726_144606.md` | `fa0e8d27f5bfce7d5b0ad1d0f136c01598693d5f554729ef3445263b1bd7f6ff` |
+| `reports/RGPD-SAR-20260726_144712.json` | `8b98c38e766d3ed387f9c3afd05c313156f4e13f2be92bbd21c0b6c8c5ce08ec` |
+| `reports/RGPD-SAR-20260726_144712.md` | `a5d322e206f92acda47e7b37efeca7e52629f26832004ed017f6c40d3747d20f` |
+| `reports/RGPD-SAR-20260726_172728.json` | `168d4bb928eb3816d2fa7aa914ef862ce9805c42f4100ecc288d3faddfa19d46` |
+| `reports/RGPD-SAR-20260726_172728.md` | `580493e716fd7f3d0bf238a6009295048a2bf961c9e7eba5220971014ed5c58c` |
+| `reports/RGPD-SAR-20260726_172846.json` | `b530e68085ac368c4e42f15cc79c1636852edfafeab90528845899a335a14f66` |
+| `reports/RGPD-SAR-20260726_172846.md` | `0673c835188f2d2695302aea4eb891006f450d7e24a525f1f0b1d63890f39769` |
+| `reports/RGPD-SAR-20260726_184131.json` | `4b7a9394da94447e94e1c2d97aa0aaf83c11d5dee6c07ba979eac3536b06b2c5` |
+| `reports/RGPD-SAR-20260726_184131.md` | `027bfb6c8033e37153bdcb508593b0d5ba6a65aed1580e85451ccd4aa2224752` |
+| `reports/RGPD-SAR-20260726_184332.json` | `81bebe78ec5f64ae0f22f97bb1044623b8660c866d459841833cab79de5151b6` |
+| `reports/RGPD-SAR-20260726_184332.md` | `eeb49deb4f9515f757ae922321b66221496d6b8571257ed70dca5676969b580f` |
+| `reports/RGPD-SAR-20260728_103251.json` | `6de1fb5259fdae3bf8f44e90262fe6457447c24d91d98dca28f35a58bb3f752e` |
+| `reports/RGPD-SAR-20260728_103251.md` | `89020cc3e718832cc4fd931a65fbe40f4f2d38a508807a5c94afab3589f9acff` |
+| `reports/RGPD-SAR-20260728_103304.json` | `8a45fbb92ad30005d3ff270a3121a3935e0cc99b6d23b775705b1d86344f3512` |
+| `reports/RGPD-SAR-20260728_103304.md` | `c12e82ff2cf40a514f5cf68e7f3692805bc11499633d3c08bbfb722175108b21` |
+| `reports/RGPD-SAR-20260728_105248.json` | `901eed3edb9954bf563297125c259c17a6968e74cb2babb0582e5e72f3dda532` |
+| `reports/RGPD-SAR-20260728_105248.md` | `069b9f5ef1e3bcff4e2d6d951d28825f6ff210a6ef8f633316027614a355e9dc` |
+| `reports/RGPD-SAR-20260728_105319.json` | `50afb39a6494a19be73c563ed051645f5823810756d806dbf7647197596ddea7` |
+| `reports/RGPD-SAR-20260728_105319.md` | `b837adc2edf1b55f3842116d4a7c08561b79d2ebfb73b82ac6ac8ec6d8f3bb25` |
+| `reports/RGPD-SAR-20260728_105435.json` | `ce0ecf3e4f2bcdbd14972bf7335aaccd0a07a502de5f90354f9394ac5b33626a` |
+| `reports/RGPD-SAR-20260728_105435.md` | `c490bff712ae61396cbe143fad728394b3126030b25068b4c645399a92ab2254` |
+| `reports/RGPD-SAR-20260728_105634.json` | `b71c8b6c6c8d4a2bf2eb13cbfaa5c4f6ea29cfa44e46650aad3113c0716b8813` |
+| `reports/RGPD-SAR-20260728_105634.md` | `ebbb4ce05f74e0ce23863a2120578a9f43b2260429ad2aabdabcb9ea78525b21` |
+| `reports/RGPD-SAR-20260728_113153.json` | `5d2a8efe28487ce168155a7fe9d0ba33386854d3da2e85ffc11c9fe7779c27a2` |
+| `reports/RGPD-SAR-20260728_113153.md` | `4deb005a4c54cd881458128af2f9b90f24c857042e4bc3d3a0f5ca4fab0de68a` |
+| `reports/RGPD-SAR-20260728_113431.json` | `fc0bd2f66036d5743f1416360a59a8a362df5b6fdeb16e352b04bb02a5bc1a22` |
+| `reports/RGPD-SAR-20260728_113431.md` | `4d4be7f3d00fb68cf4f92f902c1492dc9517922fb3f3c0403aa5fce55955701a` |
+| `reports/rgpd_pseudonymizer_report_20260726_144554.json` | `34397519ab7224014ef8b9dc03dacc472e5a489d6c456a5a424adf44e917c08d` |
+| `reports/rgpd_pseudonymizer_report_20260726_144554.md` | `3d9d2b874047c22caa0b2fe1893bbdaad5797d4af4af9dc60cb356177e4c2555` |
+| `reports/rgpd_pseudonymizer_report_20260726_184331.json` | `2f4dacda81e3a9510ec9b435a8612be45e6bb0cf541c346c76031a36f62e8538` |
+| `reports/rgpd_pseudonymizer_report_20260726_184331.md` | `f2da19ad4a31435b16b218ebf1df17633ed407d3e7c49ba3ecd98804b8f51757` |
+| `reports/sbom_audit_report_20260728_092322.json` | `e051e45c0d46cdcd4ad55722df2ae48e9f56ac44b8e97af237a09fb4848e2f87` |
+| `reports/sbom_audit_report_20260728_092322.md` | `351cc2c4b42f035bf470e0145849dab8fab997eb52cb0e6dbc80b3f61ddb6329` |
+| `reports/sbom_audit_report_20260728_103250.json` | `29a33ba8eb105608e56b5b68a927a2f539cd775ad0f53feae71531134a65c740` |
+| `reports/sbom_audit_report_20260728_103250.md` | `e2443bf897b2bbf0684e2cdda925416c82d969fba8b5180e2c4565e781c1ff48` |
+| `reports/sbom_audit_report_20260728_103303.json` | `0fe9b3d10412588e20cc938657d08a2c7cdb96ee6a50b2f675ded7d0b1c08a91` |
+| `reports/sbom_audit_report_20260728_103303.md` | `4e1eece9980437ad2c2220ddb1761b523e0b6df85dccf9e1370bf23a6b642a4c` |
+| `reports/sbom_audit_report_20260728_105247.json` | `060b6cd23becdd954d083d6ab2e42d3142c870254b8a381beb52668c35cf2acd` |
+| `reports/sbom_audit_report_20260728_105247.md` | `8dc4e2293cb65a0ad52619d6e788bd4cba8aa8bcd8281e82ad7e57d251df0ded` |
+| `reports/sbom_audit_report_20260728_105319.json` | `aa7786758f4922c1d70dc3bc52d253ee194f4041beb8fe2bd835d111a9dfadaa` |
+| `reports/sbom_audit_report_20260728_105319.md` | `a1768732132630a757941887ab3a8e8009088a6c27c2fc948a7b0558ea3c3f5b` |
+| `reports/sbom_audit_report_20260728_105434.json` | `56d5b3857fdec86c4e788c430d82228d343e11c172817cb5aa77d64fd8448b81` |
+| `reports/sbom_audit_report_20260728_105434.md` | `9c6333855a3ec9ce1460a07f2b25834f83c6b2a21de7960f45bab62748ec0cc9` |
+| `reports/sbom_audit_report_20260728_105634.json` | `6372700f5a0db8e0bd42ead6d6f20bf8ed2ce6b661571bd322e899ceff269a2b` |
+| `reports/sbom_audit_report_20260728_105634.md` | `0d51963eaf83c4053c1758cbcab2f00014994badc6b7e8efbfa2b7a3c8ac38cb` |
+| `reports/sbom_audit_report_20260728_113152.json` | `5c05b20e21dd067c1ed9374e8f0ef1e0740ee0d4cdca76c4fa5d534fcac7bafc` |
+| `reports/sbom_audit_report_20260728_113152.md` | `fb37e4e7cba35de9f92ca7be38f670decadc09e7c9d545aca40726128b6fae66` |
+| `reports/sbom_audit_report_20260728_113430.json` | `8e2b51a74708328db53da5b3e1281d0c647c5b27938f7a0142742c8bd9da51ec` |
+| `reports/sbom_audit_report_20260728_113430.md` | `5cacd76663dcf74c9d9a756fd3fbbd751aec1ea09ca57f21ccf35a7bcde2bf1a` |
+| `reports/ZKP-AUTH-20260726_191416.json` | `386580d18e137633649c27a62d3d1cd549c7d059fd4ef573624c150bcaf7127d` |
+| `reports/ZKP-AUTH-20260726_191416.md` | `6597733812e99dc4637fc4e379e27492ebfe55fd67917ac28c67fc9e5cd71f5b` |
+| `reports/ZKP-AUTH-20260726_191429.json` | `fd3f9d1780f534b458b9edd98cd170dd0dbc58714a6711d48f2679802ed6a99d` |
+| `reports/ZKP-AUTH-20260726_191429.md` | `47b444b9d29ea63e9b389384e17776ee9372c4ae824a2fc673bcd77dc5a5a854` |
+| `reports/ZKP-AUTH-20260726_191439.json` | `fcfe6f37af1ea70b9ef9e308bd503153bb60fff48098c82b213522f8491cdae9` |
+| `reports/ZKP-AUTH-20260726_191439.md` | `cd2dd8c079ed2f2870bdec8f58d7b9cef67fd7ac13be76641aa63b5c0834d74b` |
+| `reports/ZKP-AUTH-20260728_100551.json` | `9e1d5976e3e871786e8689c48025347288c76a56cbe893b2d0a530eb2e7ee20f` |
+| `reports/ZKP-AUTH-20260728_100551.md` | `9b79955daff8e6f77fcb0cf0a8d2b3dfbf4762a9c20a69f5885b08c46df1fbab` |
+| `reports/ZKP-AUTH-20260728_100602.json` | `414482dadb148f8b5364737ebee115ac577578bdd842ae781c71f1d3cbe16880` |
+| `reports/ZKP-AUTH-20260728_100602.md` | `6f38754580ec7e5a3017ccc191cee7ef070fb6335aa22353cdfa48c790945f7e` |
+| `reports/ZKP-AUTH-20260728_105606.json` | `bd3d988f966a4e6f125f1accb8df2202871a7b2aa8647be73678577e7057f5cd` |
+| `reports/ZKP-AUTH-20260728_105606.md` | `fb726b8ee7ba574853037e161d38bf5d5d66c4bfe41b0b7c996612ae43d5f8ac` |
+| `reports/ZKP-AUTH-20260728_105728.json` | `efcd05bc90b1ee471e1218add5c1101ce1a9fb3269306459612fba297369faea` |
+| `reports/ZKP-AUTH-20260728_105728.md` | `ad1c7f000c40ef7f7a85918306bb597367b03f7878e4c9652446e0235d2829af` |
+
+## 4. PROTOCOLO DE ENTREGA AL REGULADOR (MOD / OTAN / ENISA / INCIBE)
+1. **Paquete Cifrado:** Copia inmutable `audit_bunker.tar.gz.enc` cifrada mediante AES-256-GCM.
+2. **Entrega de Claves:** Canal seguro fuera de banda (presencial / HSM).
+3. **Verificación de Inmutabilidad:** El regulador contrasta `MANIFEST.sha256` y `SLSA_PROVENANCE.json`.

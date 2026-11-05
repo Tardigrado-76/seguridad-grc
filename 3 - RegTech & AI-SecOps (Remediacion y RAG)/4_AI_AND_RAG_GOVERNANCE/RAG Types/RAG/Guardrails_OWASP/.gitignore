@@ -1,0 +1,38 @@
+# ============================================================
+# .gitignore — RAG Regulado con Guardarraíles OWASP
+# Protección de datos: RGPD/LOPDGDD, ENS Alta
+# ============================================================
+
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Datos de auditoría sensibles (RGPD — no subir a repositorios)
+audit_log.json
+
+# Uploads temporales (pueden contener datos personales)
+temp_uploads/
+
+# Variables de entorno (credenciales)
+.env
+.env.local
+.env.*.local
+
+# Artefactos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Distribución / Build
+dist/
+build/
+*.egg-info/

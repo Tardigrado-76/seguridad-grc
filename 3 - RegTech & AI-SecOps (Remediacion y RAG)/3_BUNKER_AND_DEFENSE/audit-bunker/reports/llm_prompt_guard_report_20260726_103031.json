@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-07-26T10:30:31.114126+00:00",
+  "mode": "enforce",
+  "dry_run": true,
+  "evaluation": {
+    "is_safe": false,
+    "sanitized_prompt": "[REMOVED_SYSTEM_INSTRUCTION][REMOVED_SYSTEM_INSTRUCTION] and email [ANONYMIZED_EMAIL]",
+    "risk_score": 0.75,
+    "flags": [
+      "Removed system prompt override pattern: System\\s*:\\s*",
+      "Removed system prompt override pattern: forget\\s+all\\s+rules",
+      "Redacted 1 instances of EMAIL"
+    ],
+    "original_length": 51,
+    "sanitized_length": 85
+  },
+  "report_sha256": "6da432d222d8ec1f45a8b79505bc1375a81b9a2bec0977bb210848bbcae9dc35"
+}

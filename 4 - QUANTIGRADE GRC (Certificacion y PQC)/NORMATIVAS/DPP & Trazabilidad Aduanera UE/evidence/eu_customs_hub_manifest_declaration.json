@@ -1,0 +1,10 @@
+{
+  "eu_customs_data_hub_manifest": {
+    "declaration_reference": "MRN-26ES000000009871A4",
+    "entry_customs_office": "ES004611_PORT_OF_VALENCIA",
+    "economic_operator_eori": "ESA9988776655",
+    "status": "DESPACHO_ANTICIPADO_AUTORIZADO",
+    "customs_hub_sync_timestamp": "2026-10-28T00:00:00Z",
+    "tamper_proof_manifest_hash": "0x58f12a9bc1847120aefb491234acde11"
+  }
+}

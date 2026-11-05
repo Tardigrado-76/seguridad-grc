@@ -1,0 +1,114 @@
+{
+  "title": "Consolidado de Auditor\u00eda Perfil 1 (DEMO)",
+  "timestamp_iso": "2026-07-26T14:42:41.274709+00:00",
+  "mode": "DEMO",
+  "total_duration_seconds": 135.14,
+  "summary_kpi": {
+    "total_phases": 6,
+    "passed": 5,
+    "skipped": 0,
+    "failed": 1
+  },
+  "results": [
+    {
+      "id": "01",
+      "normativa": "Supply Chain",
+      "script": "generate_sbom.py",
+      "status": "PASSED",
+      "duration_seconds": 1.01,
+      "targets_sample": [
+        "SOFTWARE\\calculadora_pro\\package.json",
+        "SOFTWARE\\calculadora-tavilga\\package.json",
+        "SOFTWARE\\cronos\\package.json",
+        "AUDIT_CONSOLE\\backend\\requirements.txt"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Supply Chain Security\\generate_sbom.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "02",
+      "normativa": "RGPD / LOPDGDD",
+      "script": "rgpd_data_pseudonymizer.ps1",
+      "status": "FAILED",
+      "duration_seconds": 120.04,
+      "targets_sample": [
+        "SOFTWARE\\calculadora-tavilga\\package-lock.json",
+        "SOFTWARE\\DISENO_3D\\LATEST_PRO_VERSION\\supabase\\migrations\\20250218140000_fix_rls_security.sql",
+        "SOFTWARE\\DISENO_3D\\LATEST_PRO_VERSION\\supabase\\migrations\\20250218120000_create_designs_table.sql",
+        "SOFTWARE\\DISENO_3D\\LATEST_PRO_VERSION\\supabase\\migrations\\20250218130000_secure_designs_table.sql",
+        "AUTOMATIZACIONES\\RRSS_TAVILGA_cambiar IA.json",
+        "SOFTWARE\\calculadora-tavilga\\package.json"
+      ],
+      "command_run": "powershell -ExecutionPolicy Bypass -File E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\RGPD - LOPDGDD\\rgpd_data_pseudonymizer.ps1 -Mode Pseudonymize -OutputDir E:\\PROYECTOS IA\\AUDITORIAS\\reports -DryRun"
+    },
+    {
+      "id": "03",
+      "normativa": "OWASP Top 10",
+      "script": "ast_scan.py",
+      "status": "PASSED",
+      "duration_seconds": 2.23,
+      "targets_sample": [
+        "SOFTWARE\\DISENO_3D\\LATEST_PRO_VERSION\\vite.config.prod.ts",
+        "SOFTWARE\\DISENO_3D\\LATEST_PRO_VERSION\\index-head.html",
+        "SOFTWARE\\calculadora-tavilga\\vite.config.ts",
+        "SOFTWARE\\DISENO_3D\\LATEST_PRO_VERSION\\vite.config.ts",
+        "security_audit\\test-signin.js",
+        "tls_config.py",
+        "ai_architect\\ai_compliance_auditor.py",
+        "hotfixes_simulations\\fix_security.js",
+        "SOFTWARE\\calculadora-tavilga\\index.html",
+        "SOFTWARE\\calculadora_pro\\index.html",
+        "security_audit\\test-signup.js",
+        "ai_architect\\rag_ingestion_pipeline.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\OWASP top 10\\ast_scan.py --path E:\\PROYECTOS IA\\AUDITORIAS"
+    },
+    {
+      "id": "04",
+      "normativa": "OWASP LLM",
+      "script": "llm_prompt_guard.py",
+      "status": "PASSED",
+      "duration_seconds": 0.1,
+      "targets_sample": [
+        "SOFTWARE\\calculadora-tavilga\\package-lock.json",
+        "SOFTWARE\\CHATBOT WEB\\Implementaci\u00f3n.txt",
+        "SOFTWARE\\cronos\\docker-compose.prod.yml",
+        "tls_config.py",
+        "SOFTWARE\\cronos\\docker-compose.yml",
+        "README_scripts.txt",
+        "AUTOMATIZACIONES\\RRSS_TAVILGA_cambiar IA.json",
+        "AUTOMATIZACIONES\\New Text Document.txt",
+        "ai_architect\\ai_compliance_auditor.py",
+        "SOFTWARE\\calculadora-tavilga\\package.json",
+        "ai_architect\\rag_ingestion_pipeline.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\OWASP LLM\\llm_prompt_guard.py --prompt Evaluaci\u00f3n de seguridad de prompt para Perfil 1 --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "05",
+      "normativa": "RGPD / LOPDGDD",
+      "script": "sar_data_extractor.py",
+      "status": "PASSED",
+      "duration_seconds": 0.13,
+      "targets_sample": [
+        "SOFTWARE\\calculadora-tavilga\\package.json",
+        "NORMATIVAS\\DORA\\backup_audit_reports\\demo_databases\\audit_events.db",
+        "AUTOMATIZACIONES\\RRSS_TAVILGA_cambiar IA.json",
+        "SOFTWARE\\calculadora-tavilga\\package-lock.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\RGPD - LOPDGDD\\sar_data_extractor.py --subject-identifier audit_demo_user@domain.local --target-db E:\\PROYECTOS IA\\AUDITORIAS\\reports\\demo_audit.db --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "06",
+      "normativa": "RGPD / LOPDGDD",
+      "script": "rgpd_data_retention_purger.py",
+      "status": "PASSED",
+      "duration_seconds": 0.16,
+      "targets_sample": [
+        "demo_chained.log",
+        "AUDIT_CONSOLE\\frontend\\.next\\dev\\logs\\next-development.log"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\RGPD - LOPDGDD\\rgpd_data_retention_purger.py --target-db E:\\PROYECTOS IA\\AUDITORIAS\\reports\\demo_audit.db --mode audit --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    }
+  ],
+  "report_integrity_sha256": "E546E924905D698A639251F6A311830312CFFCA9162BD7EC318329C4F03710D9"
+}

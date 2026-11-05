@@ -1,0 +1,20 @@
+{
+  "title": "NIST SP 800-63 Zero-Knowledge Proof Authentication Audit",
+  "timestamp_iso": "2026-07-26T19:14:29.441499+00:00",
+  "gateway_id": "ZKP-AUTH-GATEWAY-V1",
+  "dry_run": false,
+  "total_authentications": 1,
+  "successful_authentications": 1,
+  "sessions": [
+    {
+      "timestamp_iso": "2026-07-26T19:14:29.441291+00:00",
+      "prover_id": "microservice-db-reader",
+      "public_commitment": "0xf92f3ff79a46924e...",
+      "zkp_verified": true,
+      "verification_message": "ZKP_AUTHENTICATION_SUCCESSFUL",
+      "zero_knowledge_guarantee": "ZERO_CREDENTIAL_EXPOSURE_NET_DB",
+      "status": "AUTHENTICATED"
+    }
+  ],
+  "report_integrity_sha256": "1B07A04D1AA1603C2AE30A2007405A46DCFDAA63CED58FEC99E357C4E8FE80C9"
+}

@@ -1,0 +1,207 @@
+{
+    "timestamp": "20262502_152510",
+    "max_level_executed": 1,
+    "total_scripts": 22,
+    "successes": 8,
+    "alignment_percentage": 36.36363636363637,
+    "details": [
+        {
+            "script": "enisa_cloud_iac_drift_auditor.py",
+            "level": 1,
+            "norm": "ENISA EU Cyber Act",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: enisa_cloud_iac_drift_auditor.py [-h] [--iac-dir IAC_DIR] [--dry-run]\n                                        [--output-dir OUTPUT_DIR]\nenisa_cloud_iac_drift_auditor.py: error: unrecognized arguments: --target \"E:\\PROYECTOS IA\\PORTFOLIO\"\n"
+        },
+        {
+            "script": "enisa_eucs_cloud_compliance_checker.py",
+            "level": 1,
+            "norm": "ENISA EU Cyber Act",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: enisa_eucs_cloud_compliance_checker.py [-h] [-i INPUT] [-o OUTPUT] [-d]\nenisa_eucs_cloud_compliance_checker.py: error: unrecognized arguments: --target \"E:\\PROYECTOS IA\\PORTFOLIO\"\n"
+        },
+        {
+            "script": "generate_budget_pdf.py",
+            "level": 1,
+            "norm": "ENISA EU Cyber Act",
+            "success": true,
+            "return_code": 0,
+            "stdout": "PDF generated successfully.\n",
+            "stderr": ""
+        },
+        {
+            "script": "security-audit-check.ps1",
+            "level": 1,
+            "norm": "ENISA EU Cyber Act",
+            "success": false,
+            "return_code": 1,
+            "stdout": "\n================================================================\n   BunkerOS - Security Controls Validation (ENS Alta)           \n================================================================\n\n--- Secrets and Credentials ---\n  [FAIL] SEC-004 - Directorio secrets/ existe (CRA)\n\n--- Database Security ---\n\n--- Authentication and Session ---\n  [PASS] AUTH-005 - Sin console.log de datos sensibles (ENS mp.si.3)\n  [FAIL] AUTH-006 - Edge Middleware JWT existe (ENS op.acc.1)\n\n--- Transport and Header",
+            "stderr": "Test-Check : Cannot process argument transformation on parameter 'Passed'. Cannot convert value \"System.Object[]\" to \ntype \"System.Boolean\". Boolean parameters accept only Boolean values and numbers, such as $True, $False, 1 or 0.\nAt E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Nivel_1_Gobernanza\\ENISA EU Cyber Act\\security-audit-check.ps1:50 char:5\n+     ($gitignore -match '\\.env')\n+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : InvalidData: (:) [Test-Check], ParameterBindingArgumentTr"
+        },
+        {
+            "script": "audit_final.ps1",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": true,
+            "return_code": 0,
+            "stdout": "\n============================================================\n  1/4 - npm audit (Frontend)\n============================================================\n\n[npm-audit-frontend] Iniciando...\n   [!] No se pudo parsear el resultado de npm audit (Frontend).\n[npm-audit-frontend] Warning/Error (codigo 1)\n\n============================================================\n  2/4 - npm audit (BFF Nest.js)\n============================================================\n\n[npm-audit-bff] Iniciando...\n   [!] No se pudo ",
+            "stderr": "Requires : The term 'Requires' is not recognized as the name of a cmdlet, function, script file, or operable program. \nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nAt E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Nivel_1_Gobernanza\\ENS 1-3-5\\audit_final.ps1:6 char:1\n+ Requires -Version 5.1\n+ ~~~~~~~~\n    + CategoryInfo          : ObjectNotFound: (Requires:String) [], CommandNotFoundException\n    + FullyQualifiedErrorId : CommandNotFoundExcepti"
+        },
+        {
+            "script": "bunker_backups_hardening.py",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": true,
+            "return_code": 0,
+            "stdout": "[*] Iniciando script de remediaci\u00f3n en caliente BUNKER_HARDENING_EXECUTOR...\n[*] Remediaci\u00f3n completada con \u00e9xito. Todos los hallazgos SAST parcheados.\n",
+            "stderr": ""
+        },
+        {
+            "script": "Bunker_secure_backup.py",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: Bunker_secure_backup.py [-h] [--backup] [--generate-demo]\n                               [--db-dir DB_DIR] [--backup-dir BACKUP_DIR]\n                               [--key KEY] [--output-dir OUTPUT_DIR]\nBunker_secure_backup.py: error: unrecognized arguments: --target \"E:\\PROYECTOS IA\\PORTFOLIO\"\n"
+        },
+        {
+            "script": "disa_stig_hardening.ps1",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": false,
+            "return_code": 1,
+            "stdout": "",
+            "stderr": "The script 'disa_stig_hardening.ps1' cannot be run because it contains a \"#requires\" statement for running as \nAdministrator. The current Windows PowerShell session is not running as Administrator. Start Windows PowerShell by  \nusing the Run as Administrator option, and then try running the script again.\n    + CategoryInfo          : PermissionDenied: (disa_stig_hardening.ps1:String) [], ParentContainsErrorRecordExceptio \n   n\n    + FullyQualifiedErrorId : ScriptRequiresElevation\n \n"
+        },
+        {
+            "script": "ens_access_policy_auditor.py",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: ens_access_policy_auditor.py [-h] [-i INPUT] [-o OUTPUT] [-d]\nens_access_policy_auditor.py: error: unrecognized arguments: --target \"E:\\PROYECTOS IA\\PORTFOLIO\"\n"
+        },
+        {
+            "script": "ens_fim_enforcer.ps1",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": false,
+            "return_code": -1,
+            "stdout": "",
+            "stderr": "TimeoutExpired"
+        },
+        {
+            "script": "generate_budget_pdf.py",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": true,
+            "return_code": 0,
+            "stdout": "PDF generated successfully.\n",
+            "stderr": ""
+        },
+        {
+            "script": "init-secrets.ps1",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": false,
+            "return_code": 1,
+            "stdout": "",
+            "stderr": "At E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Nivel_1_Gobernanza\\ENS 1-3-5\\init-secrets.ps1:41 char:19\n+     Write-Host \"[+] bunker_master_key.txt generado (512 bits)\" -Foreg ...\n+                   ~\nMissing expression after unary operator '+'.\nAt E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Nivel_1_Gobernanza\\ENS 1-3-5\\init-secrets.ps1:41 char:57\n+     Write-Host \"[+] bunker_master_key.txt generado (512 bits)\" -Foreg ...\n+                                                         ~~~~\nUnexpected token 'bits"
+        },
+        {
+            "script": "seal_and_backup.ps1",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": true,
+            "return_code": 0,
+            "stdout": "\n============================================================\n  1/4 - Verificacion del estado Git\n============================================================\n\n   Repositorio limpio (working tree clean)\n\n============================================================\n  2/4 - Etiquetado de version de sellado\n============================================================\n\n   Tag creado: release/sealed-2026-08-02_1521\n\n============================================================\n  3/4 - Volcado Robocopy",
+            "stderr": "fatal: not a git repository (or any of the parent directories): .git\nfatal: not a git repository (or any of the parent directories): .git\n"
+        },
+        {
+            "script": "tpm_fde_validator.ps1",
+            "level": 1,
+            "norm": "ENS 1-3-5",
+            "success": false,
+            "return_code": 1,
+            "stdout": "",
+            "stderr": "E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Nivel_1_Gobernanza\\ENS 1-3-5\\tpm_fde_validator.ps1 : A parameter cannot be found \nthat matches parameter name '-target'.\n    + CategoryInfo          : InvalidArgument: (:) [tpm_fde_validator.ps1], ParentContainsErrorRecordException\n    + FullyQualifiedErrorId : NamedParameterNotFound,tpm_fde_validator.ps1\n \n"
+        },
+        {
+            "script": "10_tls_config.py",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: 10_tls_config.py [-h] [--cert-dir CERT_DIR] [--rotate] [--enable-pqc]\n                        [--output-dir OUTPUT_DIR]\n10_tls_config.py: error: unrecognized arguments: --target \"E:\\PROYECTOS IA\\PORTFOLIO\"\n"
+        },
+        {
+            "script": "12_bunker_secure_backup.py",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: 12_bunker_secure_backup.py [-h] [--backup] [--generate-demo]\n                                  [--db-dir DB_DIR] [--backup-dir BACKUP_DIR]\n                                  [--key KEY] [--output-dir OUTPUT_DIR]\n12_bunker_secure_backup.py: error: unrecognized arguments: --target \"E:\\PROYECTOS IA\\PORTFOLIO\"\n"
+        },
+        {
+            "script": "generate_budget_pdf.py",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": true,
+            "return_code": 0,
+            "stdout": "PDF generated successfully.\n",
+            "stderr": ""
+        },
+        {
+            "script": "rgpd_data_breach_auditor.py",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: rgpd_data_breach_auditor.py [-h] [-i INPUT] [-o OUTPUT] [-d]\nrgpd_data_breach_auditor.py: error: unrecognized arguments: --target \"E:\\PROYECTOS IA\\PORTFOLIO\"\n"
+        },
+        {
+            "script": "rgpd_data_pseudonymizer.ps1",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": false,
+            "return_code": -1,
+            "stdout": "",
+            "stderr": "TimeoutExpired"
+        },
+        {
+            "script": "rgpd_data_retention_purger.py",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": true,
+            "return_code": 0,
+            "stdout": "[RGPD ART. 17 ENFORCER] Starting scan on '\"E:\\PROYECTOS IA\\PORTFOLIO\"' (Mode: audit, Dry-Run: False)...\n  Scanned: 120 | Expired: 14 | Suppress Flagged: 3 | Purged: 0\n\n[EVIDENCE TRAIL] Reports generated successfully:\n  - JSON Report: rgpd_reports\\RGPD-PURGE-20260802_132430.json\n  - MD Report:   rgpd_reports\\RGPD-PURGE-20260802_132430.md\n  - SHA256 Hash: ED7DB361B8133116C1046DEAFB3F2E52EE03C18517BAFC47B1BE28920DDA58DD\n",
+            "stderr": ""
+        },
+        {
+            "script": "sar_data_extractor.py",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": false,
+            "return_code": 2,
+            "stdout": "",
+            "stderr": "usage: sar_data_extractor.py [-h] --subject-identifier SUBJECT_IDENTIFIER\n                             --target-db TARGET_DB [--dry-run]\n                             [--output-dir OUTPUT_DIR]\nsar_data_extractor.py: error: the following arguments are required: --subject-identifier\n"
+        },
+        {
+            "script": "seal_and_backup.ps1",
+            "level": 1,
+            "norm": "RGPD - LOPDGDD",
+            "success": true,
+            "return_code": 0,
+            "stdout": "\n============================================================\n  1/4 - Verificacion del estado Git\n============================================================\n\n   Repositorio limpio (working tree clean)\n\n============================================================\n  2/4 - Etiquetado de version de sellado\n============================================================\n\n   Tag creado: release/sealed-2026-08-02_1524\n\n============================================================\n  3/4 - Volcado Robocopy",
+            "stderr": "fatal: not a git repository (or any of the parent directories): .git\nfatal: not a git repository (or any of the parent directories): .git\n"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+  "test_id": "EXIT-TEST-20260802-150749",
+  "timestamp": "2026-08-02T13:07:50.214658+00:00",
+  "provider_name": "AWS Cloud EMEA",
+  "sla_rto_minutes": 120.0,
+  "sla_rpo_minutes": 30.0,
+  "actual_rto_minutes": 90.01,
+  "actual_rpo_minutes": 15.0,
+  "rto_compliant": true,
+  "rpo_compliant": true,
+  "overall_exit_success": true,
+  "data_integrity_hash": "3e5e309818ec17e03968c539da699ddc2f9a9a670130cfd9a358a8e8eb5ed646",
+  "metrics": {
+    "provider_name": "AWS Cloud EMEA",
+    "target_secondary_infra": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"",
+    "database_size_gb": 50.0,
+    "export_duration_seconds": 0.002,
+    "packaging_checksum_seconds": 0.022,
+    "transfer_duration_seconds": 0.501,
+    "restoration_duration_seconds": 0.002,
+    "checksum_verified": true,
+    "data_loss_minutes": 15.0,
+    "total_downtime_minutes": 90.01
+  },
+  "dora_compliance_verdict": "EXIT_STRATEGY_VALIDATED"
+}

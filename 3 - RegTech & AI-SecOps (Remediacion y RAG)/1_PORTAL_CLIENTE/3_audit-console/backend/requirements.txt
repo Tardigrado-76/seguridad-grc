@@ -1,0 +1,12 @@
+clients>=1.0.0
+config>=1.0.0
+executor>=1.0.0
+fastapi==0.115.5
+models>=1.0.0
+pydantic==2.10.3
+pytest==9.1.1
+python-dotenv==1.0.1
+routers>=1.0.0
+schemas>=1.0.0
+services>=1.0.0
+uvicorn==0.32.1

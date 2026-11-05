@@ -1,0 +1,59 @@
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "subject": [
+    {
+      "name": "AUDITORIA_CONSOLIDADA_PERFIL3_DEMO.pdf",
+      "digest": {
+        "sha256": "f6e0891c9f4620b6a0964e8280249033a13a7670c59c688239ce2a003ea045b2"
+      }
+    },
+    {
+      "name": "AUDITORIA_CONSOLIDADA_SUMMARY.md",
+      "digest": {
+        "sha256": "67045877460f57ae40cd89059f48675fbecc2b7dd4206ec87b90b7d0ec88aae3"
+      }
+    },
+    {
+      "name": "CHAIN_OF_CUSTODY.md",
+      "digest": {
+        "sha256": "2ee068a029a64285b66693356564f7589629369b28058a7a5591d168e0d6213b"
+      }
+    },
+    {
+      "name": "DPIA_FRIA_AI_ASSESSMENT.md",
+      "digest": {
+        "sha256": "96c78ea38d7e6240b3a43c8a6d161217fddb0ef01279ea49c0f6d3703b3467d2"
+      }
+    },
+    {
+      "name": "MANIFEST.sha256",
+      "digest": {
+        "sha256": "9469e3ab52b8f802aaaedb8cb9ec3b4696d4ad91ec0a144677b6a1f6f1c2bf35"
+      }
+    }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://auto-audit.org/suites/PERFIL-3",
+      "externalParameters": {
+        "profile": "Perfil 3 - Aeroespacial / Defensa / IA Alto Riesgo / DORA / OTAN",
+        "mode": "DEMO"
+      },
+      "internalParameters": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.13.14"
+      }
+    },
+    "runDetails": {
+      "builder": {
+        "id": "urn:auditor:Tardigrado"
+      },
+      "metadata": {
+        "invocationId": "dceabf6bb0a1b8c4",
+        "startedOn": "2026-07-28T17:13:29.906213+00:00",
+        "finishedOn": "2026-07-28T17:13:30.030337+00:00"
+      }
+    }
+  }
+}

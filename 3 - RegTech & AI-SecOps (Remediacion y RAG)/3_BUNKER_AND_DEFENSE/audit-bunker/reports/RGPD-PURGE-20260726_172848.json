@@ -1,0 +1,18 @@
+{
+  "title": "RGPD Article 17 Data Retention & Crypto-Shredding Audit",
+  "timestamp_iso": "2026-07-26T17:28:48.057476+00:00",
+  "target_db": "E:\\PROYECTOS IA\\AUDITORIAS\\reports\\demo_audit.db",
+  "ttl_days": 365,
+  "mode": "audit",
+  "dry_run": true,
+  "summary": {
+    "scanned_count": 0,
+    "expired_count": 0,
+    "flagged_suppression_count": 0,
+    "purged_count": 0,
+    "exclusion_hashes_indexed": 0,
+    "status": "AUDIT_COMPLETE"
+  },
+  "purged_records_audit_trail": [],
+  "report_integrity_sha256": "A49368439CF1E2D7680A82FBC89F7FCBF6F8D41CE54219149A31E56C3AD975A3"
+}

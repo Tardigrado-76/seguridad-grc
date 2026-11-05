@@ -1,0 +1,18 @@
+{
+  "title": "FIPS 204 ML-DSA Git Commit Post-Quantum Signature Audit",
+  "timestamp_iso": "2026-07-26T11:22:21.014265+00:00",
+  "parameter_set": "ML-DSA-65",
+  "dry_run": true,
+  "commits_signed": 1,
+  "commits": [
+    {
+      "timestamp_iso": "2026-07-26T11:22:21.013880+00:00",
+      "commit_hash": "a1b2c3d4e5f678901234567890abcdef12345678",
+      "tree_hash": "18d2e9c69cef8cb89d4271f292d0649f5c90879fada87fe8baeb822eac2acdd5",
+      "algorithm": "ML-DSA-65",
+      "signature_block": "-----BEGIN FIPS 204 ML-DSA-65 SIGNATURE-----\nCF510449AB31D02FB963D7F37E70072106E971055282CD0F2DEBA9DBC0F2FFF6\n-----END SIGNATURE-----",
+      "status": "SIGNED_FIPS_204_ML_DSA"
+    }
+  ],
+  "report_integrity_sha256": "9427AB391CF98633C16B44A24AF62D08D1F18A06582BE9066F95CBFA6E57B704"
+}

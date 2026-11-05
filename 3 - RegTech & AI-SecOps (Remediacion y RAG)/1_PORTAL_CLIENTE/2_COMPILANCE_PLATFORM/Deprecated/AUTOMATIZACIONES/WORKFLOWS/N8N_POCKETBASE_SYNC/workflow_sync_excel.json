@@ -1,0 +1,75 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "pollTimes": {
+                    "item": [
+                        {
+                            "mode": "everyMinute"
+                        }
+                    ]
+                },
+                "documentId": {
+                    "__rl": true,
+                    "value": "YOUR_GOOGLE_SHEET_ID_HERE",
+                    "mode": "id"
+                },
+                "sheetName": "Materiales",
+                "options": {}
+            },
+            "id": "e3a896d1-4122-4a0b-9366-0e3f71c1831c",
+            "name": "Google Sheets Trigger",
+            "type": "n8n-nodes-base.googleSheetsTrigger",
+            "typeVersion": 1,
+            "position": [
+                440,
+                240
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://pb.tavilga.es/api/collections/materiales/records",
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "nombre",
+                            "value": "={{ $json.Nombre }}"
+                        },
+                        {
+                            "name": "precio_base",
+                            "value": "={{ $json.Precio }}"
+                        },
+                        {
+                            "name": "categoria",
+                            "value": "={{ $json.Categoria }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "f5b9d7a2-1a22-4d33-8877-0c4f81c2244d",
+            "name": "PocketBase Sync",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4,
+            "position": [
+                660,
+                240
+            ]
+        }
+    ],
+    "connections": {
+        "Google Sheets Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "PocketBase Sync",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "OWASP LLM04 Model DoS Token Rate Limiter Audit",
+  "timestamp_iso": "2026-07-26T10:53:59.725577+00:00",
+  "max_tokens_per_min": 100000,
+  "dry_run": true,
+  "audit_trail": [
+    {
+      "timestamp_iso": "2026-07-26T10:53:59.725147+00:00",
+      "client_id": "tenant_beta",
+      "requested_tokens": 50000,
+      "tokens_available_before": 100000.0,
+      "tokens_remaining_after": 100000.0,
+      "decision": "PERMITTED",
+      "dry_run": true
+    }
+  ],
+  "report_integrity_sha256": "901FBEDF1012393AB8C7126D60172C9FFBB560EB6E347603583FFCB600122C10"
+}

@@ -1,0 +1,159 @@
+{
+  "name": "ASISTENTE PERSONAL TAVILGA",
+  "nodes": [
+    {
+      "id": "telegram_trigger",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "parameters": { "updates": ["message"] },
+      "credentials": {
+        "telegramApi": {
+          "id": "TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+
+    {
+      "id": "normalizar",
+      "name": "Normalizar Entrada",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [420, 300],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "name": "chat_id", "value": "={{ $json.message.chat.id }}", "type": "number" },
+            { "name": "user_id", "value": "={{ $json.message.from.id }}", "type": "number" },
+            { "name": "texto", "value": "={{ $json.message.text || '' }}", "type": "string" },
+            { "name": "voice_id", "value": "={{ $json.message.voice?.file_id || '' }}", "type": "string" }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "intencion",
+      "name": "Detectar Intención Agenda",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [640, 300],
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.texto }}",
+              "operation": "regex",
+              "value2": "(cita|reunión|visita|ver disponibilidad|agenda|quedar)"
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "calendar_freebusy",
+      "name": "Consultar Disponibilidad",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [860, 200],
+      "parameters": {
+        "operation": "getAvailability",
+        "calendar": "primary",
+        "timeMin": "={{ $now }}",
+        "timeMax": "={{ $now.plus({ days: 7 }) }}"
+      },
+      "credentials": {
+        "googleCalendarOAuth2": {
+          "id": "GOOGLE_CALENDAR_CRED",
+          "name": "Google Calendar"
+        }
+      }
+    },
+
+    {
+      "id": "resumen_horarios",
+      "name": "Generar Propuesta Horarios",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1080, 200],
+      "parameters": {
+        "jsCode": "return [{ json: { propuesta: 'Tengo disponibilidad esta semana. ¿Prefieres mañana por la mañana o pasado por la tarde?' } }];"
+      }
+    },
+
+    {
+      "id": "respuesta_horarios",
+      "name": "Enviar Horarios",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [1300, 200],
+      "parameters": {
+        "operation": "sendMessage",
+        "chatId": "={{ $json.chat_id }}",
+        "text": "={{ $json.propuesta }}"
+      }
+    },
+
+    {
+      "id": "ollama",
+      "name": "Ollama Tavilga AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [860, 400],
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:11434/api/generate",
+        "sendBody": true,
+        "jsonBody": {
+          "model": "llama3",
+          "stream": false,
+          "prompt": "Eres Tavilga AI, asistente de una carpintería de diseño de mobiliario a medida en Sevilla (Tavilga, tavilga.es). Atiendes clientes, das presupuestos orientativos y organizas citas. Responde claro y profesional. Mensaje: {{ $json.texto }}"
+        }
+      }
+    },
+
+    {
+      "id": "limpieza",
+      "name": "Limpiar Respuesta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1080, 400],
+      "parameters": {
+        "jsCode": "return items.map(i => ({ json: { respuesta: i.json.response.replace(/\\s+/g,' ').trim(), chat_id: $json.chat_id } }));"
+      }
+    },
+
+    {
+      "id": "telegram_texto",
+      "name": "Enviar Texto Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [1300, 400],
+      "parameters": {
+        "operation": "sendMessage",
+        "chatId": "={{ $json.chat_id }}",
+        "text": "={{ $json.respuesta }}"
+      }
+    }
+  ],
+
+  "connections": {
+    "Telegram Trigger": { "main": [[{ "node": "Normalizar Entrada" }]] },
+    "Normalizar Entrada": { "main": [[{ "node": "Detectar Intención Agenda" }]] },
+    "Detectar Intención Agenda": {
+      "main": [
+        [{ "node": "Consultar Disponibilidad" }],
+        [{ "node": "Ollama Tavilga AI" }]
+      ]
+    },
+    "Consultar Disponibilidad": { "main": [[{ "node": "Generar Propuesta Horarios" }]] },
+    "Generar Propuesta Horarios": { "main": [[{ "node": "Enviar Horarios" }]] },
+    "Ollama Tavilga AI": { "main": [[{ "node": "Limpiar Respuesta" }]] },
+    "Limpiar Respuesta": { "main": [[{ "node": "Enviar Texto Telegram" }]] }
+  },
+
+  "active": false
+}

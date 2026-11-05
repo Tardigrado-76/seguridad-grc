@@ -1,0 +1,9 @@
+{
+  "hardening_protocolos_industriales": {
+    "protocols_audited": ["MODBUS_TCP", "DNP3", "PROFINET", "ETHERNET_IP"],
+    "unencrypted_direct_exposure_to_it": false,
+    "vpn_ipsec_encapsulation_active": true,
+    "dpi_inspection_rules_count": 128,
+    "anomalous_scada_command_rejection_active": true
+  }
+}

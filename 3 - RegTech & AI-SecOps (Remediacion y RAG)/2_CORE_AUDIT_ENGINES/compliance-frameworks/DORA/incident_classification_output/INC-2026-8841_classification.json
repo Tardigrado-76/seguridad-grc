@@ -1,0 +1,65 @@
+{
+  "incident_id": "INC-2026-8841",
+  "timestamp": "2026-07-25T14:17:05.375029+00:00",
+  "classification": "MAJOR_ICT_INCIDENT",
+  "is_major": true,
+  "mandatory_nca_notification": true,
+  "notification_deadline_hours": 2.0,
+  "criteria_triggered_count": 4,
+  "criteria_evaluations": [
+    {
+      "criterion_name": "Clientes y Usuarios Afectados",
+      "article_reference": "DORA Art. 18(1)(a) / RTS Art. 1",
+      "triggered": true,
+      "observed_value": "120,000 (15.00%)",
+      "threshold_value": ">= 100,000 o >= 10.0%",
+      "justification": "El número de clientes afectados (120,000) o el porcentaje (15.00%) supera los umbrales de impacto masivo."
+    },
+    {
+      "criterion_name": "Duración e Indisponibilidad de Servicio Crítico",
+      "article_reference": "DORA Art. 18(1)(b) / RTS Art. 2",
+      "triggered": true,
+      "observed_value": "2.50 horas (Servicio Crítico: True)",
+      "threshold_value": ">= 2.0 horas en función esencial",
+      "justification": "Servicio crítico en caída por 2.50 horas (Umbral: 2.0h)."
+    },
+    {
+      "criterion_name": "Impacto Económico Directo e Indirecto",
+      "article_reference": "DORA Art. 18(1)(c) / RTS Art. 3",
+      "triggered": true,
+      "observed_value": "180,000.00 €",
+      "threshold_value": ">= 100,000.00 €",
+      "justification": "Pérdidas estimadas de 180,000.00 € superan el umbral cuantitativo."
+    },
+    {
+      "criterion_name": "Extensión Geográfica transfronteriza",
+      "article_reference": "DORA Art. 18(1)(d) / RTS Art. 4",
+      "triggered": true,
+      "observed_value": "2 Estados Miembros UE",
+      "threshold_value": ">= 2 países UE",
+      "justification": "Incidente con impacto transfronterizo en 2 países de la Unión Europea."
+    },
+    {
+      "criterion_name": "Pérdida de Datos o Brecha de Confidencialidad",
+      "article_reference": "DORA Art. 18(1)(e) / RTS Art. 5",
+      "triggered": false,
+      "observed_value": "Integridad alterada: False, Brecha: False",
+      "threshold_value": "Cualquier alteración no autorizada de datos críticos o exfiltración",
+      "justification": "No se reportan alteraciones de datos ni exfiltración de confidencialidad."
+    }
+  ],
+  "metrics": {
+    "incident_id": "INC-2026-8841",
+    "title": "Caída del Switch de Pagos Bizum",
+    "service_name": "API Gateway Pagos",
+    "is_critical_function": true,
+    "affected_clients_count": 120000,
+    "total_clients_base": 800000,
+    "downtime_hours": 2.5,
+    "economic_loss_eur": 180000.0,
+    "geographical_spread_countries": 2,
+    "data_loss_integrity_compromised": false,
+    "confidentiality_breach": false,
+    "reputational_impact_high": true
+  }
+}

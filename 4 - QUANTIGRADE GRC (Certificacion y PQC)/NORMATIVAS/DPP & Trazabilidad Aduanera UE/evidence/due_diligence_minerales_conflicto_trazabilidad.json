@@ -1,0 +1,9 @@
+{
+  "cadena_custodia_minerales_conflicto": {
+    "reglamento_ue_2017_821_compliant": true,
+    "smelters_verified": ["OECD_COMPLIANT_SMELTER_01", "OECD_COMPLIANT_SMELTER_02"],
+    "materials_tracked": ["TANTALUM", "TIN", "TUNGSTEN", "GOLD"],
+    "conflict_free_guarantee": true,
+    "merkle_provenance_chain_length": 18
+  }
+}

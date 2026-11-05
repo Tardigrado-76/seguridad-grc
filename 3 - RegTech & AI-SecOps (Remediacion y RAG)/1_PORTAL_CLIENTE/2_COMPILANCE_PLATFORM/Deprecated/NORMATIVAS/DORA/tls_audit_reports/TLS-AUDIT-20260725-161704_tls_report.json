@@ -1,0 +1,22 @@
+{
+  "audit_id": "TLS-AUDIT-20260725-161704",
+  "timestamp": "2026-07-25T14:17:04.992354+00:00",
+  "cert_status": {
+    "cert_path": "E:\\PROYECTOS IA\\AUDITORIAS\\DORA\\certs\\server.crt",
+    "key_path": "E:\\PROYECTOS IA\\AUDITORIAS\\DORA\\certs\\server.key",
+    "exists": true,
+    "is_valid": true,
+    "days_until_expiration": 198,
+    "expiration_date_utc": "2027-02-09T14:15:22+00:00",
+    "subject_cn": "localhost",
+    "key_size_bits": 4096,
+    "signature_algorithm": "sha384",
+    "needs_rotation": false
+  },
+  "pqc_hybrid_enabled": true,
+  "pqc_kem_algorithm": "X25519_MLKEM768 (FIPS 203)",
+  "pqc_sig_algorithm": "ML-DSA-65 (FIPS 204)",
+  "pqc_stateless_sig": "SLH-DSA-SHA2-128F (FIPS 205)",
+  "integrity_hash": "4e5517b991cc724f26b8a322f9e325877ab0085e5cc5501acd45914404def700",
+  "dora_ens_verdict": "CONFORME_ENS_ALTO_PQC_READY"
+}

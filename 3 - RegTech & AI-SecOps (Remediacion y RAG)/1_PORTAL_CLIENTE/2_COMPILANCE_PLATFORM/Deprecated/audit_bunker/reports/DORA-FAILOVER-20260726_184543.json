@@ -1,0 +1,25 @@
+{
+  "title": "DORA Article 11 Automated Failover & Recovery SLA Audit",
+  "timestamp_iso": "2026-07-26T18:45:43.598227+00:00",
+  "dry_run": false,
+  "total_drills_executed": 1,
+  "drills_passed": 1,
+  "drills": [
+    {
+      "service_name": "Core-Banking-Payment-Gateway",
+      "primary_region": "eu-west-1-primary",
+      "secondary_region": "eu-central-1-dr",
+      "start_time_iso": "2026-07-26T18:45:43.597832+00:00",
+      "end_time_iso": "2026-07-26T18:45:43.597841+00:00",
+      "measured_rto_sec": 1.25,
+      "target_rto_sec": 120,
+      "rto_sla_met": true,
+      "measured_rpo_sec": 0.5,
+      "target_rpo_sec": 5,
+      "rpo_sla_met": true,
+      "status": "FAILOVER_DRILL_PASSED",
+      "dora_article_11_compliant": true
+    }
+  ],
+  "report_integrity_sha256": "6529576D02E2B15F14D21443CF2CA61DD713F9907BC6F74D9EB797F014A11616"
+}

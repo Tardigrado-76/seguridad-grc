@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  audit_console:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - ENV=production
+      - LOG_LEVEL=INFO

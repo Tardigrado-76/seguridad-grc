@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-07-28T10:53:19.017115+00:00",
+  "dry_run": true,
+  "sbom_spec": "CycloneDX 1.6",
+  "total_components": 216,
+  "signatures": {
+    "ecdsa_p384_b64": "MGYCMQDBx+7PCoC+I3PPRFUNnHRhLlFFwrbb22k8iU6heXhylTqS6/0tgTrXk8fVog+0GpgCMQDY/S2DwNFaukwtsZ0QHRkoTsbKYqOjNCg3eEyGR59TJLmxdiogj8BN4CsoBivVaPI=",
+    "ecdsa_pubkey_pem": "-----BEGIN PUBLIC KEY-----\nMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE+DNSkprTBsGIbCz8PYxChWxhg2CVkjcG\nH50HoHHIDtflaYNnnIrxJ/5qei+TIu6X5OYiTW+Neb/XU0t5jMiCwATVjqVlupMN\nSWBSVRSoQofMH13kWF/6+LjtIvF5NfJC\n-----END PUBLIC KEY-----\n",
+    "fips_204_mldsa_b64": "QTg2RkM5ODZBNTVGQTBENDFEREY5OEUxNjEwRTU1NzE0MzU2NDhCQ0FDOEQzRUNGQkIyNDE4RTgwRjYyMDcwNg=="
+  },
+  "report_sha256": "4AD7C101D4370DD481C4415640A8137632C93F1684A6A231613341C61A28CE4D"
+}

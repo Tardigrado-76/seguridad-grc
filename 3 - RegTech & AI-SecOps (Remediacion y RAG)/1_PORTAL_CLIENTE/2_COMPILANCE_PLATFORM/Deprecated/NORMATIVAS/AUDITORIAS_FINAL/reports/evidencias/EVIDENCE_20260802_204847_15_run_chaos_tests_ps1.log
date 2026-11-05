@@ -1,0 +1,13 @@
+AUDIT_ONLY
+STDOUT:
+
+
+STDERR:
+E:\PROYECTOS IA\AUDITORIAS\NORMATIVAS\AUDITORIAS_FINAL\NIS2 alto\15_run_chaos_tests.ps1 : No se encuentra el binario 
+compilado en build/fastapi_server.exe. Compila primero con Nuitka.
+At E:\PROYECTOS IA\AUDITORIAS\NORMATIVAS\AUDITORIAS_FINAL\NIS2 alto\15_run_chaos_tests.ps1:20 char:5
++     Write-Error "No se encuentra el binario compilado en $BIN_PATH. C ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,15_run_chaos_tests.ps1
+ 

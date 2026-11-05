@@ -1,0 +1,9 @@
+{
+  "precinto_inteligente_smart_seal": {
+    "seal_serial_number": "QSEAL-CONTAINER-EU-88412",
+    "eidas_2_qualified_seal": true,
+    "timestamp_authority_rfc3161": "FNMT-RCM_QUALIFIED_TSA",
+    "physical_tamper_detected": false,
+    "cryptographic_integrity": "VALID_SHA256_RSA4096_AND_ML_DSA_87"
+  }
+}

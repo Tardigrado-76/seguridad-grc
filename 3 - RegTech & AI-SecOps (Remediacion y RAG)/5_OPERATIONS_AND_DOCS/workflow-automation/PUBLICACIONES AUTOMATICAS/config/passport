@@ -1,0 +1,87 @@
+const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
+const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+
+module.exports = function(passport) {
+  // Serialización de usuario
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
+
+  // Estrategia Facebook
+  if (process.env.FACEBOOK_APP_ID && process.env.FACEBOOK_APP_SECRET) {
+    passport.use(new FacebookStrategy({
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: '/api/auth/facebook/callback',
+      profileFields: ['id', 'emails', 'name']
+    },
+    function(accessToken, refreshToken, profile, done) {
+      const user = {
+        id: profile.id,
+        name: profile.displayName,
+        accessToken: accessToken
+      };
+      return done(null, user);
+    }));
+  }
+
+  // Estrategia Google (para YouTube)
+  if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+    passport.use(new GoogleStrategy({
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: '/api/auth/google/callback',
+      scope: ['profile', 'email']
+    },
+    function(accessToken, refreshToken, profile, done) {
+      const user = {
+        id: profile.id,
+        name: profile.displayName,
+        accessToken: accessToken
+      };
+      return done(null, user);
+    }));
+  }
+
+  // Estrategia Twitter
+  if (process.env.TWITTER_API_KEY && process.env.TWITTER_API_SECRET) {
+    passport.use(new TwitterStrategy({
+      consumerKey: process.env.TWITTER_API_KEY,
+      consumerSecret: process.env.TWITTER_API_SECRET,
+      callbackURL: '/api/auth/twitter/callback'
+    },
+    function(token, tokenSecret, profile, done) {
+      const user = {
+        id: profile.id,
+        name: profile.displayName,
+        accessToken: token,
+        tokenSecret: tokenSecret
+      };
+      return done(null, user);
+    }));
+  }
+
+  // Estrategia LinkedIn
+  if (process.env.LINKEDIN_CLIENT_ID && process.env.LINKEDIN_CLIENT_SECRET) {
+    passport.use(new LinkedInStrategy({
+      clientID: process.env.LINKEDIN_CLIENT_ID,
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+      callbackURL: '/api/auth/linkedin/callback',
+      scope: ['r_emailaddress', 'r_liteprofile', 'w_member_social']
+    },
+    function(accessToken, refreshToken, profile, done) {
+      const user = {
+        id: profile.id,
+        name: profile.displayName,
+        accessToken: accessToken
+      };
+      return done(null, user);
+    }));
+  }
+};

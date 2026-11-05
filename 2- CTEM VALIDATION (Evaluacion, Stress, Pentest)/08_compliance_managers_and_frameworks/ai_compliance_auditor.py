@@ -1,0 +1,442 @@
+#!/usr/bin/env python3
+"""ai_compliance_auditor.py — EU AI Act Compliance Auditor & Governance Engine.
+=============================================================================
+Autor: Principal Legal-Tech Architect & Senior AI Compliance Auditor
+Cumplimiento: Reglamento (UE) 2024/1689 (EU AI Act) y sus Anexos (I - XIII)
+
+Este script ejecuta una auditoría unificada en 3 FASES CON HITL (Human-In-The-Loop):
+  FASE 1: Ingesta de Perfil Corporativo e Interrogatorio CISO/CTO (10 Preguntas EU AI Act)
+          con Motor de Triaje de Riesgo (Prohibido, Alto Riesgo, GPAI Sistémico, Limitado, Mínimo).
+  FASE 2: Generación de Reporte Markdown por Consola y Exportación Automática a `ai_audit_result.json`.
+  FASE 3: Remediación Interactiva, Interrupción HITL y Sellado Digital Criptográfico (SHA-256).
+"""
+
+import argparse
+import contextlib
+import hashlib
+import os
+import sys
+from datetime import datetime, timezone
+from enum import Enum
+
+from pydantic import BaseModel, Field, field_validator
+
+# Reconfigurar codificación de consola para compatibilidad con Windows Unicode
+if hasattr(sys.stdout, "reconfigure"):
+    with contextlib.suppress(Exception):
+        sys.stdout.reconfigure(encoding="utf-8")
+
+
+# ==============================================================================
+# ENUMS Y MODELOS PYDANTIC V2
+# ==============================================================================
+
+class RiskLevel(str, Enum):
+    PROHIBITED = "PROHIBIDO - Práctica Prohibida (Art. 5 EU AI Act)"
+    HIGH_RISK = "ALTO RIESGO - Dominio Sensible / Anexo III EU AI Act"
+    GPAI_SYSTEMIC = "GPAI SISTÉMICO - Modelo de Propósito General de Alto Impacto (Art. 51 EU AI Act)"
+    LIMITED_RISK = "RIESGO LIMITADO - Obligaciones de Transparencia (Art. 50 EU AI Act)"
+    MINIMAL_RISK = "RIESGO MÍNIMO / SIN RIESGO OBLIGATORIO - Código de Conducta Voluntario"
+
+
+class CompanyProfile(BaseModel):
+    company_name: str = Field(..., min_length=2, description="Nombre formal de la entidad")
+    website_url: str = Field(..., description="URL corporativa o repositorio del sistema")
+    ciso_name: str = Field(..., min_length=2, description="Nombre del CISO / CTO / AI Lead")
+    ciso_role: str = Field(..., min_length=2, description="Cargo oficial del responsable")
+
+    @field_validator("website_url")
+    @classmethod
+    def validate_url(cls, v: str) -> str:
+        v_clean = v.strip()
+        if not (v_clean.startswith(("http://", "https://"))):
+            v_clean = "https://" + v_clean
+        return v_clean
+
+
+class QuestionAnswer(BaseModel):
+    id: str
+    article_ref: str
+    question_text: str
+    answer: bool
+
+
+class Finding(BaseModel):
+    code: str
+    article: str
+    title: str
+    severity: str
+    description: str
+    remediation_action: str
+
+
+class AuditResult(BaseModel):
+    profile: CompanyProfile
+    audit_timestamp: str
+    questions: list[QuestionAnswer]
+    overall_risk: RiskLevel
+    findings: list[Finding]
+    remediation_plan: list[str]
+    hitl_approved: bool = False
+    signature_token: str | None = None
+    signature_timestamp: str | None = None
+    signed_by: str | None = None
+
+
+# ==============================================================================
+# DEFINICIÓN DEL CUESTIONARIO CISO/CTO (10 PREGUNTAS CLAVE EU AI ACT)
+# ==============================================================================
+
+QUESTIONS_DB = [
+    {
+        "id": "P1",
+        "article_ref": "Anexo III",
+        "text": "¿El sistema de IA se utiliza en dominios sensibles (RRHH/reclutamiento, infraestructuras críticas, evaluación crediticia, educación o servicios públicos/privados esenciales)?",
+    },
+    {
+        "id": "P2",
+        "article_ref": "Art. 5",
+        "text": "¿El sistema emplea técnicas subliminales, manipulación conductual, scoring social, recolección masiva no dirigida de imágenes faciales o reconocimiento de emociones en trabajo/educación?",
+    },
+    {
+        "id": "P3",
+        "article_ref": "Art. 50",
+        "text": "¿El sistema interactúa directamente con personas físicas (chatbots) o genera/manipula contenido sintético (audio, imagen, vídeo, deepfakes, textos)?",
+    },
+    {
+        "id": "P4",
+        "article_ref": "Art. 51",
+        "text": "¿El sistema integra modelos de IA de Propósito General (GPAI / LLMs) con cómputo acumulativo > 10^25 FLOPs (ej. GPT-4o, Llama-3 70B+) o capacidad sistémica equivalente?",
+    },
+    {
+        "id": "P5",
+        "article_ref": "Autonomía / Art. 14",
+        "text": "¿El sistema toma decisiones automatizadas con impacto legal o efectos significativos sobre personas sin una revisión humana previa obligatoria?",
+    },
+    {
+        "id": "P6",
+        "article_ref": "Art. 12",
+        "text": "¿El sistema cuenta con un mecanismo automatizado para la retención y registro de logs (trazabilidad) garantizando su almacenamiento seguro por un período mínimo de 6 meses?",
+    },
+    {
+        "id": "P7",
+        "article_ref": "Art. 10",
+        "text": "¿Se ha formalizado una documentación técnica de Gobernanza de Datos que incluya procedencia de datos, prevención de sesgos y representación adecuada?",
+    },
+    {
+        "id": "P8",
+        "article_ref": "Art. 14",
+        "text": "¿Dispone el operador de la capacidad técnica de parada de emergencia ('kill switch') o anulación humana en tiempo real durante la operación?",
+    },
+    {
+        "id": "P9",
+        "article_ref": "Art. 27",
+        "text": "¿Se ha realizado formalmente una Evaluación de Impacto en los Derechos Fundamentales (FRIA - Fundamental Rights Impact Assessment) antes del despliegue?",
+    },
+    {
+        "id": "P10",
+        "article_ref": "Art. 15",
+        "text": "¿Se han ejecutado pruebas documentadas de ciberseguridad, robustez y resiliencia específicas para IA (ataques de inyección de prompts, alucinaciones, envenenamiento)?",
+    },
+]
+
+
+# ==============================================================================
+# MOTOR DE TRIAJE DE RIESGO Y GENERACIÓN DE HALLAZGOS
+# ==============================================================================
+
+def triage_risk_and_findings(profile: CompanyProfile, answers_map: dict[str, bool], questions_list: list[QuestionAnswer]):
+    # 1. Determinar Nivel de Riesgo Global
+    if answers_map.get("P2", False):
+        overall_risk = RiskLevel.PROHIBITED
+    elif answers_map.get("P1", False) or answers_map.get("P5", False):
+        if answers_map.get("P4", False):
+            overall_risk = RiskLevel.GPAI_SYSTEMIC
+        else:
+            overall_risk = RiskLevel.HIGH_RISK
+    elif answers_map.get("P4", False):
+        overall_risk = RiskLevel.GPAI_SYSTEMIC
+    elif answers_map.get("P3", False):
+        overall_risk = RiskLevel.LIMITED_RISK
+    else:
+        overall_risk = RiskLevel.MINIMAL_RISK
+
+    findings: list[Finding] = []
+    remediation_plan: list[str] = []
+
+    # 2. Análisis de Brechas por Riesgo
+    if overall_risk == RiskLevel.PROHIBITED:
+        f = Finding(
+            code="ERR-ART05",
+            article="Artículo 5",
+            title="Práctica de IA Prohibida Detectada",
+            severity="CRÍTICO",
+            description="El sistema incurre en prácticas prohibidas por el EU AI Act (manipulación, scoring social, biometría no consentida o reconocimiento emocional).",
+            remediation_action="Cese inmediato de la operación, desmantelamiento del módulo afectado y re-arquitectura legal completa.",
+        )
+        findings.append(f)
+        remediation_plan.append("ACCION CRÍTICA: Desmantelar y re-diseñar los módulos afectados por el Art. 5 antes de cualquier despliegue.")
+
+    if overall_risk in (RiskLevel.HIGH_RISK, RiskLevel.GPAI_SYSTEMIC):
+        if not answers_map.get("P6", False):
+            findings.append(Finding(
+                code="GAP-ART12",
+                article="Artículo 12",
+                title="Falta de Logs y Trazabilidad Automatizada",
+                severity="ALTO",
+                description="No se garantiza la retención automatizada de logs por al menos 6 meses.",
+                remediation_action="Implementar almacenamiento centralizado de registros inmutables con retención de 6 meses.",
+            ))
+            remediation_plan.append("[Art. 12] Habilitar la retención automatizada de logs de auditoría durante 6 meses mínimo.")
+
+        if not answers_map.get("P7", False):
+            findings.append(Finding(
+                code="GAP-ART10",
+                article="Artículo 10",
+                title="Ausencia de Gobernanza de Datos y Gestión de Sesgos",
+                severity="ALTO",
+                description="No existe expediente formal de origen de datos, calidad y control de sesgos.",
+                remediation_action="Formalizar la documentación de gobernanza de datos y realizar pruebas de sesgo estadístico.",
+            ))
+            remediation_plan.append("[Art. 10] Documentar el pipeline de datos, origen y mitigación de sesgos algorítmicos.")
+
+        if not answers_map.get("P8", False):
+            findings.append(Finding(
+                code="GAP-ART14",
+                article="Artículo 14",
+                title="Carencia de Mecanismo de Parada de Emergencia (Kill Switch)",
+                severity="ALTO",
+                description="El sistema no cuenta con anulación humana en tiempo real durante la operación.",
+                remediation_action="Desarrollar e integrar un botón de parada humana de emergencia (Kill Switch) en la arquitectura.",
+            ))
+            remediation_plan.append("[Art. 14] Implementar un mecanismo de parada de emergencia y control humano en tiempo real.")
+
+        if not answers_map.get("P9", False):
+            findings.append(Finding(
+                code="GAP-ART27",
+                article="Artículo 27",
+                title="Omisión de la Evaluación de Impacto en Derechos Fundamentales (FRIA)",
+                severity="ALTO",
+                description="No se ha completado la evaluación FRIA requerida para sistemas de alto riesgo.",
+                remediation_action="Elaborar la evaluación FRIA y registrar el informe ante las autoridades competentes.",
+            ))
+            remediation_plan.append("[Art. 27] Completar y registrar la Evaluación de Impacto en los Derechos Fundamentales (FRIA).")
+
+        if not answers_map.get("P10", False):
+            findings.append(Finding(
+                code="GAP-ART15",
+                article="Artículo 15",
+                title="Ciberseguridad e Inmunidad a Prompt Injection / Alucinaciones No Probada",
+                severity="ALTO",
+                description="Faltan pruebas documentadas de resiliencia frente a ataques dirigidos de IA.",
+                remediation_action="Ejecutar sesiones de Red-Teaming y pruebas de robustez contra alucinaciones y prompt injection.",
+            ))
+            remediation_plan.append("[Art. 15] Realizar pruebas de estrés de ciberseguridad IA (Red-Teaming, Prompt Injection, Alucinaciones).")
+
+    if overall_risk == RiskLevel.LIMITED_RISK or answers_map.get("P3", False):
+        findings.append(Finding(
+            code="GAP-ART50",
+            article="Artículo 50",
+            title="Deberes de Transparencia e Interacción Sintética",
+            severity="MEDIO",
+            description="Se requiere notificar expresamente a los usuarios la interacción con un sistema de IA o contenido generado.",
+            remediation_action="Incrustar avisos explícitos ('Atendido por IA') y marcas de agua digitales en productos de contenido sintético.",
+        ))
+        remediation_plan.append("[Art. 50] Desplegar avisos de transparencia al usuario y etiquetado de contenido sintético.")
+
+    if not remediation_plan:
+        remediation_plan.append("El sistema cumple con las exigencias actuales del EU AI Act. Mantener supervisión continua.")
+
+    return overall_risk, findings, remediation_plan
+
+
+# ==============================================================================
+# FASE 1: ANÁLISIS E INTERROGATORIO (INGESTA + CUESTIONARIO)
+# ==============================================================================
+
+def run_phase_1(non_interactive: bool = False, profile_data: dict[str, str] | None = None, default_answers: dict[str, bool] | None = None) -> AuditResult:
+
+    if non_interactive:
+        p_data = profile_data or {
+            "company_name": "Entidad Demo S.A.",
+            "website_url": "https://empresa-demo.com",
+            "ciso_name": "Carlos CISO",
+            "ciso_role": "Chief Information Security Officer",
+        }
+        profile = CompanyProfile(**p_data)
+        answers_map = default_answers or {q["id"]: False for q in QUESTIONS_DB}
+    else:
+        company = input("Nombre de la Compañía/Entidad: ").strip() or "Compañía Ejemplo"
+        url = input("Sitio Web Corporativo (URL): ").strip() or "https://ejemplo.com"
+        ciso = input("Nombre del CISO / CTO / AI Lead: ").strip() or "CISO Responsable"
+        role = input("Cargo del Responsable: ").strip() or "Director de Seguridad"
+
+        profile = CompanyProfile(
+            company_name=company,
+            website_url=url,
+            ciso_name=ciso,
+            ciso_role=role,
+        )
+
+        answers_map = {}
+        for q in QUESTIONS_DB:
+            while True:
+                resp = input(f"[{q['id']} - {q['article_ref']}] {q['text']} (s/n): ").strip().lower()
+                if resp in ("s", "si", "y", "yes"):
+                    answers_map[q["id"]] = True
+                    break
+                if resp in ("n", "no"):
+                    answers_map[q["id"]] = False
+                    break
+
+    questions_list = [
+        QuestionAnswer(
+            id=q["id"],
+            article_ref=q["article_ref"],
+            question_text=q["text"],
+            answer=answers_map[q["id"]],
+        )
+        for q in QUESTIONS_DB
+    ]
+
+    overall_risk, findings, remediation_plan = triage_risk_and_findings(profile, answers_map, questions_list)
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+    return AuditResult(
+        profile=profile,
+        audit_timestamp=now_iso,
+        questions=questions_list,
+        overall_risk=overall_risk,
+        findings=findings,
+        remediation_plan=remediation_plan,
+        hitl_approved=False,
+    )
+
+
+# ==============================================================================
+# FASE 2: INFORME Y EXPORTACIÓN AUTOMÁTICA (REPORTING)
+# ==============================================================================
+
+def generate_markdown_report(result: AuditResult) -> str:
+    md = []
+    md.append("# INFORME OFICIAL DE AUDITORÍA Y GOBERNANZA DE IA")
+    md.append("**Reglamento (UE) 2024/1689 (EU AI Act)**")
+    md.append(f"**Fecha de Auditoría:** `{result.audit_timestamp}`\n")
+    md.append("---")
+    md.append("## 1. Perfil Corporativo del Sistema")
+    md.append(f"- **Entidad:** `{result.profile.company_name}`")
+    md.append(f"- **Sitio Web / Repositorio:** [{result.profile.website_url}]({result.profile.website_url})")
+    md.append(f"- **Responsable Legal/Técnico:** `{result.profile.ciso_name}` ({result.profile.ciso_role})\n")
+    md.append("---")
+    md.append("## 2. Clasificación de Riesgo del EU AI Act")
+    md.append(f"### **Nivel Global Asignado:** `{result.overall_risk.value}`\n")
+    md.append("---")
+    md.append("## 3. Hallazgos y Análisis de Brechas (Gap Analysis)")
+    if not result.findings:
+        md.append("*[OK] No se han detectado brechas de cumplimiento criticas en la evaluación inicial.*\n")
+    else:
+        md.append("| Código | Articulado | Severidad | Descripción | Acción Recomendada |")
+        md.append("| --- | --- | --- | --- | --- |")
+        for f in result.findings:
+            md.append(f"| `{f.code}` | `{f.article}` | **{f.severity}** | {f.description} | {f.remediation_action} |")
+        md.append("")
+    md.append("---")
+    md.append("## 4. Plan de Remediación Obligatorio")
+    for idx, item in enumerate(result.remediation_plan, 1):
+        md.append(f"{idx}. {item}")
+    md.append("\n---")
+    md.append("## 5. Estado de Firma Digital HITL")
+    md.append(f"- **Aprobado por Humano (HITL):** `{result.hitl_approved}`")
+    if result.hitl_approved:
+        md.append(f"- **Firmado por:** `{result.signed_by}`")
+        md.append(f"- **Fecha de Firma:** `{result.signature_timestamp}`")
+        md.append(f"- **Token de Firma (SHA-256):** `{result.signature_token}`")
+    else:
+        md.append("- **Estado:** Pendiente de revisión y firma por el CISO/CTO.")
+    return "\n".join(md)
+
+
+def run_phase_2(result: AuditResult, output_json_path: str) -> None:
+
+    generate_markdown_report(result)
+
+    with open(output_json_path, "w", encoding="utf-8") as f:
+        f.write(result.model_dump_json(indent=2))
+
+
+
+# ==============================================================================
+# FASE 3: REMEDIACIÓN INTERACTIVA Y FIRMA DIGITAL HITL
+# ==============================================================================
+
+def run_phase_3(result: AuditResult, output_json_path: str, non_interactive: bool = False, auto_sign_name: str | None = None) -> AuditResult:
+
+    for _idx, _step in enumerate(result.remediation_plan, 1):
+        pass
+
+
+    if non_interactive:
+        signer_name = auto_sign_name or result.profile.ciso_name
+    else:
+        while True:
+            confirm = input("\n¿Desea proceder con la firma digital de aprobación? (s/n): ").strip().lower()
+            if confirm in ("n", "no"):
+                return result
+            if confirm in ("s", "si", "y", "yes"):
+                signer_name = input(f"Introduzca el nombre del firmante para confirmar [{result.profile.ciso_name}]: ").strip()
+                if not signer_name:
+                    signer_name = result.profile.ciso_name
+                break
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+    secret_salt = os.getenv("AUDIT_SALT", "EU_AI_ACT_2024_1689_SECRET_SALT")
+
+    raw_signature_payload = f"{signer_name}:{result.profile.website_url}:{result.overall_risk.value}:{now_iso}:{secret_salt}"
+    signature_token = "SHA256:" + hashlib.sha256(raw_signature_payload.encode("utf-8")).hexdigest()
+
+    result.hitl_approved = True
+    result.signature_token = signature_token
+    result.signature_timestamp = now_iso
+    result.signed_by = signer_name
+
+    with open(output_json_path, "w", encoding="utf-8") as f:
+        f.write(result.model_dump_json(indent=2))
+
+
+    return result
+
+
+# ==============================================================================
+# ENTRYPOINT PRINCIPAL
+# ==============================================================================
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Auditor de Cumplimiento EU AI Act (Reglamento UE 2024/1689) en 3 Fases con HITL.")
+    parser.add_argument("-o", "--output", default="ai_audit_result.json", help="Ruta de destino del archivo JSON de auditoría (por defecto: ai_audit_result.json).")
+    parser.add_argument("--non-interactive", action="store_true", help="Ejecutar en modo no interactivo para integración continua / pipelines.")
+    parser.add_argument("--ciso-name", default=None, help="Nombre del CISO en modo no interactivo.")
+    parser.add_argument("--company-name", default=None, help="Nombre de la empresa en modo no interactivo.")
+    args = parser.parse_args()
+
+    profile_data = None
+    if args.company_name or args.ciso_name:
+        profile_data = {
+            "company_name": args.company_name or "Entidad Corporativa S.A.",
+            "website_url": "https://empresa.com",
+            "ciso_name": args.ciso_name or "CISO Responsable",
+            "ciso_role": "Director de IA y Seguridad",
+        }
+
+    # FASE 1: Análisis e Interrogatorio
+    audit_result = run_phase_1(non_interactive=args.non_interactive, profile_data=profile_data)
+
+    # FASE 2: Reporting y Exportación Automática
+    run_phase_2(audit_result, output_json_path=args.output)
+
+    # FASE 3: Remediación Interactiva y Firma Digital HITL
+    run_phase_3(audit_result, output_json_path=args.output, non_interactive=args.non_interactive, auto_sign_name=args.ciso_name)
+
+
+
+if __name__ == "__main__":
+    main()

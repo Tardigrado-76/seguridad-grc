@@ -1,0 +1,4 @@
+cryptography==49.0.0
+pkg_resources>=1.0.0
+pytest==9.1.1
+python-dotenv==1.0.1

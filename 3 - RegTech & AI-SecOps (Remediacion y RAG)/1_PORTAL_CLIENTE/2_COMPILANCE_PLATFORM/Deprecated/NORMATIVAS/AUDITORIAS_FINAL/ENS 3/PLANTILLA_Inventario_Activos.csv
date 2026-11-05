@@ -1,0 +1,4 @@
+ID_Activo,Nombre_Activo,Tipo,Propietario,Ubicacion,Criticidad_CID
+ACT-001,Servidor Base de Datos,Hardware,Dpto TI,CPD Principal,ALTA
+ACT-002,Código Fuente App,Software,Equipo Dev,GitHub Enterprise,ALTA
+ACT-003,Datos de Clientes,Informacion,Dpto Legal,Cloud DB,ALTA

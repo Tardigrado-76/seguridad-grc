@@ -1,0 +1,19 @@
+﻿{
+    "TargetPath":  ".",
+    "DryRun":  true,
+    "TimestampIso":  "2026-07-26T10:45:11.7472613Z",
+    "BaselinePath":  ".\\test_baseline.json",
+    "Summary":  {
+                    "ModifiedCount":  0,
+                    "CreatedCount":  0,
+                    "DeletedCount":  0,
+                    "BaselineCount":  8,
+                    "AclDriftCount":  0,
+                    "Status":  "BASELINE_CREATED"
+                },
+    "Mode":  "CreateBaseline",
+    "Discrepancies":  [
+
+                      ],
+    "ReportIntegritySha256":  "50661AE375E169B49A4924D047A750203E513EFC4C5BF9A41906D2FA195A2038"
+}

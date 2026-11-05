@@ -1,0 +1,24 @@
+{
+  "title": "FIPS 140-3 Continuous DRBG/RNG Entropy Health Audit",
+  "timestamp_iso": "2026-07-26T11:03:46.478861+00:00",
+  "system_os": "Windows",
+  "dry_run": true,
+  "audit_records": [
+    {
+      "timestamp_iso": "2026-07-26T11:03:46.478504+00:00",
+      "available_entropy_bits": 4096,
+      "sample_size_bytes": 4096,
+      "repetition_count_test": {
+        "passed": true,
+        "max_consecutive": 2
+      },
+      "adaptive_proportion_test": {
+        "passed": true,
+        "window_count": 1
+      },
+      "status": "ENTROPY_HEALTHY",
+      "dry_run": true
+    }
+  ],
+  "report_integrity_sha256": "7840739D72B804FE8301D4E3D2E4F76268F463BE5F020E7513FA5FA9B1CA95C6"
+}

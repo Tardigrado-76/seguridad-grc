@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "standard": "Directiva (UE) 2022/2555 (NIS2) Art. 23",
+    "csirt_recipient": "CCN-CERT / INCIBE-CERT",
+    "reporting_entity": "Entidad Regulada",
+    "critical_sector": "Servicios Digitales e Infraestructura Crítica",
+    "timestamp_utc": "2026-09-10T09:54:42.672364+00:00",
+    "incident_id": "INC-NIS2-2026-001",
+    "notification_phase": "Alerta Temprana (Early Warning - 24h)",
+    "statutory_deadline_hours": 24,
+    "sha256_hash": "2cad65ae9cdf0a6f2bb3b81b82cebde8a7cb7487d476e485951cd84f4ee39b35"
+  },
+  "incident_assessment": {
+    "cross_border_impact": false,
+    "suspected_malicious_intent": true,
+    "affected_assets": [
+      "Core Gateway",
+      "Identity Provider (mTLS)"
+    ],
+    "initial_severity": "SIGNIFICANT (NIS2 Art. 23.3)",
+    "technical_summary": "Sospecha de incidente significativo susceptible de causar perturbación operacional grave.",
+    "indicators_of_compromise": [
+      "DDoS volumétrico no mitigado",
+      "Posible exfiltración de credenciales privilegiadas"
+    ]
+  },
+  "mitigation_actions": {
+    "isolation_applied": true,
+    "forensic_snapshot_retained": true,
+    "continuous_monitoring": true
+  },
+  "compliance_status": "COMPLIANT_WITH_NIS2_TIMELINES"
+}

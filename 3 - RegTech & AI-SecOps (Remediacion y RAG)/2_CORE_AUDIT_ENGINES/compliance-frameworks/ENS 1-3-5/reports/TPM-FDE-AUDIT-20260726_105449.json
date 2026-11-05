@@ -1,0 +1,22 @@
+﻿{
+    "TimestampIso":  "2026-07-26T10:54:43.6399053Z",
+    "FdeVolumes":  {
+                       "MountPoint":  "C:",
+                       "VolumeType":  "OperatingSystem",
+                       "ProtectionStatus":  "On",
+                       "EncryptionPercentage":  100,
+                       "VolumeStatus":  "FullyEncrypted",
+                       "EncryptionMethod":  "XtsAes256"
+                   },
+    "ReportIntegritySha256":  "DC2C04A386B737A75A9372A845ECD18BADBD0408838CD072774733541528480F",
+    "Title":  "ENS High (op.acc.2) TPM \u0026 FDE Audit",
+    "DryRun":  true,
+    "Tpm":  {
+                "Owned":  false,
+                "ManufacturerId":  "UNKNOWN",
+                "Activated":  false,
+                "Present":  false,
+                "Status":  "READY_SECURE",
+                "Enabled":  false
+            }
+}

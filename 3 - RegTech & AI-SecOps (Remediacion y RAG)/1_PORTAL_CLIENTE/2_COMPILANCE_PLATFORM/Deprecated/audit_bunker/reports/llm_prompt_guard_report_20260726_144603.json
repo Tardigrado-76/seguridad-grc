@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-07-26T14:46:03.754486+00:00",
+  "mode": "enforce",
+  "dry_run": false,
+  "evaluation": {
+    "is_safe": true,
+    "sanitized_prompt": "Evaluación de seguridad de prompt para Perfil 1 (PROD)",
+    "risk_score": 0.0,
+    "flags": [],
+    "original_length": 54,
+    "sanitized_length": 54
+  },
+  "report_sha256": "7f07d6c9bcdb01cc8d2864d1becc43a8694769d72830626a1a177449156ec29b"
+}

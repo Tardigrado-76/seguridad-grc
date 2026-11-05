@@ -1,0 +1,11 @@
+{
+  "title": "OWASP Top 10 Dynamic Application Security Testing (DAST) Audit",
+  "timestamp_iso": "2026-08-02T13:06:53.104433+00:00",
+  "target_url": "\"E:\\PROYECTOS IA\\TODO BUNKER_OS\"",
+  "http_method": "POST",
+  "dry_run": false,
+  "total_payloads_tested": 7,
+  "vulnerabilities_count": 0,
+  "vulnerabilities": [],
+  "report_integrity_sha256": "94AEAAC0A183A0F308D900D265E17D00848D3F9B878310ECA10380EFA648EF06"
+}

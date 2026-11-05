@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-07-28T16:25:41.344919+00:00",
+  "dry_run": false,
+  "target_path": "D:\\My Docs",
+  "analysis": {
+    "files_scanned": 0,
+    "vulnerable_files_count": 0,
+    "findings_details": [],
+    "is_compliant": true
+  },
+  "report_sha256": "EFEEE45331217D6934CB7578B145C32E4A08875DDB3E3B08866DAED49013A3C0"
+}

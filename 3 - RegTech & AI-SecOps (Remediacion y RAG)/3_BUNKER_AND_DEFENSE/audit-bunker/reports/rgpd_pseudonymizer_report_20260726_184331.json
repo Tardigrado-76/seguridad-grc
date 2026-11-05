@@ -1,0 +1,41 @@
+﻿{
+    "timestamp":  "2026-07-26T18:43:31Z",
+    "frameworks":  [
+                       "RGPD Art. 17",
+                       "RGPD Art. 25",
+                       "RGPD Art. 32",
+                       "LOPDGDD"
+                   ],
+    "source_db":  "E:\\PROYECTOS IA\\AUDITORIAS\\reports\\audit_database.db",
+    "target_environment":  "Dev",
+    "mode":  "Pseudonymize",
+    "dry_run":  false,
+    "processed_records_count":  1420,
+    "audit_actions":  [
+                          {
+                              "Table":  "users",
+                              "SampleHash":  "pseudo_8fb160f00ae6",
+                              "ReferentialIntegrityPreserved":  true,
+                              "Action":  "Pseudonymized PII fields (email, dni, name) with HMAC-SHA256"
+                          },
+                          {
+                              "Table":  "orders",
+                              "SampleHash":  "pseudo_8fb160f00ae6",
+                              "ReferentialIntegrityPreserved":  true,
+                              "Action":  "Pseudonymized PII fields (email, dni, name) with HMAC-SHA256"
+                          },
+                          {
+                              "Table":  "audit_logs",
+                              "SampleHash":  "pseudo_8fb160f00ae6",
+                              "ReferentialIntegrityPreserved":  true,
+                              "Action":  "Pseudonymized PII fields (email, dni, name) with HMAC-SHA256"
+                          },
+                          {
+                              "Table":  "user_profiles",
+                              "SampleHash":  "pseudo_8fb160f00ae6",
+                              "ReferentialIntegrityPreserved":  true,
+                              "Action":  "Pseudonymized PII fields (email, dni, name) with HMAC-SHA256"
+                          }
+                      ],
+    "report_sha256":  "3cb8d564c651dbf9c8f23fb4603e4fb231412b62b8a5062893fe90493fc6513b"
+}

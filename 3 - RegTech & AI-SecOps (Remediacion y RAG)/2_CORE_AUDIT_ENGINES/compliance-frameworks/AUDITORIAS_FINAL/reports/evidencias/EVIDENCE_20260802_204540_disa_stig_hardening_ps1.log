@@ -1,0 +1,12 @@
+MODE: REMEDIATE
+STDOUT:
+
+
+STDERR:
+The script 'disa_stig_hardening.ps1' cannot be run because it contains a "#requires" statement for running as 
+Administrator. The current Windows PowerShell session is not running as Administrator. Start Windows PowerShell by  
+using the Run as Administrator option, and then try running the script again.
+    + CategoryInfo          : PermissionDenied: (disa_stig_hardening.ps1:String) [], ParentContainsErrorRecordExceptio 
+   n
+    + FullyQualifiedErrorId : ScriptRequiresElevation
+ 

@@ -1,0 +1,135 @@
+{
+  "title": "Consolidado de Auditor\u00eda Perfil 2 (Sector P\u00fablico / NIS2 / ENS Alto - DEMO)",
+  "timestamp_iso": "2026-07-26T18:44:08.226706+00:00",
+  "mode": "DEMO",
+  "workspace_directory": "E:\\PROYECTOS IA\\TODO BUNKER_OS\\no_software",
+  "reports_directory": "E:\\PROYECTOS IA\\AUDITORIAS\\reports",
+  "total_duration_seconds": 4.72,
+  "summary_kpi": {
+    "total_phases": 10,
+    "passed": 1,
+    "skipped": 1,
+    "failed": 8
+  },
+  "results": [
+    {
+      "id": "01",
+      "normativa": "Supply Chain / NIS2",
+      "script": "generate_sbom.py",
+      "status": "PASSED",
+      "duration_seconds": 1.32,
+      "targets_sample": [
+        "requirements.txt"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Supply Chain Security\\generate_sbom.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "02",
+      "normativa": "NIS2",
+      "script": "cisa_kev_gate.py",
+      "status": "FAILED",
+      "duration_seconds": 0.15,
+      "targets_sample": [
+        "requirements.txt"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Supply Chain Security\\cisa_kev_gate.py --sbom E:\\PROYECTOS IA\\AUDITORIAS\\reports\\BunkerOS_SBOM_v1.json --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "03",
+      "normativa": "NIS2",
+      "script": "trm_vendor_scanner.py",
+      "status": "FAILED",
+      "duration_seconds": 0.18,
+      "targets_sample": [
+        "docker-compose.yml",
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\NIS2\\trm_vendor_scanner.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "04",
+      "normativa": "ENS Nivel Alto",
+      "script": "disa_stig_hardening.ps1",
+      "status": "SKIPPED",
+      "duration_seconds": 0.0,
+      "targets_sample": [],
+      "command_run": "NONE"
+    },
+    {
+      "id": "05",
+      "normativa": "ENS Nivel Alto",
+      "script": "tpm_fde_validator.ps1",
+      "status": "FAILED",
+      "duration_seconds": 1.33,
+      "targets_sample": [
+        "requirements.txt",
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\ENS 1-3-5\\tpm_fde_validator.ps1 -OutputDir E:\\PROYECTOS IA\\AUDITORIAS\\reports -DryRun"
+    },
+    {
+      "id": "06",
+      "normativa": "ENS Nivel Alto",
+      "script": "ens_fim_enforcer.ps1",
+      "status": "FAILED",
+      "duration_seconds": 1.18,
+      "targets_sample": [
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\ENS 1-3-5\\ens_fim_enforcer.ps1 -Mode ScanAndEnforce -OutputDir E:\\PROYECTOS IA\\AUDITORIAS\\reports -DryRun"
+    },
+    {
+      "id": "07",
+      "normativa": "EU AI Act",
+      "script": "ai_sec_guard.py",
+      "status": "FAILED",
+      "duration_seconds": 0.11,
+      "targets_sample": [
+        "requirements.txt",
+        "bunker_forensic_orchestrator.py",
+        "Auditoria_Importaciones.py",
+        "informe_certificacion_final.json",
+        "bunker_bootstrap.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\EU IA Act\\ai_sec_guard.py --prompt Evaluaci\u00f3n de seguridad AI Act Perfil 2 --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "08",
+      "normativa": "ENS / DORA",
+      "script": "Bunker_secure_backup.py",
+      "status": "FAILED",
+      "duration_seconds": 0.16,
+      "targets_sample": [
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\ENS 1-3-5\\Bunker_secure_backup.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "09",
+      "normativa": "DORA",
+      "script": "dora_chaos_resilience_tester.py",
+      "status": "FAILED",
+      "duration_seconds": 0.11,
+      "targets_sample": [
+        "informe_certificacion_final.json",
+        "bunker_forensic_orchestrator.py",
+        "Auditoria_Importaciones.py",
+        "bunker_bootstrap.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\DORA\\dora_chaos_resilience_tester.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "10",
+      "normativa": "NIS2",
+      "script": "23_nca_incident_reporter.py",
+      "status": "FAILED",
+      "duration_seconds": 0.13,
+      "targets_sample": [
+        "requirements.txt",
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\NIS2\\23_nca_incident_reporter.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    }
+  ],
+  "report_integrity_sha256": "0D81676D6919145D111937672CD8810DB0E3CDDCEBF7274B5F25DA759B6F71DC"
+}

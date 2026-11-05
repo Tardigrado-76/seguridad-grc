@@ -1,0 +1,129 @@
+"""
+Module: test_gdpr_retention_and_sar.py
+Description: TDD test suite for RGPD / LOPDGDD compliance.
+Validates:
+- Art. 17: Right to Erasure, Data Retention Purger & Crypto-Shredder (NIST SP 800-88)
+- Art. 15: Subject Access Request (SAR) automated PII data extraction & export
+- Evaluator: GDPRTOMsEvaluator reaches 100.0% compliance (4/4 controls passed).
+"""
+
+from __future__ import annotations
+
+import sqlite3
+import sys
+from pathlib import Path
+
+import pytest
+
+engines_dir = Path(__file__).resolve().parent.parent / "engines"
+if str(engines_dir) not in sys.path:
+    sys.path.insert(0, str(engines_dir))
+
+compliance_dir = Path("e:/PROYECTOS IA/PRODUCTION READY/100/GITHUB/QUANTIGRADE GRC")
+if str(compliance_dir) not in sys.path:
+    sys.path.insert(0, str(compliance_dir))
+
+from rgpd_data_retention_purger import CryptoShredder, RGPDDataRetentionPurger
+from sar_data_extractor import SARDataExtractor
+from src.evaluators.gdpr_toms import GDPRTOMsEvaluator
+
+
+@pytest.fixture
+def test_sqlite_db(tmp_path: Path) -> Path:
+    """Create a temporary SQLite database populated with test user records."""
+    db_file = tmp_path / "test_users.sqlite"
+    conn = sqlite3.connect(str(db_file))
+    cur = conn.cursor()
+    cur.execute(
+        """
+        CREATE TABLE user_pii (
+            id TEXT PRIMARY KEY,
+            email TEXT,
+            created_at TEXT,
+            suppression_requested INTEGER
+        )
+        """
+    )
+    # Insert active user
+    cur.execute(
+        "INSERT INTO user_pii VALUES ('1', 'alice@example.com', '2026-01-01T00:00:00', 0)"
+    )
+    # Insert expired / suppression requested user
+    cur.execute(
+        "INSERT INTO user_pii VALUES ('2', 'bob@example.com', '2020-01-01T00:00:00', 1)"
+    )
+    conn.commit()
+    conn.close()
+    return db_file
+
+
+def test_crypto_shredder_nist_800_88():
+    """Verify CryptoShredder multi-pass overwrite and key zeroization."""
+    data_len = 32
+    passes = CryptoShredder.nist_800_88_overwrite(data_len)
+    assert len(passes) == 3
+    assert passes[0] == b"\x00" * data_len
+    assert passes[1] == b"\xFF" * data_len
+    assert len(passes[2]) == data_len
+
+    key = b"super_secret_encryption_key_32b!"
+    shredded = CryptoShredder.shred_key(key)
+    assert shredded != key
+    assert len(shredded) == len(key)
+
+
+def test_rgpd_data_retention_purger_lifecycle(test_sqlite_db: Path, tmp_path: Path):
+    """Verify RGPD Art. 17 data retention purger correctly audits and executes purges."""
+    reports_dir = tmp_path / "rgpd_reports"
+    purger = RGPDDataRetentionPurger(
+        target_db=str(test_sqlite_db),
+        ttl_days=365,
+        mode="purge",
+        dry_run=False,
+        output_dir=str(reports_dir),
+    )
+    audit_res = purger.process_data_retention()
+    assert audit_res["scanned_count"] >= 2
+    assert audit_res["purged_count"] >= 1
+
+    # Verify Bob was purged
+    conn = sqlite3.connect(str(test_sqlite_db))
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM user_pii WHERE id = '2'")
+    active_bobs = cur.fetchone()[0]
+    conn.close()
+    assert active_bobs == 0
+
+
+def test_sar_data_extractor_lifecycle(test_sqlite_db: Path, tmp_path: Path):
+    """Verify RGPD Art. 15 SAR extractor exports subject data to structured JSON."""
+    reports_dir = tmp_path / "sar_reports"
+    extractor = SARDataExtractor(
+        subject_identifier="alice@example.com",
+        target_db=str(test_sqlite_db),
+        dry_run=False,
+        output_dir=str(reports_dir),
+    )
+    extracted = extractor.extract_from_sqlite(test_sqlite_db)
+    assert len(extracted) == 1
+    assert extracted[0]["data"]["email"] == "alice@example.com"
+
+    json_path, md_path, sha256_hash = extractor.generate_evidence_reports()
+    assert json_path.exists()
+    assert md_path.exists()
+    assert len(sha256_hash) == 64
+
+
+def test_gdpr_toms_evaluator_reaches_100_percent(tmp_path):
+    """Verify GDPRTOMsEvaluator passes all 4 rules (100.0% GREEN)."""
+    (tmp_path / "gdpr_pseudonymizer_toms.py").write_text("# TOMs", encoding="utf-8")
+    (tmp_path / "data_retention_purger.py").write_text("# Purger", encoding="utf-8")
+    (tmp_path / "sar_subject_access_extractor.py").write_text("# SAR", encoding="utf-8")
+    (tmp_path / "breach_incident_aepd_auditor.py").write_text("# Breach", encoding="utf-8")
+
+    evaluator = GDPRTOMsEvaluator(target_path=str(tmp_path), company_name="Enterprise")
+    result = evaluator.evaluate()
+    assert result.compliance_score == 100.0
+    assert result.passed_rules == 4
+    assert result.failed_rules == 0
+    assert result.rag_status.value == "GREEN"

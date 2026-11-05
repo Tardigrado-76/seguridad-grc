@@ -1,0 +1,17 @@
+{
+  "audit_id": "HB-20260725-161706",
+  "timestamp": "2026-07-25T14:17:06.776781+00:00",
+  "node_id": "NODE-SEC-PROD01",
+  "status": "ACK",
+  "tpm_integrity": "Valid",
+  "response_ack_hash": "f6b7a78a5663303ab00f11c17bbf6b8354c808b273accb9d56ed47b6bf815f1b",
+  "telemetry": {
+    "node_id": "NODE-SEC-PROD01",
+    "engine_version": "2.4.0",
+    "tpm_integrity": "Valid",
+    "os_platform": "Windows 11 (AMD64)",
+    "timestamp_utc": "2026-07-25T14:17:06.776781+00:00",
+    "hmac_signature": "e79343af2a59d1529ad3efded3523b686bb1f27e68f0f417767ae6f07eac9bdc"
+  },
+  "dora_ens_verdict": "NODO_ACTIVO_INTEGRIDAD_VERIFICADA"
+}

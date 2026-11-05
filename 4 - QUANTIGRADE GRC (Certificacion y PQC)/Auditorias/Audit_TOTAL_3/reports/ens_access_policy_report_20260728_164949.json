@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-07-28T16:49:49.817740+00:00",
+  "dry_run": false,
+  "target_path": "D:\\My Docs",
+  "analysis": {
+    "files_scanned": 639,
+    "violations_count": 0,
+    "findings": [],
+    "ens_compliant": true
+  },
+  "report_sha256": "ED683DC814D6ACDB3A56FFB5C0B843BF424DDA352B7C5A105C90750C470E4AAC"
+}

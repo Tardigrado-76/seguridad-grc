@@ -1,0 +1,47 @@
+{
+  "title": "ENISA Cloud Infrastructure-as-Code Drift Audit",
+  "timestamp_iso": "2026-07-26T11:14:20.138322+00:00",
+  "dry_run": true,
+  "total_drifts_detected": 4,
+  "critical_drifts": 1,
+  "high_drifts": 3,
+  "drifts": [
+    {
+      "rule_id": "ENISA-IAC-01",
+      "rule_name": "Unencrypted Cloud Storage Bucket",
+      "file": "main.tf",
+      "severity": "HIGH",
+      "control": "NIST SC-13 / ENISA Key Management",
+      "drift_detected": true,
+      "remediation": "Remediate ENISA-IAC-01 in main.tf according to NIST SC-13 / ENISA Key Management standards."
+    },
+    {
+      "rule_id": "ENISA-IAC-04",
+      "rule_name": "Security Group Open to World (0.0.0.0/0)",
+      "file": "main.tf",
+      "severity": "HIGH",
+      "control": "NIST AC-4 Boundary Protection",
+      "drift_detected": true,
+      "remediation": "Remediate ENISA-IAC-04 in main.tf according to NIST AC-4 Boundary Protection standards."
+    },
+    {
+      "rule_id": "ENISA-IAC-01",
+      "rule_name": "Unencrypted Cloud Storage Bucket",
+      "file": "pod_spec.yaml",
+      "severity": "HIGH",
+      "control": "NIST SC-13 / ENISA Key Management",
+      "drift_detected": true,
+      "remediation": "Remediate ENISA-IAC-01 in pod_spec.yaml according to NIST SC-13 / ENISA Key Management standards."
+    },
+    {
+      "rule_id": "ENISA-IAC-03",
+      "rule_name": "Kubernetes privileged: true Container",
+      "file": "pod_spec.yaml",
+      "severity": "CRITICAL",
+      "control": "ENISA Container Isolation",
+      "drift_detected": true,
+      "remediation": "Remediate ENISA-IAC-03 in pod_spec.yaml according to ENISA Container Isolation standards."
+    }
+  ],
+  "report_integrity_sha256": "9D5D0E69165ACDB0D4FE862DC51D20439EE935A8AFFAF0549C9D4106D0047FF2"
+}

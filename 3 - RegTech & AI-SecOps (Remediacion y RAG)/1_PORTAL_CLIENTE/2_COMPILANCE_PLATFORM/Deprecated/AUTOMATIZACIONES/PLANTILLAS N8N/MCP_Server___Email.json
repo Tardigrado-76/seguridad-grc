@@ -1,0 +1,164 @@
+{
+  "name": "MCP Server - Email",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "f25bcd5b-47fc-4f99-9eb8-3ccf1fc31a61"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -280
+      ],
+      "id": "e5ee0fea-4b4c-4cc0-b797-1734c66cd487",
+      "name": "MCP Server Trigger",
+      "webhookId": "f25bcd5b-47fc-4f99-9eb8-3ccf1fc31a61"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Juan Pe Navarro | CEO Divisual Project"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -560,
+        -40
+      ],
+      "id": "8855ad12-da2b-4c9d-a8c5-b00236e52378",
+      "name": "Gmail - Enviar email",
+      "webhookId": "0d61cc98-cf58-4071-a5e5-8954c352d48b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "IokBtq93nPyyaQsm",
+          "name": "Gmail divisual@divisualproject.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "filters": {
+          "readStatus": "unread",
+          "receivedAfter": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Received_After', ``, 'string') }}",
+          "receivedBefore": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Received_Before', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -400,
+        -40
+      ],
+      "id": "ac16919e-48bc-4d81-ad8c-8048e05ca271",
+      "name": "Gmail - comprobar emails",
+      "webhookId": "84c0bb51-b590-4211-9cbf-f2012d67f9ed",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "IokBtq93nPyyaQsm",
+          "name": "Gmail divisual@divisualproject.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "labelIds": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Label_Names_or_IDs', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -220,
+        -40
+      ],
+      "id": "094cd6a6-223f-4ce9-abd3-a73db8c9b363",
+      "name": "Gmail - Anadir etiqueta",
+      "webhookId": "576c0122-01e0-42a0-834e-324791ec5061",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "IokBtq93nPyyaQsm",
+          "name": "Gmail divisual@divisualproject.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# 🚀 La Tribu Divisual\n\n## Accede a **La Tribu Divisual** para aprender a crear agentes más avanzados y generar ingresos con ellos.\n\n# 👉 [Click aquí para unirte a la Lista de espera](https://divisualproject.academy/)\n",
+        "height": 280,
+        "width": 760,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -420
+      ],
+      "id": "f9e16e41-f981-403c-b17b-13549d67f08a",
+      "name": "Sticky Note10"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail - Enviar email": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - comprobar emails": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Anadir etiqueta": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "41719507-d93f-4b09-8c54-cb8f0777be29",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2723e5c0cdf73e609a9d6131a4145b2656ca7463c71fa761a441dc255964ffd8"
+  },
+  "id": "AN0M8GCx1DxRIyp1",
+  "tags": [
+    {
+      "createdAt": "2025-06-01T18:57:05.689Z",
+      "updatedAt": "2025-06-01T18:57:05.689Z",
+      "id": "uhDg4e01CCZHetVc",
+      "name": "Curso Adrián Sáenz"
+    }
+  ]
+}

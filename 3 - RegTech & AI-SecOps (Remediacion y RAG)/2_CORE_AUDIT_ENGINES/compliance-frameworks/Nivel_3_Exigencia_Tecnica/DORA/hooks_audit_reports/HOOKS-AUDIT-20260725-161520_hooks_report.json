@@ -1,0 +1,11 @@
+{
+  "audit_id": "HOOKS-AUDIT-20260725-161520",
+  "timestamp": "2026-07-25T14:15:20.759804+00:00",
+  "repo_directory": "E:\\PROYECTOS IA\\AUDITORIAS\\DORA",
+  "is_git_repository": false,
+  "pre_commit_installed": false,
+  "gitleaks_configured": false,
+  "integrity_hash": "",
+  "hooks": [],
+  "dora_ens_verdict": "ERROR_DIRECTORIO_NO_GIT"
+}

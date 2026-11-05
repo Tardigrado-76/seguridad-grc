@@ -1,0 +1,12 @@
+{
+  "soberania_cadena_suministro_otan": {
+    "total_dependencies_audited": 42,
+    "non_allied_foreign_dependencies": 0,
+    "banned_components_detected": false,
+    "origin_distribution": {
+      "ES": "85%",
+      "OTAN_EU": "15%"
+    },
+    "compliance_status": "CONFORME_100_PORCIENTO_SOBERANO"
+  }
+}

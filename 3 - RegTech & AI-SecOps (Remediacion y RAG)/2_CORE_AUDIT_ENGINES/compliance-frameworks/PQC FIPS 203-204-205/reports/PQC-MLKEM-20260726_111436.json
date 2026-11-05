@@ -1,0 +1,19 @@
+{
+  "title": "FIPS 203 ML-KEM Quantum-Safe Key Encapsulation Audit",
+  "timestamp_iso": "2026-07-26T11:14:36.339232+00:00",
+  "parameter_set": "ML-KEM-768",
+  "dry_run": true,
+  "total_tunnels_negotiated": 1,
+  "negotiations": [
+    {
+      "tunnel_id": "IPSEC-TUNNEL-SITE-MAD-BCN",
+      "parameter_set": "ML-KEM-768",
+      "public_key_fingerprint": "ML-KEM-PK-EF072DD356E328...",
+      "ciphertext_fingerprint": "ML-KEM-CT-F80BABF8B03FE5...",
+      "shared_secret_sha256": "D2ACE5CA10465EDDDD84379BB4D80C19B0E96C98379FB3117635D60C38AD69B5",
+      "status": "HANDSHAKE_SUCCESS_QUANTUM_SAFE",
+      "fips_203_compliant": true
+    }
+  ],
+  "report_integrity_sha256": "E8544ADAD07DFA60B0EE28FAACE8087DEEC6BA5A76503669989CCD3D2ADDA421"
+}

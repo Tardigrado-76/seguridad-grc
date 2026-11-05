@@ -1,0 +1,221 @@
+RECOMENDACION
+En equipo local: Win + R → secpol.msc
+En dominio: gpmc.msc → Editar GPO
+
+
+			Deshabilitar el Controlador de dominio: permitir a los operadores de servidor programar tareas en windows 11
+1 - Abrir secpol.msc o una GPO vinculada al controlador de dominio.
+2 - Ve a Configuración del equipo > Configuración de Windows > Configuración de seguridad > Directivas locales > Opciones de seguridad.
+3 - Busca Controlador de dominio: permitir a los operadores de servidor programar tareas.
+4 - Cámbiala a Deshabilitado y aplica la directiva.
+
+			Dispositivos: permitir desacoplamiento sin tener que iniciar sesión
+1 - Pulsa Win + R, escribe secpol.msc y abre la Directiva de seguridad local.
+2 - Ve a Configuración del equipo > Configuración de Windows > Configuración de seguridad > Directivas locales > Opciones de seguridad.
+3 - Busca Dispositivos: permitir desacoplamiento sin tener que iniciar sesión.
+4 - Ábrela y selecciona Deshabilitado.
+
+			DCOM: restricciones de acceso al equipo en sintaxis de Lenguaje de definición de descriptores de seguridad (SDDL)
+1 - Abre secpol.msc o la GPO que quieras modificar.
+2 - Ve a Configuración del equipo > Configuración de Windows > Configuración de seguridad > Directivas locales > Opciones de seguridad.
+3 - Busca DCOM: restricciones de acceso al equipo en sintaxis de Lenguaje de definición de descriptores de seguridad (SDDL).
+4 - Abre la propiedad de la directiva y pega un SDDL que mantenga el propietario/grupo en BUILTIN\Administrators y añada las ACE que necesitas.
+SDDL base recomendado
+text
+O:BAG:BAD:(
+  A;CCDC;;;S-1-5-32-562
+  A;CCDC;;;S-1-15-2-1
+  A;CCDC;LC;;;S-1-5-11
+  A;CCDC;LC;;;S-1-5-32-545
+)
+
+Pero hay un detalle importante: para esta directiva, Microsoft documenta que normalmente se administra como descriptor de seguridad y los permisos se expresan con las ACE apropiadas en la DACL. En la práctica, lo más seguro es no construirlo a mano si no estás seguro de los códigos exactos, porque un SDDL mal formado puede bloquear DCOM.
+
+Equivalencia de tus grupos
+Tu intención, en términos prácticos, es esta:
+BUILTIN\Administrators como propietario y grupo.
+Permitir acceso a:
+ALL APPLICATION PACKAGES.
+El SID S-1-15-3-1024-2405443489-874036122-4286035555-1823921565-1746547431-2453885448-3625952902-991631256.
+Authenticated Users.
+BUILTIN\Distributed COM Users.
+
+ 			DCOM: restricciones de inicio de equipo en sintaxis de Lenguaje de definición de descriptores de seguridad (SDDL)
+1 - Configuración del equipo
+2 - Configuración de Windows
+3 - Configuración de seguridad
+4 - Directivas locales
+5 - Opciones de seguridad.
+Propietario y grupo: BUILTIN\Administrators.
+DACL con ACE de permiso permitido para:
+ALL APPLICATION PACKAGES.
+El SID largo S-1-15-3-1024-2405443489-874036122-4286035555-1823921565-1746547431-2453885448-3625952902-991631256.
+Authenticated Users.
+BUILTIN\Administrators.
+BUILTIN\Distributed COM Users.
+
+			Duración del bloqueo de cuenta
+1 - Pulsa Win + R y escribe secpol.msc.
+2 - Ve a Configuración del equipo > Configuración de Windows > Configuración de seguridad > Directivas de cuenta > Directiva de bloqueo de cuenta.
+3 - Abre Duración del bloqueo de cuenta.
+4 - Escribe el número que solicite CLARA y pulsa Aceptar.
+
+			Tener acceso a este equipo desde la red
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad → Directivas locales → Asignación de derechos de usuario -> Abre la directiva Tener acceso a este equipo desde la red.
+3 - Haz clic en Agregar usuario o grupo....
+Agrega: Administradores, Usuarios
+Windows los resolverá como BUILTIN\Administradores y BUILTIN\Usuarios.
+Elimina cualquier otro grupo o usuario que no quieras que tenga ese derecho (por ejemplo, Todos o Usuarios autenticados, si aparecen y sabes que no son necesarios en tu entorno). Microsoft indica que este derecho controla quién puede conectarse al equipo a través de la red mediante servicios como SMB/CIFS.
+
+			Omitir comprobación de recorrido
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad → Directivas locales → Asignación de derechos de usuario -> Abre Omitir comprobación de recorrido.
+3 - Elimina los grupos que no desees (por ejemplo, Todos, Usuarios o Operadores de copia de seguridad, si aparecen).
+4 - Haz clic en Agregar usuario o grupo... y añade uno por uno:
+Usuarios autentificados
+Servicio local
+Servicio de red
+Administradores
+
+Windows los resolverá automáticamente como:
+NT AUTHORITY\Usuarios autentificados
+NT AUTHORITY\Servicio local
+NT AUTHORITY\Servicio de red
+BUILTIN\Administradores
+Acepta los cambios y cierra la consola. El cambio se aplica en el siguiente inicio de sesión de las cuentas afectadas; no suele ser necesario reiniciar el equipo.
+
+			Iniciar sesión como servicio
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad → Directivas locales → Asignación de derechos de usuario -> Abre Iniciar sesión como servicio.
+3 - Selecciona cada cuenta de la lista y pulsa Quitar hasta que no quede ninguna. Haz clic en Aceptar.
+
+Si no te deja quitar la última cuenta
+Esto suele deberse a una de estas causas:
+	- El equipo está unido a un dominio y una GPO vuelve a aplicar la configuración.
+	- Un servicio instalado (por ejemplo, IIS, SQL Server, ASP.NET, etc.) ha agregado automáticamente una cuenta de servicio.
+	- La configuración proviene de una política de seguridad importada.
+
+Puedes comprobar qué política se está aplicando ejecutando: gpresult /h C:\gpresult.html
+y revisando el informe generado.
+
+			Permitir el inicio de sesión local
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Asignación de derechos de usuario -> Permitir el inicio de sesión local
+3 - Elimina todos los grupos o usuarios que no deban tener este derecho y dejar solo: Administradores, Usuarios, Operadores de copia de seguridad
+4 - Aceptar -> En terminal gpupdate /force
+
+		NOTA
+		Si el equipo está unido a un dominio de Active Directory, una GPO puede sobrescribir esta configuración. En ese caso, el cambio debe realizarse en la GPO correspondiente y no únicamente en la directiva local.
+
+			Denegar inicio de sesión a través de Servicios de Escritorio remoto
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Asignación de derechos de usuario -> Denegar inicio de sesión a través de Servicios de Escritorio remoto
+3 - Haz doble clic en la directiva -> Haz clic en Agregar usuario o grupo -> Agrega el grupo: Todos
+4 - Aplicar -> En terminal gpupdate /force
+
+			Denegar el inicio de sesión como trabajo por lotes
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Asignación de derechos de usuario -> Denegar el inicio de sesión como trabajo por lotes
+3 - Haz doble clic en la directiva -> Elimina cualquier grupo o usuario existente -> Haz clic en Agregar usuario o grupo... y añade: Invitados
+4 - Después añade: ANONYMOUS LOGON. Si no se resuelve, escribe: NT AUTHORITY\ANONYMOUS LOGON
+
+			Denegar el inicio de sesión como servicio
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Asignación de derechos de usuario -> Denegar el inicio de sesión como servicio
+3 - Eliminar todos los existentes y agregar: ANONYMOUS LOGON
+
+			Denegar el inicio de sesión como trabajo por lotes
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Asignación de derechos de usuario -> Denegar el inicio de sesión como trabajo por lotes
+3 - Plantilla: [Privilege Rights] SeDenyBatchLogonRight=*S-1-5-32-546,*S-1-5-7
+
+			Denegar el acceso a este equipo desde la red
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Asignación de derechos de usuario -> Denegar el acceso a este equipo desde la red
+3 - Agregar: Invitados, ANONYMOUS LOGON
+4 - Plantilla: [Privilege Rights] SeDenyNetworkLogonRight=*S-1-5-32-546,*S-1-5-7
+
+			Agregar estaciones de trabajo al dominio
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Asignación de derechos de usuario -> Agregar estaciones de trabajo al dominio
+3 - Agregar: Administradores
+4 - Plantilla: [Privilege Rights] SeMachineAccountPrivilege=*S-1-5-32-544
+5 - SID: S-1-5-32-544 = BUILTIN\Administradores
+
+			Seguridad de red: forzar el cierre de sesión cuando expire la hora de inicio de sesión
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Opciones de seguridad -> Seguridad de red -> Forzar el cierre de sesión cuando expire la hora de inicio de sesión -> Habilitar
+3 - Aplicar configuracion con gpupdate /force
+
+			Dispositivos: restringir el acceso al CD-ROM sólo al usuario con sesión iniciada localmente
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Opciones de seguridad -> Dispositivos: restringir el acceso al CD-ROM sólo al usuario con sesión iniciada localmente -> Habilitar
+
+			Dispositivos: restringir el acceso a disquetes sólo al usuario con sesión iniciada localmente
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración de seguridad -> Directivas locales -> Opciones de seguridad -> Dispositivos: restringir el acceso a disquetes sólo al usuario con sesión iniciada localmente -> Habilitad
+
+			Configuración de usuario/Panel de control/Personalización/Habilitar protector de pantalla
+1 - Pulsa Win + R, escribe gpedit.msc y pulsa Enter.
+2 - Configuración de usuario -> Plantillas administrativas -> Panel de control -> Personalización -> Habilitar protector de pantalla -> Habilitada
+	- Tiempo de espera del protector de pantalla -> 900 segundos
+	- Proteger el protector de pantalla mediante contraseña -> Habilitada
+	- Forzar un protector de pantalla específico -> %SystemRoot%\System32\scrnsave.scr o el protector definido por la organización
+
+			Configuración de usuario/Panel de control/Personalización/Proteger el protector de pantalla mediante contraseña
+1 - Pulsa Win + R, escribe gpedit.msc y pulsa Enter.
+2 - Configuración de usuario -> Plantillas administrativas -> Panel de control -> Personalización -> Proteger el protector de pantalla mediante contraseña -> Habilitada.
+
+			Seguridad de red: seguridad de sesión mínima para clientes NTLM basados en SSP (incluida RPC segura)
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Directivas locales → Opciones de seguridad -> Seguridad de red: nivel mínimo de seguridad de sesión para clientes NTLM basados en SSP (incluida RPC segura)
+3 - Marcar: Requerir seguridad de sesión NTLMv2 y Requerir cifrado de 128 bits
+4 - Aplicar, aceptar.
+
+			Seguridad de red: seguridad de sesión mínima para servidores NTLM basados en SSP (incluida RPC segura)
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Directivas locales → Opciones de seguridad -> Seguridad de red: nivel mínimo de seguridad de sesión para servidores NTLM basados en SSP (incluida RPC segura) 
+3 - Selecciona: Requerir seguridad de sesión NTLMv2 y Requerir cifrado de 128 bits
+4 - Aplicar → Aceptar
+
+			Seguridad de red: restringir NTLM: tráfico NTLM entrante
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración del equipo → Configuración de Windows → Configuración de seguridad → Directivas locales → Opciones de seguridad
+3 - Seguridad de red: restringir NTLM:tráfico NTLM entrante -> Denegar todas las cuentas de dominio
+
+			Servidor de red Microsoft: nivel de validación de nombres de destino SPN del servidor
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración del equipo → Configuración de Windows → Configuración de seguridad → Directivas locales → Opciones de seguridad
+3 - Servidor de red Microsoft: nivel de validación de nombres de destino SPN del servidor -> Requerido del cliente
+
+			Seguridad de red: restringir NTLM: auditar la autenticación NTLM en este dominio
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración del equipo → Configuración de Windows → Configuración de seguridad → Directivas locales → Opciones de seguridad
+3 - Seguridad de red: restringir NTLM: auditar la autenticación NTLM en este dominio -> Habilitar todo
+
+			Seguridad de red: restringir NTLM: autenticación NTLM en este dominio
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración del equipo → Configuración de Windows → Configuración de seguridad → Directivas locales → Opciones de seguridad
+3 - Seguridad de red: restringir NTLM: autenticación NTLM en este dominio -> Denegar para cuentas de dominio en servidores de dominio
+
+			Directivas del sistema de ficheros PROPAGAR (c:\windows\registration, c:\user\default, c:\users\public)
+1 - Pulsa Win + R, escribe secpol.msc y pulsa Enter.
+2 - Configuración del equipo -> Configuración de Windows -> Configuración de seguridad -> Sistema de archivos
+3 - Si las carpetas no existen en la GPO:
+		Clic derecho → Agregar archivo...
+		Selecciona:
+		C:\Windows\Registration
+		C:\Users\Default
+		C:\Users\Public
+4 - Marca Propagar permisos heredables a todos los subdirectorios y archivos (la opción puede variar ligeramente según la versión de Windows).
+
+			WaaSMedicSvc en Manual
+1 - Pulsa Win + R, escribe services.msc y pulsa Enter.
+2 - Busca Windows Update Medic Service (WaaSMedicSvc) -> Seleccionar Manual
+
+
+
+APLICAR
+- cmd -> gpupdate /force
+- cmd -> secedit /refreshpolicy machine_policy /enforce

@@ -1,0 +1,30 @@
+# Entornos Virtuales
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Bases de datos y archivos locales
+finops_budget.db
+*.sqlite3
+
+# Logs y Auditoría
+audit.log
+*.log
+
+# Variables de entorno
+.env
+.env.local
+
+# Build y caché
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Archivos del SO
+.DS_Store
+Thumbs.db

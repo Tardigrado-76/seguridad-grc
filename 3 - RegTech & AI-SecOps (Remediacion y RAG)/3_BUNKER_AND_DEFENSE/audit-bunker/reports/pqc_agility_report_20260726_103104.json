@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-07-26T10:31:04.674805+00:00",
+  "frameworks": [
+    "NIST FIPS 203 (ML-KEM)",
+    "NIST FIPS 204 (ML-DSA)",
+    "NIST FIPS 205 (SLH-DSA)",
+    "CNSA 2.0"
+  ],
+  "target_dir": "e:\\PROYECTOS IA\\AUDITORIAS\\secrets_config",
+  "scan_mode": "RotateHybridSimulated",
+  "dry_run": true,
+  "summary": {
+    "total_scanned": 1,
+    "vulnerable_legacy": 0,
+    "quantum_tolerant": 1,
+    "pqc_ready": 0
+  },
+  "scan_details": [
+    {
+      "file": "e:\\PROYECTOS IA\\AUDITORIAS\\secrets_config\\init-secrets.ps1",
+      "algorithm": "Unknown/Generic_PEM",
+      "classification": "Quantum_Tolerant",
+      "recommended_pqc_replacement": "ML-KEM-768 / ML-DSA-65"
+    }
+  ],
+  "simulated_rotations": [],
+  "evidence_sha256": "308f7e2e482965a3ba56fa90080771b57a6ed22b230240ecb58c307cb11439dd"
+}

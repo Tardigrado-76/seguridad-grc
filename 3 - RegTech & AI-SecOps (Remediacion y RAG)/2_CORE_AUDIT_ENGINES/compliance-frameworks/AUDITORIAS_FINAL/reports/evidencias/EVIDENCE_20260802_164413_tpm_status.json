@@ -1,0 +1,7 @@
+{
+    "evidence_name": "tpm_status",
+    "filename": "EVIDENCE_20260802_164413_tpm_status.log",
+    "timestamp": "2026-08-02T16:44:13.910030",
+    "sha256_hash": "8768a99bef4d11df4316e30b49a12205834f3200f208e4ad66647d717294b129",
+    "status": "SEALED_AND_VERIFIED"
+}

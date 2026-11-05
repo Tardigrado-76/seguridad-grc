@@ -1,0 +1,46 @@
+{
+  "title": "FIPS 140-3 Kernel & Runtime Cryptographic Audit",
+  "timestamp_iso": "2026-07-26T10:45:53.392527+00:00",
+  "system_os": "Windows",
+  "dry_run": true,
+  "audit_records": [
+    {
+      "component": "KernelEnforcement",
+      "initial_status": "DISABLED",
+      "details": "Windows Registry FipsAlgorithmPolicy\\Enabled = 0",
+      "action_taken": "DRY_RUN_WOULD_ENFORCE"
+    },
+    {
+      "component": "CryptoProviderAudit",
+      "openssl_version": "OpenSSL 3.0.21 9 Jun 2026",
+      "disallowed_accessible": [
+        "sha1",
+        "ripemd160",
+        "md5"
+      ],
+      "fips_compliant_provider": false,
+      "guaranteed_algorithms": [
+        "blake2b",
+        "blake2s",
+        "md5",
+        "sha1",
+        "sha224",
+        "sha256",
+        "sha384",
+        "sha3_224",
+        "sha3_256",
+        "sha3_384",
+        "sha3_512",
+        "sha512",
+        "shake_128",
+        "shake_256"
+      ]
+    },
+    {
+      "component": "RuntimeInterceptor",
+      "status": "DRY_RUN_INTERCEPTOR_NOT_INSTALLED",
+      "policy": "Block MD5/SHA1 for security contexts"
+    }
+  ],
+  "report_integrity_sha256": "B76F9A47FF9562E031504191A60A3B05B9FB96E97A0B99CD11672110258A50A1"
+}

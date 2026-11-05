@@ -1,0 +1,42 @@
+Actúa como un Arquitecto de Software y Auditor Principal de Ciberseguridad.
+
+### OBJETIVO
+Tengo un proyecto de auditoría que contiene directorios con scripts de evaluación para múltiples normativas. Necesito reestructurar el proyecto en una arquitectura de 3 niveles de exigencia acumulativa y generar un orquestador principal (`orchestrator.py`) capaz de ejecutar las auditorías según el perfil de la compañía objetivo.
+### TAREA 1: ANÁLISIS Y CLASIFICACIÓN DE DIRECTORIOS
+Analiza todos los directorios y scripts existentes en la raíz del proyecto y clasifícalos creando la siguiente estructura de carpetas:
+1. `Nivel_1_Gobernanza/` (Requisitos Estratégicos y Legales):
+   - Busca y Copia en NIVEL 1 todos los scripts pertenecientes a: RGPD, LOPDGDD, ENS (Marco Organizativo), EU Cyber Act/ENISA, Políticas base.
+
+2. `Nivel_2_Operativo/` (Arquitectura, Apps y Cadena de Suministro):
+   - Busca y Copia en NIVEL 2 todos los scripts pertenecientes a: NIS2, NIST SP 800-53, NIST SP 800-161, OWASP Top 10, OWASP LLM, EU AI Act, Supply Chain Security, ENS (Operativo/MP).
+
+3. `Nivel_3_Exigencia_Tecnica/` (Máxima Exigencia, Criptografía y Hardening):
+   - Busca y Copia en NIVEL 3 todos los scripts pertenecientes a: DORA (capa técnica), FIPS 140-3, FIPS 186-5/197-202, PQC FIPS 203-205, Hardening IP/PE.
+### TAREA 2: DESARROLLO DEL ORQUESTADOR
+Crea un script principal de orquestación llamado `orchestrator.py` (o bash) en la raíz con las siguientes capacidades:
+
+1. **Parámetros de Selección:**
+   - `--level [1|2|3]`: Ejecución por nivel. Debe ser ACUMULATIVO (si elijo 3, ejecuta automáticamente Nivel 1 + Nivel 2 + Nivel 3).
+   - `--sector [financiero|saas|critico|pyme]`: Filtro rápido que selecciona automáticamente los niveles y normativas obligatorias según el sector.
+   - `--target /ruta/al/proyecto`: Ruta del proyecto o infraestructura de la empresa a auditar:
+   Cada orquestador:
+   - solicitara la ruta del proyecto a analizar
+   - solicitara la ruta y nombre de salida del informe (por defecto, la ruta de salida sera /reports dentro de cada directorio)
+   - buscara dentro del proyecto el/los archivo/s o directorio/s a analizar en funcion a la normativa
+   - sirva para cualquier tipo de lenguaje de programacion
+
+2. **Ejecución y Mapeo Dinámico:**
+   - El orquestador debe detectar automáticamente los scripts ejecutables dentro de cada carpeta de Nivel.
+   - Debe pasar la variable `--target` a cada sub-script individual.
+   - Manejo de errores: Si un script falla, debe registrarlo y continuar con el siguiente sin detener la auditoría completa.
+
+3. **Consolidación de Informes:**
+   - Generar al finalizar un informe consolidado en formato Markdown y JSON en la carpeta `./reports/` nombrado con la fecha y nivel (`audit_report_YYYYMMDD_L3.md`).
+   - Cada informe debe ajustarse a la normativa exigible por nivel.
+   - El informe debe incluir: 
+         - Resumen de éxito/fallo por script, porcentaje de alineación global y brechas críticas detectadas.
+         - Proponer los cambios necesario para cumplir 100% el nivel de normativa exigida.
+### ENTREGABLES REQUERIDOS
+1. El código completo y listo para producción del orquestador.
+2. Un script de migración/inicialización que cree los directorios y copie los scripts existentes a sus respectivos niveles.
+3. El archivo `README.md` explicativo con las instrucciones de uso del orquestador.

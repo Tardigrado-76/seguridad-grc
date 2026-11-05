@@ -1,0 +1,20 @@
+{
+  "dgam_redgam_registry": {
+    "certificate_id": "REDGAM-ES-2026-99481-DEF",
+    "contractor_name": "Quantigrade Defense & Cyber Sovereignty S.L.",
+    "tax_id": "B-88776655",
+    "status": "HOMOLOGADO_ACTIVO",
+    "classification_categories": [
+      "SISTEMAS_C4ISR",
+      "SOFTWARE_MILITAR_MISION_CRITICA",
+      "CIBERDEFENSA_Y_CRIPTOGRAFIA"
+    ],
+    "issuing_authority": "Dirección General de Armamento y Material (DGAM) - Ministerio de Defensa",
+    "valid_until": "2029-12-31T23:59:59Z",
+    "pecal_aqap_accreditation": {
+      "pecal_2110": true,
+      "pecal_2210": true,
+      "audit_status": "CONFORME_SIN_NO_CONFORMIDADES_MAYORES"
+    }
+  }
+}

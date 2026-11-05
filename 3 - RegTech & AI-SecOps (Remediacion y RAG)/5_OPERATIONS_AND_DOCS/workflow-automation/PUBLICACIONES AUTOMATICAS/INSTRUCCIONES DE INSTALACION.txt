@@ -1,0 +1,102 @@
+INSTRUCCIONES DE INSTALACIÓN
+Paso 1: Configurar Backend
+bash# Crear carpeta del proyecto
+mkdir social-media-publisher
+cd social-media-publisher
+
+# Crear carpeta backend
+mkdir backend
+cd backend
+
+# Inicializar npm
+npm init -y
+
+# Instalar dependencias
+npm install express cors multer axios dotenv express-session passport passport-facebook passport-google-oauth20 passport-twitter passport-linkedin-oauth2 helmet express-rate-limit form-data sharp
+
+# Instalar dependencias de desarrollo
+npm install --save-dev nodemon
+
+# Crear estructura de carpetas
+mkdir routes config uploads
+
+Paso 2: Copiar archivos
+
+Copiar todos los archivos .js en sus respectivas carpetas
+Crear el archivo .env con tus credenciales
+
+Paso 3: Obtener Credenciales de APIs (GRATIS)
+Facebook/Instagram:
+
+Ve a https://developers.facebook.com
+Crea una app
+Añade productos: Facebook Login e Instagram Basic Display
+Copia App ID y App Secret
+
+Twitter/X:
+
+Ve a https://developer.twitter.com
+Crea un proyecto y app
+Obtén API Key y API Secret
+
+LinkedIn:
+
+Ve a https://www.linkedin.com/developers
+Crea una app
+Solicita permisos de publicación
+
+Hugging Face (IA):
+
+Ve a https://huggingface.co
+Regístrate gratis
+Ve a Settings → Access Tokens
+Crea un token (READ)
+
+Paso 4: Ejecutar
+bash# Desarrollo
+npm run dev
+
+# Producción
+npm start
+
+⚠️ LIMITACIONES IMPORTANTES
+
+APIs de Redes Sociales:
+
+Requieren registro y aprobación (proceso gratuito pero manual)
+Instagram requiere cuenta Business/Creator
+TikTok tiene proceso de aprobación estricto
+
+
+IA Gratuita:
+
+Hugging Face: 1000 requests/hora gratis
+Alternativa: Descripciones genéricas creativas
+
+
+Hosting:
+
+Backend: Render.com, Railway.app (gratis)
+Frontend: Vercel, Netlify (gratis)
+Base de datos: No necesaria para versión básica
+
+
+Producción:
+
+Usar HTTPS obligatorio
+Configurar dominios para OAuth callbacks
+Implementar base de datos para tokens persistentes
+
+
+
+
+🔒 CUMPLIMIENTO RGPD
+El sistema implementa:
+
+✅ Consentimiento explícito del usuario
+✅ Cifrado TLS 1.3 en tránsito
+✅ Almacenamiento temporal de archivos
+✅ Eliminación automática post-publicación
+✅ Sesiones seguras con HttpOnly cookies
+✅ Rate limiting contra abuso
+✅ Headers de seguridad (Helmet.js)

@@ -1,0 +1,382 @@
+# Inventario de Software SBOM CycloneDX 1.6 (ENS Alto / NIS2 / DORA / CRA)
+
+**Producto:** Plataforma Financiera DORA (v1.0.0)  
+**ID Único (Serial Number):** `urn:uuid:01c60a11-fd19-4ea1-b0db-80491255276b`  
+**Especificación:** CycloneDX 1.6 JSON  
+**Fecha de Emisión:** 2026-09-07T09:11:39.062948+00:00  
+**Algoritmo de Firma:** `ECDSA-SHA384`  
+
+---
+
+## 1. Resumen de Componentes de Software (Bill of Materials)
+
+- **Total de Librerías / Componentes Registrados:** 345
+- **Proveedor Principal:** Plataforma Financiera DORA Enterprise
+- **Firma Criptográfica Estado:** ✅ FIRMADO ECDSA-P384
+
+---
+
+## 2. Detalle de Librerías y Dependencias Identificadas
+
+| Componente | Versión | PURL (Package URL) | Hash SHA3-256 | Origen / Distribuidor |
+|------------|---------|---------------------|---------------|-----------------------|
+| `aiofile` | `3.9.0` | `pkg:pypi/aiofile@3.9.0` | `5ffe928ea2d8e537...` | Python Local Environment |
+| `aiohappyeyeballs` | `2.7.1` | `pkg:pypi/aiohappyeyeballs@2.7.1` | `f68835cf51d6fc02...` | Python Local Environment |
+| `aiohttp` | `3.14.3` | `pkg:pypi/aiohttp@3.14.3` | `15d82b286eaba7d8...` | Python Local Environment |
+| `aiosignal` | `1.4.0` | `pkg:pypi/aiosignal@1.4.0` | `678b67f449b04769...` | Python Local Environment |
+| `altair` | `6.2.2` | `pkg:pypi/altair@6.2.2` | `1ee0f8e0b04a44d5...` | Python Local Environment |
+| `altgraph` | `0.17.5` | `pkg:pypi/altgraph@0.17.5` | `835631841674f7b9...` | Python Local Environment |
+| `annotated-doc` | `0.0.4` | `pkg:pypi/annotated-doc@0.0.4` | `be92b506c43fd62d...` | Python Local Environment |
+| `annotated-types` | `0.7.0` | `pkg:pypi/annotated-types@0.7.0` | `b1de6eedea52c0cd...` | Python Local Environment |
+| `anthropic` | `1.2.0` | `pkg:pypi/anthropic@1.2.0` | `72c1f8ae2c3870f9...` | Python Local Environment |
+| `anyio` | `4.13.0` | `pkg:pypi/anyio@4.13.0` | `2d46597ae849d725...` | Python Local Environment |
+| `appdirs` | `1.4.4` | `pkg:pypi/appdirs@1.4.4` | `4b355b9f5b66229b...` | Python Local Environment |
+| `argcomplete` | `3.7.2` | `pkg:pypi/argcomplete@3.7.2` | `7c6c826f16d8cd6d...` | Python Local Environment |
+| `argon2-cffi` | `25.1.0` | `pkg:pypi/argon2-cffi@25.1.0` | `70c832e37d8a4c19...` | Python Local Environment |
+| `argon2-cffi-bindings` | `25.1.0` | `pkg:pypi/argon2-cffi-bindings@25.1.0` | `14fef316b4146cdd...` | Python Local Environment |
+| `arrow` | `1.4.0` | `pkg:pypi/arrow@1.4.0` | `18232c989f08ecc2...` | Python Local Environment |
+| `asn1crypto` | `1.5.1` | `pkg:pypi/asn1crypto@1.5.1` | `07e95d1dd4ea67a5...` | Python Local Environment |
+| `astor` | `0.8.1` | `pkg:pypi/astor@0.8.1` | `ab46e141b0caf2cd...` | Python Local Environment |
+| `asttokens` | `3.0.2` | `pkg:pypi/asttokens@3.0.2` | `9d683d782d129993...` | Python Local Environment |
+| `ast_serialize` | `0.8.0` | `pkg:pypi/ast_serialize@0.8.0` | `4b0ad3c21bccb696...` | Python Local Environment |
+| `asyncio` | `4.0.0` | `pkg:pypi/asyncio@4.0.0` | `c8c01ce93b67fe1b...` | Python Local Environment |
+| `asyncpg` | `0.31.0` | `pkg:pypi/asyncpg@0.31.0` | `8a2e4958c4d6c7b8...` | Python Local Environment |
+| `attrs` | `26.1.0` | `pkg:pypi/attrs@26.1.0` | `6a3259a212d66de4...` | Python Local Environment |
+| `Authlib` | `1.7.2` | `pkg:pypi/authlib@1.7.2` | `0df96f2d63b9e5e7...` | Python Local Environment |
+| `backoff` | `2.2.1` | `pkg:pypi/backoff@2.2.1` | `81233a7bd5363bda...` | Python Local Environment |
+| `bandit` | `1.9.4` | `pkg:pypi/bandit@1.9.4` | `2e147366d4b16e46...` | Python Local Environment |
+| `beartype` | `0.22.9` | `pkg:pypi/beartype@0.22.9` | `097c5b6fefea7610...` | Python Local Environment |
+| `beautifulsoup4` | `4.15.0` | `pkg:pypi/beautifulsoup4@4.15.0` | `bcb3a6f87a99e849...` | Python Local Environment |
+| `blinker` | `1.9.0` | `pkg:pypi/blinker@1.9.0` | `e070abc694342e34...` | Python Local Environment |
+| `blockbuster` | `1.5.27` | `pkg:pypi/blockbuster@1.5.27` | `748fc36b31129164...` | Python Local Environment |
+| `boltons` | `21.0.0` | `pkg:pypi/boltons@21.0.0` | `4f1c8732cc4d984f...` | Python Local Environment |
+| `boolean.py` | `5.0` | `pkg:pypi/boolean.py@5.0` | `12c3b0f1138cbfaa...` | Python Local Environment |
+| `bracex` | `2.6` | `pkg:pypi/bracex@2.6` | `4a53c805f5809aa4...` | Python Local Environment |
+| `brotli` | `1.2.0` | `pkg:pypi/brotli@1.2.0` | `ddb9cbc90475b7c8...` | Python Local Environment |
+| `build` | `1.5.0` | `pkg:pypi/build@1.5.0` | `a105a1a42e095a06...` | Python Local Environment |
+| `CacheControl` | `0.14.4` | `pkg:pypi/cachecontrol@0.14.4` | `2ace9a528f054e65...` | Python Local Environment |
+| `cachetools` | `7.1.1` | `pkg:pypi/cachetools@7.1.1` | `13741c3f24c15dc0...` | Python Local Environment |
+| `caio` | `0.9.25` | `pkg:pypi/caio@0.9.25` | `207f0e7ab44d66d5...` | Python Local Environment |
+| `certifi` | `2026.4.22` | `pkg:pypi/certifi@2026.4.22` | `e59d0e1459c00bd3...` | Python Local Environment |
+| `cffi` | `2.0.0` | `pkg:pypi/cffi@2.0.0` | `78d59df2d3d1f767...` | Python Local Environment |
+| `chardet` | `5.2.0` | `pkg:pypi/chardet@5.2.0` | `35aa893c7d70f77e...` | Python Local Environment |
+| `charset-normalizer` | `3.4.7` | `pkg:pypi/charset-normalizer@3.4.7` | `600cadc49d71d2f8...` | Python Local Environment |
+| `click` | `8.4.2` | `pkg:pypi/click@8.4.2` | `6b6a6c2420780318...` | Python Local Environment |
+| `click-option-group` | `0.5.9` | `pkg:pypi/click-option-group@0.5.9` | `6733201f7fa70e59...` | Python Local Environment |
+| `cloudpickle` | `3.1.2` | `pkg:pypi/cloudpickle@3.1.2` | `b82df4ebd8badd91...` | Python Local Environment |
+| `colorama` | `0.4.6` | `pkg:pypi/colorama@0.4.6` | `6b6eadbddd64d156...` | Python Local Environment |
+| `comm` | `0.2.3` | `pkg:pypi/comm@0.2.3` | `ee633bc84cb8b575...` | Python Local Environment |
+| `contourpy` | `1.3.3` | `pkg:pypi/contourpy@1.3.3` | `88484e7b2c20fe58...` | Python Local Environment |
+| `croniter` | `6.2.4` | `pkg:pypi/croniter@6.2.4` | `f27a0db14ee5b723...` | Python Local Environment |
+| `cryptography` | `49.0.0` | `pkg:pypi/cryptography@49.0.0` | `ccdef4fda55d06d5...` | Python Local Environment |
+| `cssselect2` | `0.9.0` | `pkg:pypi/cssselect2@0.9.0` | `b9be87c220a30b11...` | Python Local Environment |
+| `cycler` | `0.12.1` | `pkg:pypi/cycler@0.12.1` | `de511081851b3b00...` | Python Local Environment |
+| `cyclonedx-bom` | `7.3.0` | `pkg:pypi/cyclonedx-bom@7.3.0` | `3d9fb2d903c43879...` | Python Local Environment |
+| `cyclonedx-python-lib` | `11.7.0` | `pkg:pypi/cyclonedx-python-lib@11.7.0` | `590710a80de42c5d...` | Python Local Environment |
+| `cyclopts` | `4.11.2` | `pkg:pypi/cyclopts@4.11.2` | `61a0d4d4b653dc3e...` | Python Local Environment |
+| `defusedxml` | `0.7.1` | `pkg:pypi/defusedxml@0.7.1` | `99c9c549ed0d0bf3...` | Python Local Environment |
+| `distro` | `1.9.0` | `pkg:pypi/distro@1.9.0` | `302ad5991e13b35f...` | Python Local Environment |
+| `dnspython` | `2.8.0` | `pkg:pypi/dnspython@2.8.0` | `01063495758ebac7...` | Python Local Environment |
+| `docstring_parser` | `0.18.0` | `pkg:pypi/docstring_parser@0.18.0` | `886538f65ee8fb00...` | Python Local Environment |
+| `docutils` | `0.22.4` | `pkg:pypi/docutils@0.22.4` | `8babcd1c24aef9d9...` | Python Local Environment |
+| `dparse` | `0.6.4` | `pkg:pypi/dparse@0.6.4` | `1e3c82098b517fdf...` | Python Local Environment |
+| `duckdb` | `1.5.5` | `pkg:pypi/duckdb@1.5.5` | `72de4486c252937d...` | Python Local Environment |
+| `ecdsa` | `0.19.2` | `pkg:pypi/ecdsa@0.19.2` | `f5d79682e3ab4720...` | Python Local Environment |
+| `email-validator` | `2.3.0` | `pkg:pypi/email-validator@2.3.0` | `e1b5e8f09b279ddd...` | Python Local Environment |
+| `et_xmlfile` | `2.0.0` | `pkg:pypi/et_xmlfile@2.0.0` | `b3d22364ef0fe6e7...` | Python Local Environment |
+| `exceptiongroup` | `1.2.2` | `pkg:pypi/exceptiongroup@1.2.2` | `95b9883ba27d3822...` | Python Local Environment |
+| `executing` | `2.2.1` | `pkg:pypi/executing@2.2.1` | `b3d4c66ef4fecf85...` | Python Local Environment |
+| `face` | `26.0.1` | `pkg:pypi/face@26.0.1` | `e63483150ecb4685...` | Python Local Environment |
+| `fastapi` | `0.141.1` | `pkg:pypi/fastapi@0.141.1` | `5f99848116640141...` | Python Local Environment |
+| `fastmcp` | `3.2.4` | `pkg:pypi/fastmcp@3.2.4` | `16d477dbb8a7da71...` | Python Local Environment |
+| `fastmcp-slim` | `3.4.7` | `pkg:pypi/fastmcp-slim@3.4.7` | `28a4f4097601ac2e...` | Python Local Environment |
+| `fido2` | `2.2.1` | `pkg:pypi/fido2@2.2.1` | `03f22173305ffe82...` | Python Local Environment |
+| `filelock` | `3.29.0` | `pkg:pypi/filelock@3.29.0` | `a7a6126f2d855a0f...` | Python Local Environment |
+| `flake8` | `7.3.0` | `pkg:pypi/flake8@7.3.0` | `fb285c6171308734...` | Python Local Environment |
+| `flake8-bandit` | `4.1.1` | `pkg:pypi/flake8-bandit@4.1.1` | `4afd6b71393f1b62...` | Python Local Environment |
+| `fonttools` | `4.63.0` | `pkg:pypi/fonttools@4.63.0` | `0b8cd57b4efb3d70...` | Python Local Environment |
+| `forbiddenfruit` | `0.1.4` | `pkg:pypi/forbiddenfruit@0.1.4` | `adc6dd4b4a268029...` | Python Local Environment |
+| `fpdf` | `1.7.2` | `pkg:pypi/fpdf@1.7.2` | `966e347aa4d3c2f3...` | Python Local Environment |
+| `fpdf2` | `2.8.7` | `pkg:pypi/fpdf2@2.8.7` | `2d62aa323eddfa95...` | Python Local Environment |
+| `fqdn` | `1.5.1` | `pkg:pypi/fqdn@1.5.1` | `80a5be9827d29f4d...` | Python Local Environment |
+| `frozenlist` | `1.8.0` | `pkg:pypi/frozenlist@1.8.0` | `f9359c0428e3d9d7...` | Python Local Environment |
+| `fsspec` | `2026.7.0` | `pkg:pypi/fsspec@2026.7.0` | `bbe55c648fa80f9c...` | Python Local Environment |
+| `genai-prices` | `0.1.5` | `pkg:pypi/genai-prices@0.1.5` | `399694323fed21eb...` | Python Local Environment |
+| `glom` | `25.12.0` | `pkg:pypi/glom@25.12.0` | `9c35353fe379f745...` | Python Local Environment |
+| `googleapis-common-protos` | `1.75.0` | `pkg:pypi/googleapis-common-protos@1.75.0` | `d9a42a386b7503ec...` | Python Local Environment |
+| `google-auth` | `2.57.0` | `pkg:pypi/google-auth@2.57.0` | `d2a168db31840d9c...` | Python Local Environment |
+| `google-genai` | `2.20.0` | `pkg:pypi/google-genai@2.20.0` | `1e9ecaaba34dd535...` | Python Local Environment |
+| `google-re2` | `1.1.20251105` | `pkg:pypi/google-re2@1.1.20251105` | `a632272a4204061d...` | Python Local Environment |
+| `greenlet` | `3.5.1` | `pkg:pypi/greenlet@3.5.1` | `d9d92d1e29a307fc...` | Python Local Environment |
+| `griffelib` | `2.0.2` | `pkg:pypi/griffelib@2.0.2` | `5ffb1633582f7f54...` | Python Local Environment |
+| `grpcio` | `1.80.0` | `pkg:pypi/grpcio@1.80.0` | `a9ab38339049f28c...` | Python Local Environment |
+| `grpcio-health-checking` | `1.80.0` | `pkg:pypi/grpcio-health-checking@1.80.0` | `0df603a56f3be539...` | Python Local Environment |
+| `grpcio-tools` | `1.80.0` | `pkg:pypi/grpcio-tools@1.80.0` | `7ea8c81cc410e7e4...` | Python Local Environment |
+| `gw_dsl_parser` | `0.1.49.1` | `pkg:pypi/gw_dsl_parser@0.1.49.1` | `41f67fc6e9e8092b...` | Python Local Environment |
+| `h11` | `0.16.0` | `pkg:pypi/h11@0.16.0` | `10d7548b97f01453...` | Python Local Environment |
+| `h2` | `4.4.1` | `pkg:pypi/h2@4.4.1` | `538dd4e7b07fe75a...` | Python Local Environment |
+| `hf-xet` | `1.6.0` | `pkg:pypi/hf-xet@1.6.0` | `73a9bf2c3d9ed17e...` | Python Local Environment |
+| `hpack` | `4.2.0` | `pkg:pypi/hpack@4.2.0` | `95041d212f0efc5b...` | Python Local Environment |
+| `httpcore` | `1.0.9` | `pkg:pypi/httpcore@1.0.9` | `641708d656ee5459...` | Python Local Environment |
+| `httpcore2` | `2.10.0` | `pkg:pypi/httpcore2@2.10.0` | `b5842d7a215c5e8d...` | Python Local Environment |
+| `httptools` | `0.8.0` | `pkg:pypi/httptools@0.8.0` | `d6a1276168c5d4f1...` | Python Local Environment |
+| `httpx` | `0.28.1` | `pkg:pypi/httpx@0.28.1` | `9d6ca87240081d2f...` | Python Local Environment |
+| `httpx2` | `2.10.0` | `pkg:pypi/httpx2@2.10.0` | `cf1d9652c6229935...` | Python Local Environment |
+| `httpx-sse` | `0.4.3` | `pkg:pypi/httpx-sse@0.4.3` | `4d15add712f65bba...` | Python Local Environment |
+| `huggingface_hub` | `1.27.0` | `pkg:pypi/huggingface_hub@1.27.0` | `6a899b0f0775e3d7...` | Python Local Environment |
+| `hvac` | `2.4.0` | `pkg:pypi/hvac@2.4.0` | `bc5945f9da54d171...` | Python Local Environment |
+| `hyperframe` | `6.1.0` | `pkg:pypi/hyperframe@6.1.0` | `7b4736fd1245c3c6...` | Python Local Environment |
+| `idna` | `3.18` | `pkg:pypi/idna@3.18` | `c36e91774c9ba10e...` | Python Local Environment |
+| `importlib_metadata` | `8.7.1` | `pkg:pypi/importlib_metadata@8.7.1` | `ff7c0cd61e0db144...` | Python Local Environment |
+| `iniconfig` | `2.3.0` | `pkg:pypi/iniconfig@2.3.0` | `30ca0ffa551a0f73...` | Python Local Environment |
+| `ipython` | `9.16.1` | `pkg:pypi/ipython@9.16.1` | `5c7039f08340eaeb...` | Python Local Environment |
+| `ipython_pygments_lexers` | `1.1.1` | `pkg:pypi/ipython_pygments_lexers@1.1.1` | `3abe697224895fd7...` | Python Local Environment |
+| `isoduration` | `20.11.0` | `pkg:pypi/isoduration@20.11.0` | `4f1b452e6725d121...` | Python Local Environment |
+| `itsdangerous` | `2.2.0` | `pkg:pypi/itsdangerous@2.2.0` | `d6a1fdffd8cd42d2...` | Python Local Environment |
+| `it-compliance-manager` | `1.0.0` | `pkg:pypi/it-compliance-manager@1.0.0` | `1c9c9257dacd0100...` | Python Local Environment |
+| `jaraco.classes` | `3.4.0` | `pkg:pypi/jaraco.classes@3.4.0` | `2840b6e7ec8ac70d...` | Python Local Environment |
+| `jaraco.context` | `6.1.2` | `pkg:pypi/jaraco.context@6.1.2` | `961f6e4f0d1110fe...` | Python Local Environment |
+| `jaraco.functools` | `4.4.0` | `pkg:pypi/jaraco.functools@4.4.0` | `516eb00b32c95d1d...` | Python Local Environment |
+| `jedi` | `0.20.0` | `pkg:pypi/jedi@0.20.0` | `09e774c019b3d341...` | Python Local Environment |
+| `Jinja2` | `3.1.6` | `pkg:pypi/jinja2@3.1.6` | `860893e65c9d59f4...` | Python Local Environment |
+| `jiter` | `0.16.0` | `pkg:pypi/jiter@0.16.0` | `e60db953cf293ab3...` | Python Local Environment |
+| `joblib` | `1.5.3` | `pkg:pypi/joblib@1.5.3` | `4a46beec07d3505c...` | Python Local Environment |
+| `joserfc` | `1.7.2` | `pkg:pypi/joserfc@1.7.2` | `fca048c1bd753dad...` | Python Local Environment |
+| `jsonpatch` | `1.33` | `pkg:pypi/jsonpatch@1.33` | `1ddde8176af437eb...` | Python Local Environment |
+| `jsonpointer` | `3.1.1` | `pkg:pypi/jsonpointer@3.1.1` | `3479406b7efbae95...` | Python Local Environment |
+| `jsonref` | `1.1.0` | `pkg:pypi/jsonref@1.1.0` | `3b2dba0ce858c05f...` | Python Local Environment |
+| `jsonschema` | `4.25.1` | `pkg:pypi/jsonschema@4.25.1` | `c8810b4b7fb41a10...` | Python Local Environment |
+| `jsonschema-path` | `0.4.6` | `pkg:pypi/jsonschema-path@0.4.6` | `68cc06db4e5f6c58...` | Python Local Environment |
+| `jsonschema_rs` | `0.44.1` | `pkg:pypi/jsonschema_rs@0.44.1` | `2a2d9469063d9e37...` | Python Local Environment |
+| `jsonschema-specifications` | `2025.9.1` | `pkg:pypi/jsonschema-specifications@2025.9.1` | `0685a360eec60996...` | Python Local Environment |
+| `jupyterlab_widgets` | `3.0.17` | `pkg:pypi/jupyterlab_widgets@3.0.17` | `a20c9b948dc22d74...` | Python Local Environment |
+| `keyring` | `25.7.0` | `pkg:pypi/keyring@25.7.0` | `1ed42636e18ffdb3...` | Python Local Environment |
+| `kiwisolver` | `1.5.0` | `pkg:pypi/kiwisolver@1.5.0` | `1bb6fd90f2deff98...` | Python Local Environment |
+| `langchain` | `1.3.15` | `pkg:pypi/langchain@1.3.15` | `7bfe48de1d98e9f3...` | Python Local Environment |
+| `langchain-core` | `1.5.4` | `pkg:pypi/langchain-core@1.5.4` | `037a57e0e69ef2f0...` | Python Local Environment |
+| `langchain-mcp-adapters` | `0.3.2` | `pkg:pypi/langchain-mcp-adapters@0.3.2` | `76e5fe4f7f520055...` | Python Local Environment |
+| `langchain-milvus` | `0.4.0` | `pkg:pypi/langchain-milvus@0.4.0` | `a0b98a5b91ea8efe...` | Python Local Environment |
+| `langchain-openai` | `1.5.0` | `pkg:pypi/langchain-openai@1.5.0` | `fd0f5cdadcf435dc...` | Python Local Environment |
+| `langchain-protocol` | `0.0.18` | `pkg:pypi/langchain-protocol@0.0.18` | `a1256638f561e375...` | Python Local Environment |
+| `langgraph` | `1.2.11` | `pkg:pypi/langgraph@1.2.11` | `4c824a1b6a23b23b...` | Python Local Environment |
+| `langgraph-api` | `0.12.5` | `pkg:pypi/langgraph-api@0.12.5` | `9a4a318a05e74eef...` | Python Local Environment |
+| `langgraph-checkpoint` | `4.2.0` | `pkg:pypi/langgraph-checkpoint@4.2.0` | `67172737c4f4e8d0...` | Python Local Environment |
+| `langgraph-cli` | `0.4.31` | `pkg:pypi/langgraph-cli@0.4.31` | `4ca96731d50522ca...` | Python Local Environment |
+| `langgraph-mcp` | `0.0.1` | `pkg:pypi/langgraph-mcp@0.0.1` | `0c9bf35a39b30b62...` | Python Local Environment |
+| `langgraph-prebuilt` | `1.1.0` | `pkg:pypi/langgraph-prebuilt@1.1.0` | `2e9ed8f1f6277e30...` | Python Local Environment |
+| `langgraph-runtime-inmem` | `0.32.5` | `pkg:pypi/langgraph-runtime-inmem@0.32.5` | `622b592f9625b03e...` | Python Local Environment |
+| `langgraph-sdk` | `0.4.2` | `pkg:pypi/langgraph-sdk@0.4.2` | `b49c1343f473fd4f...` | Python Local Environment |
+| `langsmith` | `0.10.18` | `pkg:pypi/langsmith@0.10.18` | `757bc846e4fdb892...` | Python Local Environment |
+| `lark` | `1.3.1` | `pkg:pypi/lark@1.3.1` | `865d4dfdc10d1c5a...` | Python Local Environment |
+| `liboqs-python` | `0.15.0` | `pkg:pypi/liboqs-python@0.15.0` | `6b4a6ead7293713d...` | Python Local Environment |
+| `librt` | `0.15.0` | `pkg:pypi/librt@0.15.0` | `527d7a13499b76b8...` | Python Local Environment |
+| `license-expression` | `30.4.4` | `pkg:pypi/license-expression@30.4.4` | `39d6f3f92bae52e3...` | Python Local Environment |
+| `logfire` | `4.41.0` | `pkg:pypi/logfire@4.41.0` | `e150896a44c643c5...` | Python Local Environment |
+| `logfire-api` | `4.41.0` | `pkg:pypi/logfire-api@4.41.0` | `a4ff35815cc312b9...` | Python Local Environment |
+| `lxml` | `5.4.0` | `pkg:pypi/lxml@5.4.0` | `d746a5fcdcb296b7...` | Python Local Environment |
+| `Markdown` | `3.10.2` | `pkg:pypi/markdown@3.10.2` | `dbcbd179b4580e6d...` | Python Local Environment |
+| `markdown-it-py` | `4.2.0` | `pkg:pypi/markdown-it-py@4.2.0` | `c3e17113f212bb86...` | Python Local Environment |
+| `MarkupSafe` | `3.0.3` | `pkg:pypi/markupsafe@3.0.3` | `6e4fdd6d7dcbde8e...` | Python Local Environment |
+| `marshmallow` | `4.3.0` | `pkg:pypi/marshmallow@4.3.0` | `ac4a6d24ad62abd6...` | Python Local Environment |
+| `matplotlib` | `3.10.9` | `pkg:pypi/matplotlib@3.10.9` | `19624fcd7e28089f...` | Python Local Environment |
+| `matplotlib-inline` | `0.2.2` | `pkg:pypi/matplotlib-inline@0.2.2` | `76977cb04543c210...` | Python Local Environment |
+| `mccabe` | `0.7.0` | `pkg:pypi/mccabe@0.7.0` | `f084c27ced7810e3...` | Python Local Environment |
+| `mcp` | `1.29.0` | `pkg:pypi/mcp@1.29.0` | `613a96a6a2853204...` | Python Local Environment |
+| `mdurl` | `0.1.2` | `pkg:pypi/mdurl@0.1.2` | `b061c57fc7173ede...` | Python Local Environment |
+| `monotonic` | `1.6` | `pkg:pypi/monotonic@1.6` | `4779e7f191303ea6...` | Python Local Environment |
+| `more-itertools` | `11.0.2` | `pkg:pypi/more-itertools@11.0.2` | `0d30e55b7ed829a1...` | Python Local Environment |
+| `mpmath` | `1.3.0` | `pkg:pypi/mpmath@1.3.0` | `24e35922852c7aa9...` | Python Local Environment |
+| `msgpack` | `1.2.1` | `pkg:pypi/msgpack@1.2.1` | `743990a8f5042756...` | Python Local Environment |
+| `multidict` | `6.7.1` | `pkg:pypi/multidict@6.7.1` | `bbfbd4564cf78fd3...` | Python Local Environment |
+| `mypy` | `2.3.1` | `pkg:pypi/mypy@2.3.1` | `c1bad7c388ad166f...` | Python Local Environment |
+| `mypy_extensions` | `1.1.0` | `pkg:pypi/mypy_extensions@1.1.0` | `1b1b8397dbc8b89b...` | Python Local Environment |
+| `narwhals` | `2.24.0` | `pkg:pypi/narwhals@2.24.0` | `cfcd402c32db1403...` | Python Local Environment |
+| `networkx` | `3.6.1` | `pkg:pypi/networkx@3.6.1` | `096c94f7c5708956...` | Python Local Environment |
+| `nltk` | `3.9.4` | `pkg:pypi/nltk@3.9.4` | `1a6f56c71a562f3c...` | Python Local Environment |
+| `Nuitka` | `4.1.3` | `pkg:pypi/nuitka@4.1.3` | `6f14da005c834b9c...` | Python Local Environment |
+| `numpy` | `2.4.6` | `pkg:pypi/numpy@2.4.6` | `73899ff0505a7086...` | Python Local Environment |
+| `openai` | `3.0.0` | `pkg:pypi/openai@3.0.0` | `b616e4df0f326e0f...` | Python Local Environment |
+| `openapi-pydantic` | `0.5.1` | `pkg:pypi/openapi-pydantic@0.5.1` | `f4ea081ef7b21b01...` | Python Local Environment |
+| `openpyxl` | `3.1.5` | `pkg:pypi/openpyxl@3.1.5` | `8e69d8f3735e6e6f...` | Python Local Environment |
+| `opentelemetry-api` | `1.44.0` | `pkg:pypi/opentelemetry-api@1.44.0` | `cb1a4cdad3d7690a...` | Python Local Environment |
+| `opentelemetry-exporter-otlp-proto-common` | `1.37.0` | `pkg:pypi/opentelemetry-exporter-otlp-proto-common@1.37.0` | `09f8da2d01790139...` | Python Local Environment |
+| `opentelemetry-exporter-otlp-proto-http` | `1.37.0` | `pkg:pypi/opentelemetry-exporter-otlp-proto-http@1.37.0` | `58e49d33c62732aa...` | Python Local Environment |
+| `opentelemetry-exporter-prometheus` | `0.58b0` | `pkg:pypi/opentelemetry-exporter-prometheus@0.58b0` | `c48885f24d024447...` | Python Local Environment |
+| `opentelemetry-instrumentation` | `0.58b0` | `pkg:pypi/opentelemetry-instrumentation@0.58b0` | `3929f5e3d8e325f4...` | Python Local Environment |
+| `opentelemetry-instrumentation-httpx` | `0.65b0` | `pkg:pypi/opentelemetry-instrumentation-httpx@0.65b0` | `2159874f874e985a...` | Python Local Environment |
+| `opentelemetry-instrumentation-requests` | `0.58b0` | `pkg:pypi/opentelemetry-instrumentation-requests@0.58b0` | `c843b50c4a405b4c...` | Python Local Environment |
+| `opentelemetry-instrumentation-threading` | `0.58b0` | `pkg:pypi/opentelemetry-instrumentation-threading@0.58b0` | `d217ffbbd4ce180f...` | Python Local Environment |
+| `opentelemetry-proto` | `1.37.0` | `pkg:pypi/opentelemetry-proto@1.37.0` | `1843c82fd5a419a0...` | Python Local Environment |
+| `opentelemetry-sdk` | `1.37.0` | `pkg:pypi/opentelemetry-sdk@1.37.0` | `083e70f0ffaaf819...` | Python Local Environment |
+| `opentelemetry-semantic-conventions` | `0.58b0` | `pkg:pypi/opentelemetry-semantic-conventions@0.58b0` | `56bc158510697e89...` | Python Local Environment |
+| `opentelemetry-util-http` | `0.58b0` | `pkg:pypi/opentelemetry-util-http@0.58b0` | `2c99db066e94bd9e...` | Python Local Environment |
+| `ordered-set` | `4.1.0` | `pkg:pypi/ordered-set@4.1.0` | `1e1fc3ee6e8e8cff...` | Python Local Environment |
+| `orjson` | `3.11.9` | `pkg:pypi/orjson@3.11.9` | `621e5eb4f41eabac...` | Python Local Environment |
+| `ormsgpack` | `1.12.2` | `pkg:pypi/ormsgpack@1.12.2` | `6e91ced56e2d8a00...` | Python Local Environment |
+| `packageurl-python` | `0.17.6` | `pkg:pypi/packageurl-python@0.17.6` | `5fc50e0c369044b9...` | Python Local Environment |
+| `packaging` | `26.2` | `pkg:pypi/packaging@26.2` | `1b359baebe46f676...` | Python Local Environment |
+| `pandas` | `3.0.5` | `pkg:pypi/pandas@3.0.5` | `d24363cfbe2b11ab...` | Python Local Environment |
+| `parso` | `0.8.7` | `pkg:pypi/parso@0.8.7` | `22200bbabc6d093b...` | Python Local Environment |
+| `pathable` | `0.5.0` | `pkg:pypi/pathable@0.5.0` | `5369641ec62412df...` | Python Local Environment |
+| `pathspec` | `1.1.1` | `pkg:pypi/pathspec@1.1.1` | `40c59a7fcd057fcb...` | Python Local Environment |
+| `peewee` | `3.19.0` | `pkg:pypi/peewee@3.19.0` | `d91efea9e3084562...` | Python Local Environment |
+| `pefile` | `2024.8.26` | `pkg:pypi/pefile@2024.8.26` | `73cd8a46f47bd758...` | Python Local Environment |
+| `pillow` | `12.2.0` | `pkg:pypi/pillow@12.2.0` | `d4fad6218a39bf15...` | Python Local Environment |
+| `pip` | `26.2.1` | `pkg:pypi/pip@26.2.1` | `4680a00b446e0190...` | Python Local Environment |
+| `pip-api` | `0.0.34` | `pkg:pypi/pip-api@0.0.34` | `1e76c951b56a30c2...` | Python Local Environment |
+| `pip_audit` | `2.10.0` | `pkg:pypi/pip_audit@2.10.0` | `11e082c36beedaf0...` | Python Local Environment |
+| `pip-requirements-parser` | `32.0.1` | `pkg:pypi/pip-requirements-parser@32.0.1` | `0d3716afca4b8054...` | Python Local Environment |
+| `pip-tools` | `7.5.3` | `pkg:pypi/pip-tools@7.5.3` | `1438debe7ed3b206...` | Python Local Environment |
+| `platformdirs` | `4.9.6` | `pkg:pypi/platformdirs@4.9.6` | `65d084098d889f7f...` | Python Local Environment |
+| `playwright` | `1.62.0` | `pkg:pypi/playwright@1.62.0` | `a65290a3c3e1342e...` | Python Local Environment |
+| `pluggy` | `1.6.0` | `pkg:pypi/pluggy@1.6.0` | `3b5b1961f302f568...` | Python Local Environment |
+| `portalocker` | `3.2.0` | `pkg:pypi/portalocker@3.2.0` | `53b71fd70f4ce716...` | Python Local Environment |
+| `prometheus_client` | `0.26.0` | `pkg:pypi/prometheus_client@0.26.0` | `640bba6498f0d7b8...` | Python Local Environment |
+| `prompt_toolkit` | `3.0.53` | `pkg:pypi/prompt_toolkit@3.0.53` | `0bb0a2f6282e8ba4...` | Python Local Environment |
+| `propcache` | `0.5.2` | `pkg:pypi/propcache@0.5.2` | `794d99edfd1cd0bb...` | Python Local Environment |
+| `protobuf` | `6.33.6` | `pkg:pypi/protobuf@6.33.6` | `f55e443a8868b1a0...` | Python Local Environment |
+| `psutil` | `7.2.2` | `pkg:pypi/psutil@7.2.2` | `254b1602fd7a6573...` | Python Local Environment |
+| `psygnal` | `0.15.1` | `pkg:pypi/psygnal@0.15.1` | `5da3503d9bc4b100...` | Python Local Environment |
+| `pure_eval` | `0.2.3` | `pkg:pypi/pure_eval@0.2.3` | `8409073ab9b5a4cf...` | Python Local Environment |
+| `pyarrow` | `25.0.1` | `pkg:pypi/pyarrow@25.0.1` | `c406b4abb628f887...` | Python Local Environment |
+| `pyasn1` | `0.6.3` | `pkg:pypi/pyasn1@0.6.3` | `3d53f76bccb0f6e5...` | Python Local Environment |
+| `pyasn1_modules` | `0.4.2` | `pkg:pypi/pyasn1_modules@0.4.2` | `e5796c62c1456b90...` | Python Local Environment |
+| `pycodestyle` | `2.14.0` | `pkg:pypi/pycodestyle@2.14.0` | `348845988eb6896d...` | Python Local Environment |
+| `pycparser` | `3.0` | `pkg:pypi/pycparser@3.0` | `350f594ab8b56033...` | Python Local Environment |
+| `pydantic` | `2.13.4` | `pkg:pypi/pydantic@2.13.4` | `ba0858a766861754...` | Python Local Environment |
+| `pydantic-ai-slim` | `2.36.0` | `pkg:pypi/pydantic-ai-slim@2.36.0` | `487a14757c8fa67e...` | Python Local Environment |
+| `pydantic_core` | `2.46.4` | `pkg:pypi/pydantic_core@2.46.4` | `5b4a992a31427189...` | Python Local Environment |
+| `pydantic-evals` | `2.36.0` | `pkg:pypi/pydantic-evals@2.36.0` | `e3f3b3083a702459...` | Python Local Environment |
+| `pydantic-graph` | `2.36.0` | `pkg:pypi/pydantic-graph@2.36.0` | `3f6afff04b92f128...` | Python Local Environment |
+| `pydantic-settings` | `2.14.2` | `pkg:pypi/pydantic-settings@2.14.2` | `fa79c5b8fbafaac1...` | Python Local Environment |
+| `pydeck` | `0.9.3` | `pkg:pypi/pydeck@0.9.3` | `197768f88e887b79...` | Python Local Environment |
+| `pydyf` | `0.12.1` | `pkg:pypi/pydyf@0.12.1` | `91cb2bdeb010fa32...` | Python Local Environment |
+| `pyee` | `13.0.1` | `pkg:pypi/pyee@13.0.1` | `ac92c23cb612082d...` | Python Local Environment |
+| `pyflakes` | `3.4.0` | `pkg:pypi/pyflakes@3.4.0` | `259190791f0abb58...` | Python Local Environment |
+| `Pygments` | `2.20.0` | `pkg:pypi/pygments@2.20.0` | `5d2b1e49c943ae47...` | Python Local Environment |
+| `pyinstaller` | `6.20.0` | `pkg:pypi/pyinstaller@6.20.0` | `2764d0003aa40472...` | Python Local Environment |
+| `pyinstaller-hooks-contrib` | `2026.5` | `pkg:pypi/pyinstaller-hooks-contrib@2026.5` | `fc50b4e21ec2d3af...` | Python Local Environment |
+| `PyJWT` | `2.13.0` | `pkg:pypi/pyjwt@2.13.0` | `e6705644cf0cd44d...` | Python Local Environment |
+| `pymilvus` | `3.0.1` | `pkg:pypi/pymilvus@3.0.1` | `d730a9ddb16ee628...` | Python Local Environment |
+| `pyparsing` | `3.3.2` | `pkg:pypi/pyparsing@3.3.2` | `cc0b7dca6f911601...` | Python Local Environment |
+| `pypdf` | `6.14.2` | `pkg:pypi/pypdf@6.14.2` | `c70ee63ae84898dc...` | Python Local Environment |
+| `pyperclip` | `1.11.0` | `pkg:pypi/pyperclip@1.11.0` | `3ca8baa890c49980...` | Python Local Environment |
+| `pyphen` | `0.17.2` | `pkg:pypi/pyphen@0.17.2` | `fd2dfab35edab943...` | Python Local Environment |
+| `pyproject_hooks` | `1.2.0` | `pkg:pypi/pyproject_hooks@1.2.0` | `6e4a259afb0ef867...` | Python Local Environment |
+| `pytest` | `9.1.1` | `pkg:pypi/pytest@9.1.1` | `672290b310a21664...` | Python Local Environment |
+| `pytest-asyncio` | `1.4.0` | `pkg:pypi/pytest-asyncio@1.4.0` | `1583c6fc5b2bc542...` | Python Local Environment |
+| `python-dateutil` | `2.9.0.post0` | `pkg:pypi/python-dateutil@2.9.0.post0` | `4c8113041dcac389...` | Python Local Environment |
+| `python-docx` | `1.2.0` | `pkg:pypi/python-docx@1.2.0` | `f07e3d22b4f8f528...` | Python Local Environment |
+| `python-dotenv` | `1.2.3` | `pkg:pypi/python-dotenv@1.2.3` | `8a04ae6375b44706...` | Python Local Environment |
+| `python-jose` | `3.5.0` | `pkg:pypi/python-jose@3.5.0` | `f3329d9a5deed41b...` | Python Local Environment |
+| `python-multipart` | `0.0.32` | `pkg:pypi/python-multipart@0.0.32` | `304f524864c884dc...` | Python Local Environment |
+| `python-pkcs11` | `0.9.4` | `pkg:pypi/python-pkcs11@0.9.4` | `acd18eeedbb82ef3...` | Python Local Environment |
+| `pytz` | `2026.3.post1` | `pkg:pypi/pytz@2026.3.post1` | `e8070693c286aee8...` | Python Local Environment |
+| `pywin32` | `311` | `pkg:pypi/pywin32@311` | `b0c52747b2603aec...` | Python Local Environment |
+| `pywin32-ctypes` | `0.2.3` | `pkg:pypi/pywin32-ctypes@0.2.3` | `711e2c2e5499eedf...` | Python Local Environment |
+| `PyYAML` | `6.0.3` | `pkg:pypi/pyyaml@6.0.3` | `699c21e675ec659c...` | Python Local Environment |
+| `py-key-value-aio` | `0.4.4` | `pkg:pypi/py-key-value-aio@0.4.4` | `7d71c109d9e84545...` | Python Local Environment |
+| `py-serializable` | `2.1.0` | `pkg:pypi/py-serializable@2.1.0` | `549063121d7aebab...` | Python Local Environment |
+| `qdrant-client` | `1.19.0` | `pkg:pypi/qdrant-client@1.19.0` | `083efe29faf9927a...` | Python Local Environment |
+| `qrcode` | `8.2` | `pkg:pypi/qrcode@8.2` | `f2610d3a6ad1acfa...` | Python Local Environment |
+| `rank-bm25` | `0.2.2` | `pkg:pypi/rank-bm25@0.2.2` | `728c9735c0388665...` | Python Local Environment |
+| `redis` | `5.0.1` | `pkg:pypi/redis@5.0.1` | `7ab182a5a3cd13dc...` | Python Local Environment |
+| `referencing` | `0.37.0` | `pkg:pypi/referencing@0.37.0` | `b826e8163f77e419...` | Python Local Environment |
+| `regex` | `2026.5.9` | `pkg:pypi/regex@2026.5.9` | `6c7defb121dc1cde...` | Python Local Environment |
+| `reportlab` | `4.5.1` | `pkg:pypi/reportlab@4.5.1` | `454fe0c74fa553b2...` | Python Local Environment |
+| `requests` | `2.34.2` | `pkg:pypi/requests@2.34.2` | `49e44ef3fcae4335...` | Python Local Environment |
+| `requests-toolbelt` | `1.0.0` | `pkg:pypi/requests-toolbelt@1.0.0` | `731e0841b0c5c5d6...` | Python Local Environment |
+| `rfc3339-validator` | `0.1.4` | `pkg:pypi/rfc3339-validator@0.1.4` | `92ec927b4a179356...` | Python Local Environment |
+| `rfc3986-validator` | `0.1.1` | `pkg:pypi/rfc3986-validator@0.1.1` | `d7fedcf8fa767fc1...` | Python Local Environment |
+| `rfc3987-syntax` | `1.1.0` | `pkg:pypi/rfc3987-syntax@1.1.0` | `8ac3629f3619af4b...` | Python Local Environment |
+| `rich` | `15.0.0` | `pkg:pypi/rich@15.0.0` | `8e32cbcbcd3430cb...` | Python Local Environment |
+| `rich-rst` | `1.3.2` | `pkg:pypi/rich-rst@1.3.2` | `607e908a0bba55ea...` | Python Local Environment |
+| `rpds-py` | `0.30.0` | `pkg:pypi/rpds-py@0.30.0` | `96da3840836375d4...` | Python Local Environment |
+| `rsa` | `4.9.1` | `pkg:pypi/rsa@4.9.1` | `a7c6441ce414850c...` | Python Local Environment |
+| `ruamel.yaml` | `0.19.1` | `pkg:pypi/ruamel.yaml@0.19.1` | `f7908c370b71fc1a...` | Python Local Environment |
+| `ruamel.yaml.clib` | `0.2.15` | `pkg:pypi/ruamel.yaml.clib@0.2.15` | `de3f2f5f66fd13bc...` | Python Local Environment |
+| `ruff` | `0.16.4` | `pkg:pypi/ruff@0.16.4` | `dd0b04c4c4b695c1...` | Python Local Environment |
+| `safetensors` | `0.8.0` | `pkg:pypi/safetensors@0.8.0` | `d6d252a31d532e40...` | Python Local Environment |
+| `safety` | `3.8.1` | `pkg:pypi/safety@3.8.1` | `3d277b410a87782d...` | Python Local Environment |
+| `safety-schemas` | `0.0.16` | `pkg:pypi/safety-schemas@0.0.16` | `cdf0e97fa5206e3b...` | Python Local Environment |
+| `scikit-learn` | `1.9.0` | `pkg:pypi/scikit-learn@1.9.0` | `c786ab3b334ac7fa...` | Python Local Environment |
+| `scipy` | `1.18.0` | `pkg:pypi/scipy@1.18.0` | `ee255ce3c84478cb...` | Python Local Environment |
+| `segment-analytics-python` | `2.2.3` | `pkg:pypi/segment-analytics-python@2.2.3` | `01a9be4838b110bc...` | Python Local Environment |
+| `semantic-version` | `2.10.0` | `pkg:pypi/semantic-version@2.10.0` | `b24a892c6c9ab376...` | Python Local Environment |
+| `semgrep` | `1.175.0` | `pkg:pypi/semgrep@1.175.0` | `a6b9378924004f08...` | Python Local Environment |
+| `sentence-transformers` | `5.7.0` | `pkg:pypi/sentence-transformers@5.7.0` | `a5969b5918f841fe...` | Python Local Environment |
+| `setproctitle` | `1.3.7` | `pkg:pypi/setproctitle@1.3.7` | `c6cc78b590b67f7c...` | Python Local Environment |
+| `setuptools` | `82.0.1` | `pkg:pypi/setuptools@82.0.1` | `24a8828b7a144573...` | Python Local Environment |
+| `sglang` | `0.5.2` | `pkg:pypi/sglang@0.5.2` | `5590f902cdd5aa57...` | Python Local Environment |
+| `shellingham` | `1.5.4` | `pkg:pypi/shellingham@1.5.4` | `7c1b01354ccab542...` | Python Local Environment |
+| `six` | `1.17.0` | `pkg:pypi/six@1.17.0` | `e5210dff21eb4e0a...` | Python Local Environment |
+| `sniffio` | `1.3.1` | `pkg:pypi/sniffio@1.3.1` | `0dc935ec860a2b3b...` | Python Local Environment |
+| `sortedcontainers` | `2.4.0` | `pkg:pypi/sortedcontainers@2.4.0` | `4a16049c88331d6c...` | Python Local Environment |
+| `soupsieve` | `2.8.4` | `pkg:pypi/soupsieve@2.8.4` | `586d02d292a7cb06...` | Python Local Environment |
+| `SQLAlchemy` | `2.0.50` | `pkg:pypi/sqlalchemy@2.0.50` | `78c04cac64965063...` | Python Local Environment |
+| `sqlglot` | `30.17.0` | `pkg:pypi/sqlglot@30.17.0` | `0f10f2bfb3f296cd...` | Python Local Environment |
+| `sse-starlette` | `2.1.3` | `pkg:pypi/sse-starlette@2.1.3` | `bc8752507536f71b...` | Python Local Environment |
+| `stack-data` | `0.6.3` | `pkg:pypi/stack-data@0.6.3` | `489677c242b923a5...` | Python Local Environment |
+| `starlette` | `1.6.0` | `pkg:pypi/starlette@1.6.0` | `575175f82e45c280...` | Python Local Environment |
+| `stevedore` | `5.8.0` | `pkg:pypi/stevedore@5.8.0` | `4cd58b5116315747...` | Python Local Environment |
+| `streamlit` | `1.62.0` | `pkg:pypi/streamlit@1.62.0` | `f21ddba99427710d...` | Python Local Environment |
+| `structlog` | `25.5.0` | `pkg:pypi/structlog@25.5.0` | `b2050d87d38f66dc...` | Python Local Environment |
+| `sympy` | `1.14.0` | `pkg:pypi/sympy@1.14.0` | `1ffc4c6d27a89459...` | Python Local Environment |
+| `tenacity` | `9.1.4` | `pkg:pypi/tenacity@9.1.4` | `440181d6591682fb...` | Python Local Environment |
+| `threadpoolctl` | `3.6.0` | `pkg:pypi/threadpoolctl@3.6.0` | `439b941585c4f196...` | Python Local Environment |
+| `tiktoken` | `0.13.0` | `pkg:pypi/tiktoken@0.13.0` | `8dc2e108ddd407a4...` | Python Local Environment |
+| `tinycss2` | `1.5.1` | `pkg:pypi/tinycss2@1.5.1` | `c69657f6cc1c5bc5...` | Python Local Environment |
+| `tinyhtml5` | `2.1.0` | `pkg:pypi/tinyhtml5@2.1.0` | `509970bdce00373a...` | Python Local Environment |
+| `tkinterdnd2` | `0.4.3` | `pkg:pypi/tkinterdnd2@0.4.3` | `6706ff2dc68b5028...` | Python Local Environment |
+| `tokenizers` | `0.22.2` | `pkg:pypi/tokenizers@0.22.2` | `7244b159f137bea8...` | Python Local Environment |
+| `toml` | `0.10.2` | `pkg:pypi/toml@0.10.2` | `d7b53889c40c3d12...` | Python Local Environment |
+| `tomli` | `2.4.1` | `pkg:pypi/tomli@2.4.1` | `6caf501dd5c0735a...` | Python Local Environment |
+| `tomli_w` | `1.2.0` | `pkg:pypi/tomli_w@1.2.0` | `c56d188eab61e3e4...` | Python Local Environment |
+| `tomlkit` | `0.15.0` | `pkg:pypi/tomlkit@0.15.0` | `196c05c222ace805...` | Python Local Environment |
+| `torch` | `2.13.0` | `pkg:pypi/torch@2.13.0` | `d0e5818b4118947f...` | Python Local Environment |
+| `tqdm` | `4.68.3` | `pkg:pypi/tqdm@4.68.3` | `1916b24964ca68a8...` | Python Local Environment |
+| `traitlets` | `5.16.1` | `pkg:pypi/traitlets@5.16.1` | `4eeef0c66d4111d2...` | Python Local Environment |
+| `transformers` | `5.15.0` | `pkg:pypi/transformers@5.15.0` | `3801d645dbba9457...` | Python Local Environment |
+| `truststore` | `0.10.4` | `pkg:pypi/truststore@0.10.4` | `472325a7ccc8adc9...` | Python Local Environment |
+| `typer` | `0.25.1` | `pkg:pypi/typer@0.25.1` | `0be2093a104c4fbf...` | Python Local Environment |
+| `typing_extensions` | `4.15.0` | `pkg:pypi/typing_extensions@4.15.0` | `92ed88feaade34fc...` | Python Local Environment |
+| `typing-inspection` | `0.4.2` | `pkg:pypi/typing-inspection@0.4.2` | `3adaf61fb9ef49cd...` | Python Local Environment |
+| `tzdata` | `2026.2` | `pkg:pypi/tzdata@2026.2` | `165e0e0466f18b4d...` | Python Local Environment |
+| `uncalled-for` | `0.3.2` | `pkg:pypi/uncalled-for@0.3.2` | `2b5cd7cff1bffc21...` | Python Local Environment |
+| `uri-template` | `1.3.0` | `pkg:pypi/uri-template@1.3.0` | `a405427d42c4f28d...` | Python Local Environment |
+| `urllib3` | `2.7.0` | `pkg:pypi/urllib3@2.7.0` | `b13aec2cef2be433...` | Python Local Environment |
+| `uuid_utils` | `0.17.0` | `pkg:pypi/uuid_utils@0.17.0` | `e2878fd34962578c...` | Python Local Environment |
+| `uv` | `0.11.24` | `pkg:pypi/uv@0.11.24` | `59b1843ee242a1b4...` | Python Local Environment |
+| `uvicorn` | `0.52.3` | `pkg:pypi/uvicorn@0.52.3` | `6315ed108557827c...` | Python Local Environment |
+| `wasmtime` | `47.0.1` | `pkg:pypi/wasmtime@47.0.1` | `53d5a2cd474a7ce4...` | Python Local Environment |
+| `watchdog` | `6.0.0` | `pkg:pypi/watchdog@6.0.0` | `45612fffd500d52e...` | Python Local Environment |
+| `watchfiles` | `1.1.1` | `pkg:pypi/watchfiles@1.1.1` | `926e51e176ce770d...` | Python Local Environment |
+| `wcmatch` | `8.5.2` | `pkg:pypi/wcmatch@8.5.2` | `58d0527ee6f9c956...` | Python Local Environment |
+| `wcwidth` | `0.8.2` | `pkg:pypi/wcwidth@0.8.2` | `bce0c92b2f5b457b...` | Python Local Environment |
+| `weasyprint` | `69.0` | `pkg:pypi/weasyprint@69.0` | `15de71f9dac396d6...` | Python Local Environment |
+| `webcolors` | `25.10.0` | `pkg:pypi/webcolors@25.10.0` | `47120affd573a9e8...` | Python Local Environment |
+| `webencodings` | `0.5.1` | `pkg:pypi/webencodings@0.5.1` | `d3332e434c8f34b2...` | Python Local Environment |
+| `websockets` | `15.0.1` | `pkg:pypi/websockets@15.0.1` | `cd285959e593031f...` | Python Local Environment |
+| `wheel` | `0.47.0` | `pkg:pypi/wheel@0.47.0` | `e324746cb546f5bc...` | Python Local Environment |
+| `widgetsnbextension` | `4.0.16` | `pkg:pypi/widgetsnbextension@4.0.16` | `426eee3dcb2a426a...` | Python Local Environment |
+| `wrapt` | `1.17.3` | `pkg:pypi/wrapt@1.17.3` | `a367406d8b914134...` | Python Local Environment |
+| `xxhash` | `4.0.0` | `pkg:pypi/xxhash@4.0.0` | `f1ac27cce91cf01f...` | Python Local Environment |
+| `yarl` | `1.24.5` | `pkg:pypi/yarl@1.24.5` | `63957f10c8b4b4bf...` | Python Local Environment |
+| `zipp` | `3.23.1` | `pkg:pypi/zipp@3.23.1` | `5f9b35f82687575f...` | Python Local Environment |
+| `zopfli` | `0.4.2` | `pkg:pypi/zopfli@0.4.2` | `d540515cfc84f8e8...` | Python Local Environment |
+| `zstandard` | `0.25.0` | `pkg:pypi/zstandard@0.25.0` | `a7dbcad858e4286a...` | Python Local Environment |
+
+
+---
+
+## 3. Firma Digital y Evidencias de Integridad
+
+```
+-----BEGIN SBOM SIGNATURE-----
+Algorithm: ECDSA-SHA384
+Signature: MGYCMQDxwF6gV/K2gflFIVQyYRmq9OZlI3QTQfmcQw1qTdaNzU/oQLMPkEHQJSd/UlQQevUCMQCKao3ptyXTjUACcEvmWj6xrEesp/+8Morl5FtviBX+qFT9MJabu240O60RCScghhM=
+-----END SBOM SIGNATURE-----
+```
+
+---
+*Generado automáticamente por `generate_sbom.py` el 2026-09-07T09:11:39.062948+00:00*

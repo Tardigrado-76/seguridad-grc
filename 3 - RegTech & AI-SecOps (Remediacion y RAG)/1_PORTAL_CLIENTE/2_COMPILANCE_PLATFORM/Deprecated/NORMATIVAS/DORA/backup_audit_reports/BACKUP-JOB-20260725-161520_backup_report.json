@@ -1,0 +1,20 @@
+{
+  "operation_id": "BACKUP-JOB-20260725-161520",
+  "timestamp": "2026-07-25T14:15:20.893816+00:00",
+  "operation_type": "BACKUP",
+  "total_databases_processed": 1,
+  "successful_operations_count": 1,
+  "failed_operations_count": 0,
+  "integrity_hash": "000050f5487b707ec98f6d3f3bc4d1da5ee08ae82ca73e09b4c9cc9281c0c472",
+  "processed_items": [
+    {
+      "original_db_name": "audit_events.db",
+      "backup_encrypted_file": "E:\\PROYECTOS IA\\AUDITORIAS\\DORA\\backup_audit_reports\\demo_backups\\audit_events_backup_20260725_161520.enc",
+      "file_size_bytes": 8220,
+      "sha256_checksum": "89b77447716d8cdc761db21bf65e475105ee7762169e4e30c3f9cfd25bd55faa",
+      "encryption_algorithm": "AES-256-GCM",
+      "nist_800_88_sanitized": true
+    }
+  ],
+  "dora_ens_verdict": "RESPALDO_CIFRADO_EXITOSO"
+}

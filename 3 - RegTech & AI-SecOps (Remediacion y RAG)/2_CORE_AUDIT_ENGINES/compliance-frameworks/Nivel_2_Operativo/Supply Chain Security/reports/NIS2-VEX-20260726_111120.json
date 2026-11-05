@@ -1,0 +1,38 @@
+{
+  "title": "NIS2 Supply Chain VEX Aggregation & False-Positive Audit",
+  "timestamp_iso": "2026-07-26T11:11:20.715576+00:00",
+  "dry_run": true,
+  "total_cves_evaluated": 3,
+  "false_positives_suppressed": 2,
+  "actionable_cves_remaining": 1,
+  "vex_findings": [
+    {
+      "cve_id": "CVE-2022-4450",
+      "component_purl": "pkg:generic/openssl@3.0.7",
+      "vex_status": "not_affected",
+      "justification": "code_not_present",
+      "suppressed_false_positive": true,
+      "actionable_risk": false,
+      "impact_statement": "The vulnerable PEM_read_bio_ex function is not called by this application architecture."
+    },
+    {
+      "cve_id": "CVE-2021-44228",
+      "component_purl": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
+      "vex_status": "not_affected",
+      "justification": "inline_mitigation_already_exist",
+      "suppressed_false_positive": true,
+      "actionable_risk": false,
+      "impact_statement": "log4j.formatMsgNoLookups system property forced to true in container JVM args."
+    },
+    {
+      "cve_id": "CVE-2023-32681",
+      "component_purl": "pkg:pypi/requests@2.31.0",
+      "vex_status": "affected",
+      "justification": "requires_patch",
+      "suppressed_false_positive": false,
+      "actionable_risk": true,
+      "impact_statement": "Proxy authorization header leak possible on HTTPS redirect."
+    }
+  ],
+  "report_integrity_sha256": "5D2AA90A45631F58657D5851E8F807DE9C89F8DB19EB63871C30AB8A7B8CE8F0"
+}

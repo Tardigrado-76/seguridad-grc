@@ -1,0 +1,160 @@
+{
+  "dry_run": true,
+  "findings": [
+    {
+      "category": "Hyper-Privilege",
+      "description": "Identidad con permisos administrativos excesivos o comodines de acceso total ('*'). Roles/Políticas asignadas: FullSystemControl.",
+      "dora_alignment": "Art. 9.2 (Principio de Menor Privilegio)",
+      "ens_alignment": "Anexo II [op.acc.4] Perfiles de acceso",
+      "finding_id": "FIND-MOCK-001-PRIV",
+      "identity_id": "MOCK-001",
+      "remediation_suggestion": "Revocar rol global de administrador y asignar roles específicos con menor privilegio.",
+      "risk_level": "CRITICAL",
+      "username": "ad_svc_backup"
+    },
+    {
+      "category": "Weak-Credentials",
+      "description": "Higiene de seguridad débil detectada: contraseña establecida para no expirar, algoritmo de almacenamiento hash obsoleto/débil (ntlm).",
+      "dora_alignment": "Art. 9.2 (Protección contra intrusiones e higiene técnica)",
+      "ens_alignment": "Anexo II [op.acc.3] Mecanismo de autenticación",
+      "finding_id": "FIND-MOCK-001-CRED",
+      "identity_id": "MOCK-001",
+      "remediation_suggestion": "Establecer caducidad de contraseñas, exigir MFA y actualizar el hash a pbkdf2/bcrypt.",
+      "risk_level": "MEDIUM",
+      "username": "ad_svc_backup"
+    },
+    {
+      "category": "Hyper-Privilege",
+      "description": "Identidad con permisos administrativos excesivos o comodines de acceso total ('*'). Roles/Políticas asignadas: AdministratorAccess, *.",
+      "dora_alignment": "Art. 9.2 (Principio de Menor Privilegio)",
+      "ens_alignment": "Anexo II [op.acc.4] Perfiles de acceso",
+      "finding_id": "FIND-MOCK-002-PRIV",
+      "identity_id": "MOCK-002",
+      "remediation_suggestion": "Revocar rol global de administrador y asignar roles específicos con menor privilegio.",
+      "risk_level": "CRITICAL",
+      "username": "cloud_user_external_vendor"
+    },
+    {
+      "category": "Weak-Credentials",
+      "description": "Higiene de seguridad débil detectada: ausencia de Autenticación Multifactor (MFA).",
+      "dora_alignment": "Art. 9.2 (Protección contra intrusiones e higiene técnica)",
+      "ens_alignment": "Anexo II [op.acc.3] Mecanismo de autenticación",
+      "finding_id": "FIND-MOCK-002-CRED",
+      "identity_id": "MOCK-002",
+      "remediation_suggestion": "Establecer caducidad de contraseñas, exigir MFA y actualizar el hash a pbkdf2/bcrypt.",
+      "risk_level": "MEDIUM",
+      "username": "cloud_user_external_vendor"
+    },
+    {
+      "category": "Shadow-Admin",
+      "description": "Shadow Admin detectado. No tiene roles explícitos de administrador global, pero posee privilegios de delegación de control peligrosos (AlterAnyRole, GrantPermission).",
+      "dora_alignment": "Art. 9.1 & 9.2 (Gobernanza del control de acceso)",
+      "ens_alignment": "Anexo II [op.acc.5] Explotación del control de acceso",
+      "finding_id": "FIND-MOCK-003-SHADOW",
+      "identity_id": "MOCK-003",
+      "remediation_suggestion": "Eliminar permisos delegados de alteración de políticas o reasignación de contraseñas.",
+      "risk_level": "HIGH",
+      "username": "db_admin_shadow"
+    },
+    {
+      "category": "Weak-Credentials",
+      "description": "Higiene de seguridad débil detectada: contraseña establecida para no expirar.",
+      "dora_alignment": "Art. 9.2 (Protección contra intrusiones e higiene técnica)",
+      "ens_alignment": "Anexo II [op.acc.3] Mecanismo de autenticación",
+      "finding_id": "FIND-MOCK-003-CRED",
+      "identity_id": "MOCK-003",
+      "remediation_suggestion": "Establecer caducidad de contraseñas, exigir MFA y actualizar el hash a pbkdf2/bcrypt.",
+      "risk_level": "MEDIUM",
+      "username": "db_admin_shadow"
+    },
+    {
+      "category": "Orphaned-Account",
+      "description": "Identidad inactiva desde hace 210 días (umbral configurado: 150 días). Cuenta de servicio sin propietario activo registrado (Huérfana).",
+      "dora_alignment": "Art. 9.2.c (Prevención de riesgos e higiene de cuentas)",
+      "ens_alignment": "Anexo II [op.acc.1] Registro de identidades",
+      "finding_id": "FIND-MOCK-005-INACT",
+      "identity_id": "MOCK-005",
+      "remediation_suggestion": "Desactivar la cuenta del directorio activo y archivar su estado.",
+      "risk_level": "HIGH",
+      "username": "cloud_role_orphaned"
+    },
+    {
+      "category": "Weak-Credentials",
+      "description": "Higiene de seguridad débil detectada: contraseña establecida para no expirar.",
+      "dora_alignment": "Art. 9.2 (Protección contra intrusiones e higiene técnica)",
+      "ens_alignment": "Anexo II [op.acc.3] Mecanismo de autenticación",
+      "finding_id": "FIND-MOCK-005-CRED",
+      "identity_id": "MOCK-005",
+      "remediation_suggestion": "Establecer caducidad de contraseñas, exigir MFA y actualizar el hash a pbkdf2/bcrypt.",
+      "risk_level": "MEDIUM",
+      "username": "cloud_role_orphaned"
+    },
+    {
+      "category": "Weak-Credentials",
+      "description": "Higiene de seguridad débil detectada: algoritmo de almacenamiento hash obsoleto/débil (md5), ausencia de Autenticación Multifactor (MFA).",
+      "dora_alignment": "Art. 9.2 (Protección contra intrusiones e higiene técnica)",
+      "ens_alignment": "Anexo II [op.acc.3] Mecanismo de autenticación",
+      "finding_id": "FIND-MOCK-006-CRED",
+      "identity_id": "MOCK-006",
+      "remediation_suggestion": "Establecer caducidad de contraseñas, exigir MFA y actualizar el hash a pbkdf2/bcrypt.",
+      "risk_level": "MEDIUM",
+      "username": "ad_usr_expired_hash"
+    }
+  ],
+  "inactive_threshold_days": 150,
+  "integrity_sha256": "9ef195e2b62e48cb55303d3b4cc85c6ea1131fe02b6043b92abf1790d3793248",
+  "kris": {},
+  "remediations": [
+    {
+      "action_type": "REVOKE_ROLE",
+      "details": "Aislamiento de la identidad y eliminación de roles globales excesivos.",
+      "identity_id": "MOCK-001",
+      "status": "SIMULATED",
+      "timestamp": "2026-07-25T18:01:16Z",
+      "username": "ad_svc_backup"
+    },
+    {
+      "action_type": "REVOKE_ROLE",
+      "details": "Aislamiento de la identidad y eliminación de roles globales excesivos.",
+      "identity_id": "MOCK-002",
+      "status": "SIMULATED",
+      "timestamp": "2026-07-25T18:01:16Z",
+      "username": "cloud_user_external_vendor"
+    },
+    {
+      "action_type": "ENABLE_MFA_ENFORCEMENT",
+      "details": "Activación de la política de obligatoriedad de MFA para la identidad.",
+      "identity_id": "MOCK-002",
+      "status": "SIMULATED",
+      "timestamp": "2026-07-25T18:01:16Z",
+      "username": "cloud_user_external_vendor"
+    },
+    {
+      "action_type": "QUARANTINE_OU",
+      "details": "Traslado de la cuenta a la Unidad Organizativa de Cuarentena (OU) para mitigar escalada de privilegios.",
+      "identity_id": "MOCK-003",
+      "status": "SIMULATED",
+      "timestamp": "2026-07-25T18:01:16Z",
+      "username": "db_admin_shadow"
+    },
+    {
+      "action_type": "DISABLE_ACCOUNT",
+      "details": "Desactivación automatizada tras 210 días de inactividad.",
+      "identity_id": "MOCK-005",
+      "status": "SIMULATED",
+      "timestamp": "2026-07-25T18:01:16Z",
+      "username": "cloud_role_orphaned"
+    },
+    {
+      "action_type": "ENABLE_MFA_ENFORCEMENT",
+      "details": "Activación de la política de obligatoriedad de MFA para la identidad.",
+      "identity_id": "MOCK-006",
+      "status": "SIMULATED",
+      "timestamp": "2026-07-25T18:01:16Z",
+      "username": "ad_usr_expired_hash"
+    }
+  ],
+  "target_env": "mock",
+  "timestamp": "2026-07-25T18:01:16Z",
+  "total_identities_scanned": 6
+}

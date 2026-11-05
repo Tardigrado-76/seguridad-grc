@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-07-28T09:49:09.652109+00:00",
+  "dry_run": false,
+  "target_path": "E:\\PROYECTOS IA\\TODO BUNKER_OS\\no_software",
+  "analysis": {
+    "files_scanned": 11,
+    "violations_count": 0,
+    "findings": [],
+    "ens_compliant": true
+  },
+  "report_sha256": "0A5482379006362235751C9456108CCBB3267AF7D2C1222240DC1C8A601B788A"
+}

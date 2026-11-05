@@ -1,0 +1,12 @@
+{
+  "reglamento_ue_2021_821_audit": {
+    "annex_i_category": "CATEGORIA_5_PARTE_2_SEGURIDAD_DE_LA_INFORMACION",
+    "dual_use_items_detected": [
+      "ALGORITMOS_PQC_FIPS_204",
+      "SISTEMAS_ANALISIS_TRAFICO_MILITAR"
+    ],
+    "export_authorization_status": "AUTORIZACION_GENERAL_UE_EU001_CONFORME",
+    "competent_authority": "Secretaría de Estado de Comercio (España) / Comisión Europea",
+    "tamper_proof": true
+  }
+}

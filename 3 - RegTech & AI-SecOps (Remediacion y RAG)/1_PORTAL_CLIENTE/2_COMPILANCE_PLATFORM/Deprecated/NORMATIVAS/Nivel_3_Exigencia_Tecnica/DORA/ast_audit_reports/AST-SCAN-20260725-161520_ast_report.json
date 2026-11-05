@@ -1,0 +1,41 @@
+{
+  "scan_id": "AST-SCAN-20260725-161520",
+  "scan_timestamp": "2026-07-25T14:15:20.278411+00:00",
+  "target_path": "E:\\PROYECTOS IA\\AUDITORIAS\\DORA",
+  "total_files_scanned": 17,
+  "total_dependencies_found": 3,
+  "installed_dependencies_count": 3,
+  "missing_dependencies_count": 0,
+  "integrity_hash": "014aed463038bc3b57a497dca986b722b5d77b5caf21533b6752ec2a7dfa496a",
+  "detected_dependencies": [
+    {
+      "module_name": "cryptography",
+      "pypi_package_name": "cryptography",
+      "is_installed": true,
+      "source_files": [
+        "bunker_secure_backup.py",
+        "generate_sbom.py",
+        "tls_config.py"
+      ]
+    },
+    {
+      "module_name": "fastapi",
+      "pypi_package_name": "fastapi",
+      "is_installed": true,
+      "source_files": [
+        "heartbeat.py"
+      ]
+    },
+    {
+      "module_name": "pydantic",
+      "pypi_package_name": "pydantic",
+      "is_installed": true,
+      "source_files": [
+        "heartbeat.py"
+      ]
+    }
+  ],
+  "missing_dependencies": [],
+  "scan_errors": [],
+  "compliance_status": "CONFORME_CADENA_SUMINISTRO"
+}

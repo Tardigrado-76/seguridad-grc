@@ -1,0 +1,24 @@
+{
+  "title": "FIPS 205 SLH-DSA Post-Quantum Certificate Authority Audit",
+  "timestamp_iso": "2026-07-26T11:06:47.187850+00:00",
+  "ca_name": "PQC-Root-CA-FIPS205",
+  "algorithm": "SLH-DSA-SHA2-128f",
+  "dry_run": true,
+  "issued_certificates_count": 1,
+  "certificates": [
+    {
+      "certificate_header": {
+        "cert_id": "PQC-CERT-A92B1EB1EE13",
+        "issuer": "PQC-Root-CA-FIPS205",
+        "subject": "auth-cluster.internal",
+        "algorithm": "SLH-DSA-SHA2-128f",
+        "not_before": "2026-07-26T11:06:47.168709+00:00",
+        "not_after": "2027-07-26T11:06:47.168709+00:00",
+        "valid_days": 365
+      },
+      "signature_slh_dsa": "SLH-DSA-SIG-SLH-DSA-SHA2-128f-7BA257AB7B2CB2A1331FAF5033FF2763D8F4D689D786FD7F4E6B1D9933F0DBE3",
+      "status": "VALID_ACTIVE"
+    }
+  ],
+  "report_integrity_sha256": "59537C42204C2A5ADF71516C9103A7770165AB69A1E6DC62A87858BA577BD439"
+}

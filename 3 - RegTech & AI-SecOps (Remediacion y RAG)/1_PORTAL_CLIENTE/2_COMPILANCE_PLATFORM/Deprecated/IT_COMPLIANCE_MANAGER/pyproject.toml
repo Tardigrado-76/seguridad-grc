@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "it-compliance-manager"
+version = "1.0.0"
+description = "Automated Audit & Technical Governance Engine for DORA, NIS2, ENS High, GDPR, EU AI Act, CRA, ISO 27001 & SOC 2."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [{ name = "Quantigrade Quantum-Resilient Systems" }]
+keywords = ["compliance", "audit", "dora", "nis2", "ens", "gdpr", "cybersecurity", "governance", "slsa"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+dependencies = [
+    "reportlab>=3.6.0",
+    "pydantic>=2.0.0",
+    "cryptography>=41.0.0",
+    "urllib3>=1.26.0",
+    "colorama>=0.4.6",
+]
+
+[project.optional-dependencies]
+agent = [
+    "langgraph>=0.2.0",
+    "langchain-core>=0.2.0",
+    "langchain-openai>=0.1.0",
+    "python-dotenv>=1.0.0",
+]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+it-compliance-manager = "orchestrator_cli:main"
+
+[tool.setuptools]
+packages = [
+    "src",
+    "src.agent",
+    "src.core",
+    "src.evaluators",
+    "src.reporters",
+    "src.sealer",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

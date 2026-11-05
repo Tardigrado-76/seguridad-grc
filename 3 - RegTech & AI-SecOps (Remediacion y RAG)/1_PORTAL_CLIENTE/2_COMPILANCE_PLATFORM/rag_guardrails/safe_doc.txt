@@ -1,0 +1,1 @@
+La normativa de seguridad de la empresa establece que el control de acceso biométrico se implementará a partir de octubre de 2026. Todos los empleados de nivel 3 deben firmar el anexo de confidencialidad. El responsable del proyecto es el director de seguridad TIC.

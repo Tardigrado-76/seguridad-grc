@@ -1,0 +1,26 @@
+[
+    {
+        "domain": "Entrevista Humana GRC",
+        "control": "pol_base",
+        "status": "FAIL",
+        "detail": "Falta evidencia u homologaci\u00f3n."
+    },
+    {
+        "domain": "Entrevista Humana GRC",
+        "control": "acc_fisico",
+        "status": "PASS",
+        "detail": "Verificado mediante entrevista con direcci\u00f3n."
+    },
+    {
+        "domain": "Entrevista Humana GRC",
+        "control": "formacion",
+        "status": "FAIL",
+        "detail": "Falta evidencia u homologaci\u00f3n."
+    },
+    {
+        "domain": "Entrevista Humana GRC",
+        "control": "incidentes",
+        "status": "FAIL",
+        "detail": "Falta evidencia u homologaci\u00f3n."
+    }
+]

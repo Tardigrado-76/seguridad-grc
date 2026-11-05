@@ -1,0 +1,153 @@
+Gestión Social SEO/GEO de Tavilga (Creación de Contenido)
+{
+  "name": "Tavilga - Generación de Contenido Social SEO/GEO y Andaluz",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "new-product-push",
+        "options": {},
+        "description": "Recibe la imagen o la descripción de la pieza de Tavilga. Ejemplo de Input JSON: {\"imagen_url\": \"[URL]\", \"descripcion\": \"Mesa de centro rústica en madera de olivo para un salón en Triana\", \"palabras_clave_mobiliario\": \"mesa de centro, olivo\"}"
+      },
+      "name": "Trigger Webhook (Input n8n)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "executeOnce": false,
+      "notesInFlow": true,
+      "notes": "Nodo inicial que dispara la automatización. Recibe la URL de la imagen y la descripción base del mueble o evento. Es el 'Input n8n' clave para la IA.",
+      "id": "a9b9b007-73d8-4f2e-9d84-c6a6f6c91d4e",
+      "active": true,
+      "position": [
+        240,
+        300
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "temperature": 0.7,
+        "maxTokens": 2048,
+        "systemPrompt": "Eres el Community Manager de Tavilga, mobiliario a medida en Sevilla. Tu misión es generar contenido pasional, profesional y auténticamente andaluz (con pinceladas de jerga sevillana). Debes asegurar el posicionamiento SEO/GEO forzando palabras clave. La salida DEBE ser un JSON estricto.",
+        "input": "Genera 3 variantes de texto, los hashtags y las menciones para esta pieza de Tavilga, basándote en la siguiente descripción: {{ $json.descripcion }}. Cumple estrictamente con las directrices GEO/SEO y el tono pasional.\n\n***DIRECTRICES DE CONTENIDO REQUERIDO***:\n1. Variante SEO/GEO: 100-150 palabras. DEBE incluir 'Tavilga', 'Sevilla', 'Andalucía', las dos palabras clave de mobiliario ({{ $json.palabras_clave_mobiliario }}), y una ubicación geográfica de Sevilla (Triana, Nervión, etc.). Debe sonar profesional pero muy, muy andaluz (p. ej., '¡Qué arte!').\n2. Variante Engagement: 40-70 palabras. Enfocada en hacer preguntas para aumentar la interacción.\n3. Variante Breve: <40 palabras. Directa y visual.\n4. Hashtags: 5-10 totales. Geográficos (#Sevilla), Específicos (#{{ $json.palabras_clave_mobiliario }}), y Amplios/Tendencia.\n5. Menciones: Mencionar a @Tavilga (Placeholder) y a una cuenta local relevante (p. ej., @SevillaPatrimonio).\n\nFormatea tu respuesta únicamente como un objeto JSON con las claves: 'texto_seo_geo', 'texto_engagement', 'texto_breve', 'hashtags', 'menciones'.",
+        "options": {}
+      },
+      "name": "Generación de Contenido (OpenAI)",
+      "type": "n8n-nodes-langchain.openAiChatModel",
+      "typeVersion": 1,
+      "notesInFlow": true,
+      "notes": "Este nodo utiliza un modelo LLM avanzado (GPT-4o, compatible con n8n) para fusionar el Tono, Estilo (Andaluz Pasional) y las reglas SEO/GEO en un único prompt. Es el corazón del sistema, donde se aplica la lógica de 'Auténtico Andaluz' y la inserción forzada de keywords GEO (Sevilla, Andalucía) [1, 4].",
+      "id": "e98e4d29-c70e-436d-9d41-c7c4b78f44d8",
+      "position": [
+        500,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "12345",
+          "name": "OpenAI Tavilga Credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "outputJsonPath": "json_output",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "texto_seo_geo": {
+              "type": "string",
+              "description": "Variante SEO/GEO andaluza, 100-150 palabras."
+            },
+            "texto_engagement": {
+              "type": "string",
+              "description": "Variante centrada en interacción, 40-70 palabras."
+            },
+            "texto_breve": {
+              "type": "string",
+              "description": "Variante breve, menos de 40 palabras."
+            },
+            "hashtags": {
+              "type": "string",
+              "description": "Listado de 5-10 hashtags, separados por espacio."
+            },
+            "menciones": {
+              "type": "string",
+              "description": "Menciones requeridas, separadas por espacio."
+            }
+          }
+        },
+        "options": {}
+      },
+      "name": "Parser de Salida Estructurada",
+      "type": "n8n-nodes-langchain.structuredOutputParser",
+      "typeVersion": 1,
+      "notesInFlow": true,
+      "notes": "Utiliza el `Structured Output Parser` para forzar a la IA a devolver un JSON limpio y predecible, indispensable para que los pasos siguientes (el nodo 'Set') puedan mapear los textos y hashtags correctamente. Esto garantiza la fiabilidad del output [3].",
+      "id": "5c9e2b1e-21f8-4b1c-9e2e-1c9f8d1c7d2f",
+      "position": [
+        770,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": [
+          {
+            "name": "Post_SEO_GEO",
+            "value": "### Variante SEO/GEO\n\n{{ $('Parser de Salida Estructurada').item(0).json.json_output.texto_seo_geo }}\n\n"
+          },
+          {
+            "name": "Post_Engagement",
+            "value": "### Variante Engagement\n\n{{ $('Parser de Salida Estructurada').item(0).json.json_output.texto_engagement }}\n\n"
+          },
+          {
+            "name": "Post_Breve",
+            "value": "### Variante Breve\n\n{{ $('Parser de Salida Estructurada').item(0).json.json_output.texto_breve }}\n\n"
+          },
+          {
+            "name": "Hashtags_y_Menciones",
+            "value": "{{ $('Parser de Salida Estructurada').item(0).json.json_output.menciones }} {{ $('Parser de Salida Estructurada').item(0).json.json_output.hashtags }}"
+          },
+          {
+            "name": "Image_URL",
+            "value": "{{ $json.imagen_url }}"
+          }
+        ]
+      },
+      "name": "Format Output para RRSS (Set)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "notesInFlow": true,
+      "notes": "Nodo `Edit Fields (Set)` [5] que ensambla el resultado final, mapeando los textos generados y combinando los hashtags y las menciones. Este JSON está listo para ser consumido por el nodo de la plataforma social destino (e.g., Instagram, X) [2].",
+      "id": "e4e2c90c-783a-4e6f-a63b-6f8c7b8e1f5c",
+      "position": [
+        1050,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger Webhook (Input n8n)": [
+      {
+        "node": "Generación de Contenido (OpenAI)",
+        "type": "main",
+        "index": 0
+      }
+    ],
+    "Generación de Contenido (OpenAI)": [
+      {
+        "node": "Parser de Salida Estructurada",
+        "type": "main",
+        "index": 0
+      }
+    ],
+    "Parser de Salida Estructurada": [
+      {
+        "node": "Format Output para RRSS (Set)",
+        "type": "main",
+        "index": 0
+      }
+    ]
+  },
+  "version": 1
+}

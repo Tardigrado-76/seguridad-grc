@@ -1,0 +1,126 @@
+{
+  "profile": {
+    "company_name": "Entidad Corporativa S.A.",
+    "website_url": "https://python.org",
+    "ciso_name": "Director de Seguridad y CISO",
+    "ciso_role": "Chief Information Security Officer"
+  },
+  "audit_timestamp": "2026-08-07T15:54:52.893769+00:00",
+  "osint_report": {
+    "scanned_url": "https://python.org",
+    "scan_timestamp": "2026-08-07T15:54:43.234875+00:00",
+    "ssl_info": {
+      "is_valid": true,
+      "issuer": "GlobalSign nv-sa",
+      "expiration_date": "2027-02-14",
+      "days_remaining": 190,
+      "ssl_version": "TLSv1.3",
+      "details": "Certificado válido para python.org. Expira en 190 días."
+    },
+    "header_audit": {
+      "hsts_enabled": true,
+      "csp_enabled": false,
+      "x_content_type_options": false,
+      "x_frame_options": true,
+      "security_score": 50,
+      "missing_headers": [
+        "Content-Security-Policy (CSP)",
+        "X-Content-Type-Options"
+      ]
+    },
+    "chatbot_detection": {
+      "detected": false,
+      "widgets_found": [],
+      "scripts_found": []
+    },
+    "privacy_scan": {
+      "privacy_url": "https://python.org",
+      "ai_terms_found": true,
+      "ai_mentions": [
+        "machine learning"
+      ]
+    },
+    "robots_txt_scan": {
+      "robots_txt_found": true,
+      "gpai_crawlers_status": {
+        "GPTBot": "Sin regla específica (Permitido por defecto)",
+        "ChatGPT-User": "Sin regla específica (Permitido por defecto)",
+        "ClaudeBot": "Sin regla específica (Permitido por defecto)",
+        "PerplexityBot": "Sin regla específica (Permitido por defecto)",
+        "Bytespider": "Sin regla específica (Permitido por defecto)",
+        "CCBot": "Sin regla específica (Permitido por defecto)"
+      }
+    }
+  },
+  "discrepancies": [],
+  "questions": [
+    {
+      "id": "P1",
+      "article_ref": "Anexo III",
+      "question_text": "¿El sistema de IA se utiliza en dominios sensibles (RRHH/reclutamiento, infraestructuras críticas, evaluación crediticia, educación o servicios públicos/privados esenciales)?",
+      "answer": false
+    },
+    {
+      "id": "P2",
+      "article_ref": "Art. 5",
+      "question_text": "¿El sistema emplea técnicas subliminales, manipulación conductual, scoring social, recolección masiva no dirigida de imágenes faciales o reconocimiento de emociones en trabajo/educación?",
+      "answer": false
+    },
+    {
+      "id": "P3",
+      "article_ref": "Art. 50",
+      "question_text": "¿El sistema interactúa directamente con personas físicas (chatbots) o genera/manipula contenido sintético (audio, imagen, vídeo, deepfakes, textos)?",
+      "answer": false
+    },
+    {
+      "id": "P4",
+      "article_ref": "Art. 51",
+      "question_text": "¿El sistema integra modelos de IA de Propósito General (GPAI / LLMs) con cómputo acumulativo > 10^25 FLOPs (ej. GPT-4o, Llama-3 70B+) o capacidad sistémica equivalente?",
+      "answer": false
+    },
+    {
+      "id": "P5",
+      "article_ref": "Autonomía / Art. 14",
+      "question_text": "¿El sistema toma decisiones automatizadas con impacto legal o efectos significativos sobre personas sin una revisión humana previa obligatoria?",
+      "answer": false
+    },
+    {
+      "id": "P6",
+      "article_ref": "Art. 12",
+      "question_text": "¿El sistema cuenta con un mecanismo automatizado para la retención y registro de logs (trazabilidad) garantizando su almacenamiento seguro por un período mínimo de 6 meses?",
+      "answer": false
+    },
+    {
+      "id": "P7",
+      "article_ref": "Art. 10",
+      "question_text": "¿Se ha formalizado una documentación técnica de Gobernanza de Datos que incluya procedencia de datos, prevención de sesgos y representación adecuada?",
+      "answer": false
+    },
+    {
+      "id": "P8",
+      "article_ref": "Art. 14",
+      "question_text": "¿Dispone el operador de la capacidad técnica de parada de emergencia ('kill switch') o anulación humana en tiempo real durante la operación?",
+      "answer": false
+    },
+    {
+      "id": "P9",
+      "article_ref": "Art. 27",
+      "question_text": "¿Se ha realizado formalmente una Evaluación de Impacto en los Derechos Fundamentales (FRIA - Fundamental Rights Impact Assessment) antes del despliegue?",
+      "answer": false
+    },
+    {
+      "id": "P10",
+      "article_ref": "Art. 15",
+      "question_text": "¿Se han ejecutado pruebas documentadas de ciberseguridad, robustez y resiliencia específicas para IA (ataques de inyección de prompts, alucinaciones, envenenamiento)?",
+      "answer": false
+    }
+  ],
+  "overall_risk": "RIESGO MÍNIMO / SIN RIESGO OBLIGATORIO - Código de Conducta Voluntario",
+  "findings": [],
+  "remediation_patches": [],
+  "annex_viii_payload": null,
+  "hitl_approved": false,
+  "signature_token": null,
+  "signature_timestamp": null,
+  "signed_by": null
+}

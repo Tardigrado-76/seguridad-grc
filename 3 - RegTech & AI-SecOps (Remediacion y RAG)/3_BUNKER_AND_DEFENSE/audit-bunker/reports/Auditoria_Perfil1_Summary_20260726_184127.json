@@ -1,0 +1,88 @@
+{
+  "title": "Consolidado de Auditor\u00eda Perfil 1 (DEMO)",
+  "timestamp_iso": "2026-07-26T18:41:27.672224+00:00",
+  "mode": "DEMO",
+  "input_directory": "E:\\PROYECTOS IA\\TODO BUNKER_OS\\no_software",
+  "reports_directory": "E:\\PROYECTOS IA\\AUDITORIAS\\reports",
+  "total_duration_seconds": 4.04,
+  "summary_kpi": {
+    "total_phases": 6,
+    "passed": 5,
+    "skipped": 1,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "01",
+      "normativa": "Supply Chain",
+      "script": "generate_sbom.py",
+      "status": "PASSED",
+      "duration_seconds": 1.19,
+      "targets_sample": [
+        "requirements.txt"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Supply Chain Security\\generate_sbom.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "02",
+      "normativa": "RGPD / LOPDGDD",
+      "script": "rgpd_data_pseudonymizer.ps1",
+      "status": "PASSED",
+      "duration_seconds": 2.09,
+      "targets_sample": [
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\RGPD - LOPDGDD\\rgpd_data_pseudonymizer.ps1 -SourceDB E:\\PROYECTOS IA\\AUDITORIAS\\reports\\demo_database.db -Mode Pseudonymize -OutputDir E:\\PROYECTOS IA\\AUDITORIAS\\reports -DryRun"
+    },
+    {
+      "id": "03",
+      "normativa": "OWASP Top 10",
+      "script": "ast_scan.py",
+      "status": "PASSED",
+      "duration_seconds": 0.28,
+      "targets_sample": [
+        "bunker_bootstrap.py",
+        "Auditoria_Importaciones.py",
+        "bunker_forensic_orchestrator.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\OWASP top 10\\ast_scan.py --path E:\\PROYECTOS IA\\TODO BUNKER_OS\\no_software"
+    },
+    {
+      "id": "04",
+      "normativa": "OWASP LLM",
+      "script": "llm_prompt_guard.py",
+      "status": "PASSED",
+      "duration_seconds": 0.23,
+      "targets_sample": [
+        "bunker_forensic_orchestrator.py",
+        "docker-compose.yml",
+        "requirements.txt",
+        "Auditoria_Importaciones.py",
+        "informe_certificacion_final.json",
+        "bunker_bootstrap.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\OWASP LLM\\llm_prompt_guard.py --prompt Evaluaci\u00f3n de seguridad de prompt para Perfil 1 --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "05",
+      "normativa": "RGPD / LOPDGDD",
+      "script": "sar_data_extractor.py",
+      "status": "PASSED",
+      "duration_seconds": 0.21,
+      "targets_sample": [
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\RGPD - LOPDGDD\\sar_data_extractor.py --subject-identifier audit_demo_user@domain.local --target-db E:\\PROYECTOS IA\\AUDITORIAS\\reports\\demo_audit.db --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports --dry-run"
+    },
+    {
+      "id": "06",
+      "normativa": "RGPD / LOPDGDD",
+      "script": "rgpd_data_retention_purger.py",
+      "status": "SKIPPED",
+      "duration_seconds": 0.0,
+      "targets_sample": [],
+      "command_run": "NONE"
+    }
+  ],
+  "report_integrity_sha256": "FD07C7996DE44FA72C7E798991B7976DFE849A61BFBB4E4B98E75966E73040A8"
+}

@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-07-28T16:37:43.275548+00:00",
+  "dry_run": true,
+  "target_path": "D:\\My Docs",
+  "analysis": {
+    "files_scanned": 0,
+    "registers_audited_count": 0,
+    "audit_results": [],
+    "overall_dora_compliant": false
+  },
+  "report_sha256": "FA6E9A1D648D9DA2541F980CECA6C6353A560C3350A8BEB7EF9227BDB708CB59"
+}

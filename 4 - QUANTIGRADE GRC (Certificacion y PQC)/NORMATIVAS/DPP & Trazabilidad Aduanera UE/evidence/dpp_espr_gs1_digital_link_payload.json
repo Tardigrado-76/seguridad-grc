@@ -1,0 +1,13 @@
+{
+  "digital_product_passport": {
+    "dpp_id": "urn:dpp:eu:2026:batch-981240-aerospace-battery",
+    "carrier_type": "GS1_DIGITAL_LINK_QR",
+    "gs1_digital_link_url": "https://id.quantigrade.eu/01/08431234567890/21/SER99881",
+    "espr_compliance": {
+      "carbon_footprint_kg_co2e": 14.2,
+      "recycled_content_percentage": 68.5,
+      "durability_and_repairability_score": "A_EXCELLENT",
+      "w3c_verifiable_credential_format": true
+    }
+  }
+}

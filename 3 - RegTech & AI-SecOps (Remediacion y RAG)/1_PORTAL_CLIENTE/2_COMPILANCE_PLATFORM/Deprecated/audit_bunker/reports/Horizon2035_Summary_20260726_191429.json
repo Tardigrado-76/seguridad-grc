@@ -1,0 +1,42 @@
+{
+  "title": "Informe Ejecutivo Horizon 2035 \u2014 Evaluaci\u00f3n de Tecnolog\u00edas Emergentes (PROD)",
+  "timestamp": "2026-07-26T19:14:29.060967+00:00",
+  "mode": "PROD",
+  "profile": 3,
+  "workspace_root": "E:\\PROYECTOS IA\\TODO BUNKER_OS\\no_software",
+  "reports_dir": "E:\\PROYECTOS IA\\AUDITORIAS\\reports",
+  "total_duration_seconds": 0.41,
+  "summary_metrics": {
+    "total_modules": 3,
+    "passed": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "A",
+      "normativa": "OWASP LLM / EU AI Act",
+      "script": "llm_autonomous_agent_jailbreak_honeypot.py",
+      "status": "PASSED",
+      "duration_seconds": 0.12,
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\OWASP LLM\\llm_autonomous_agent_jailbreak_honeypot.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "B",
+      "normativa": "PQC FIPS 204 (ML-DSA)",
+      "script": "fips_204_mldsa_git_commit_signer.py",
+      "status": "PASSED",
+      "duration_seconds": 0.15,
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\PQC FIPS 203-204-205\\fips_204_mldsa_git_commit_signer.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "C",
+      "normativa": "NIST SP 800-63 ZKP / Zero Trust",
+      "script": "zero_knowledge_proof_auth_gateway.py",
+      "status": "PASSED",
+      "duration_seconds": 0.14,
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\NIST SP 800-53161\\zero_knowledge_proof_auth_gateway.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    }
+  ],
+  "report_integrity_sha256": "DFB82C7B2B930586801C181E094F00B36454465F6E6FA4D4A003800411952CEC"
+}

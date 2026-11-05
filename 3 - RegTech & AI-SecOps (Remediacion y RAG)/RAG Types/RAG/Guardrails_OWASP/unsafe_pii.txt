@@ -1,0 +1,6 @@
+Reporte de Personal y Datos de Acceso.
+Empleado: Carlos Gómez
+DNI: 98765432W
+Tarjeta Corporativa asignada: 5412-3456-7890-1234
+Correo: carlos.gomez@empresa.com
+Estado: Activo.

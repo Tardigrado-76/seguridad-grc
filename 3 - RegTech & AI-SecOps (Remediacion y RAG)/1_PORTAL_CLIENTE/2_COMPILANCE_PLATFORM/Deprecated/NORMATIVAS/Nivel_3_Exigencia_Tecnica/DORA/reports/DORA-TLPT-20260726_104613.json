@@ -1,0 +1,60 @@
+{
+  "title": "DORA Article 25 Advanced Digital Operational Resilience Test (TLPT)",
+  "session_id": "30e1ce21-f22d-4479-9248-6d66fa7f2ec4",
+  "timestamp_iso": "2026-07-26T10:46:13.261363+00:00",
+  "scenario": "network_drop",
+  "max_duration_sec": 10,
+  "dry_run": true,
+  "metrics": {
+    "rto_seconds": 1.502,
+    "rpo_seconds": 0.0,
+    "recovered": true,
+    "panic_switch_triggered": false,
+    "dora_compliance_status": "COMPLIANT"
+  },
+  "events_trail": [
+    {
+      "timestamp_iso": "2026-07-26T10:46:11.759041+00:00",
+      "stage": "INJECTION_START",
+      "level": "INFO",
+      "message": "Injecting scenario 'network_drop' (Dry-Run=True)",
+      "details": {}
+    },
+    {
+      "timestamp_iso": "2026-07-26T10:46:11.759081+00:00",
+      "stage": "INJECTION_SIMULATED",
+      "level": "INFO",
+      "message": "Simulated injection of 'network_drop' completed without state mutation.",
+      "details": {}
+    },
+    {
+      "timestamp_iso": "2026-07-26T10:46:11.759096+00:00",
+      "stage": "RECOVERY_START",
+      "level": "INFO",
+      "message": "Initiating resilience and recovery assessment loop...",
+      "details": {}
+    },
+    {
+      "timestamp_iso": "2026-07-26T10:46:13.260792+00:00",
+      "stage": "RECOVERY_RESULT",
+      "level": "INFO",
+      "message": "Assessment complete. Recovered: True | RTO: 1.502s | RPO: 0.0s",
+      "details": {}
+    },
+    {
+      "timestamp_iso": "2026-07-26T10:46:13.260849+00:00",
+      "stage": "ROLLBACK_START",
+      "level": "INFO",
+      "message": "Executing automatic rollback for scenario 'network_drop'",
+      "details": {}
+    },
+    {
+      "timestamp_iso": "2026-07-26T10:46:13.260859+00:00",
+      "stage": "ROLLBACK_SIMULATED",
+      "level": "INFO",
+      "message": "Dry-run rollback completed successfully.",
+      "details": {}
+    }
+  ],
+  "report_integrity_sha256": "822A7726B508A381BA3662B1B251726CCDAAB1CE15FBA690EAB02648CD627BC1"
+}

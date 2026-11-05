@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-08-17T16:47:22.764537+00:00",
+  "dry_run": false,
+  "target_path": "E:\\PROYECTOS IA\\AUDITORIAS\\PRODUCTION-READY\\NORMATIVAS\\AUDITORIAS_FINAL\\ENS 1",
+  "analysis": {
+    "files_scanned": 7,
+    "violations_count": 2,
+    "findings": [
+      {
+        "file": "ens_access_policy_auditor.py",
+        "type": "HARDCODED_CREDS",
+        "severity": "CRITICAL",
+        "description": "Posible secreto o credencial hardcodeada en texto plano."
+      },
+      {
+        "file": "ens_access_policy_auditor.py",
+        "type": "WORLD_WRITABLE",
+        "severity": "HIGH",
+        "description": "Asignación insegura de permisos globales chmod 777."
+      }
+    ],
+    "ens_compliant": false
+  },
+  "report_sha256": "8C396BA417F66192A22419F27C7FBF9EE5E94E00614E11D4FF144EBA6D2BDD89"
+}

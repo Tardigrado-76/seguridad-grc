@@ -1,0 +1,15 @@
+{
+  "title": "EU AI Act Article 50 Synthetic Content Watermark Audit",
+  "timestamp_iso": "2026-07-26T18:44:53.722900+00:00",
+  "dry_run": true,
+  "watermark_operations": [
+    {
+      "timestamp_iso": "2026-07-26T18:44:53.722513+00:00",
+      "original_length": 49,
+      "watermarked_length": 177,
+      "watermark_injected": true,
+      "status": "WATERMARK_EMBEDDED_ART50"
+    }
+  ],
+  "report_integrity_sha256": "8644D0C435B9AF3F564A817F57D9FC406AFB2518F6D7478F45B8D7C2F750ABA6"
+}

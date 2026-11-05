@@ -1,0 +1,154 @@
+{
+  "profile": {
+    "company_name": "Entidad Corporativa S.A.",
+    "website_url": "https://python.org",
+    "ciso_name": "Director de Seguridad y CISO",
+    "ciso_role": "Chief Information Security Officer"
+  },
+  "audit_timestamp": "2026-09-10T09:19:36.274720+00:00",
+  "osint_report": {
+    "scanned_url": "https://python.org",
+    "scan_timestamp": "2026-09-10T09:19:18.689820+00:00",
+    "ssl_info": {
+      "is_valid": true,
+      "issuer": "GlobalSign nv-sa",
+      "expiration_date": "2027-02-14",
+      "days_remaining": 157,
+      "ssl_version": "TLSv1.3",
+      "details": "Certificado válido para python.org. Expira en 157 días."
+    },
+    "header_audit": {
+      "hsts_enabled": true,
+      "csp_enabled": false,
+      "x_content_type_options": false,
+      "x_frame_options": true,
+      "security_score": 50,
+      "missing_headers": [
+        "Content-Security-Policy (CSP)",
+        "X-Content-Type-Options"
+      ]
+    },
+    "chatbot_detection": {
+      "detected": false,
+      "widgets_found": [],
+      "scripts_found": []
+    },
+    "privacy_scan": {
+      "privacy_url": "https://python.org",
+      "ai_terms_found": true,
+      "ai_mentions": [
+        "machine learning",
+        "artificial intelligence"
+      ]
+    },
+    "robots_txt_scan": {
+      "robots_txt_found": true,
+      "gpai_crawlers_status": {
+        "GPTBot": "Sin regla específica (Permitido por defecto)",
+        "ChatGPT-User": "Sin regla específica (Permitido por defecto)",
+        "ClaudeBot": "Sin regla específica (Permitido por defecto)",
+        "PerplexityBot": "Sin regla específica (Permitido por defecto)",
+        "Bytespider": "Sin regla específica (Permitido por defecto)",
+        "CCBot": "Sin regla específica (Permitido por defecto)"
+      }
+    }
+  },
+  "discrepancies": [],
+  "questions": [
+    {
+      "id": "P1",
+      "article_ref": "Anexo III",
+      "question_text": "¿El sistema de IA se utiliza en dominios sensibles (RRHH/reclutamiento, infraestructuras críticas, evaluación crediticia, educación o servicios públicos/privados esenciales)?",
+      "answer": true
+    },
+    {
+      "id": "P2",
+      "article_ref": "Art. 5",
+      "question_text": "¿El sistema emplea técnicas subliminales, manipulación conductual, scoring social, recolección masiva no dirigida de imágenes faciales o reconocimiento de emociones en trabajo/educación?",
+      "answer": false
+    },
+    {
+      "id": "P3",
+      "article_ref": "Art. 50",
+      "question_text": "¿El sistema interactúa directamente con personas físicas (chatbots) o genera/manipula contenido sintético (audio, imagen, vídeo, deepfakes, textos)?",
+      "answer": true
+    },
+    {
+      "id": "P4",
+      "article_ref": "Art. 51",
+      "question_text": "¿El sistema integra modelos de IA de Propósito General (GPAI / LLMs) con cómputo acumulativo > 10^25 FLOPs (ej. GPT-4o, Llama-3 70B+) o capacidad sistémica equivalente?",
+      "answer": false
+    },
+    {
+      "id": "P5",
+      "article_ref": "Autonomía / Art. 14",
+      "question_text": "¿El sistema toma decisiones automatizadas con impacto legal o efectos significativos sobre personas sin una revisión humana previa obligatoria?",
+      "answer": true
+    },
+    {
+      "id": "P6",
+      "article_ref": "Art. 12",
+      "question_text": "¿El sistema cuenta con un mecanismo automatizado para la retención y registro de logs (trazabilidad) garantizando su almacenamiento seguro por un período mínimo de 6 meses?",
+      "answer": false
+    },
+    {
+      "id": "P7",
+      "article_ref": "Art. 10",
+      "question_text": "¿Se ha formalizado una documentación técnica de Gobernanza de Datos que incluya procedencia de datos, prevención de sesgos y representación adecuada?",
+      "answer": true
+    },
+    {
+      "id": "P8",
+      "article_ref": "Art. 14",
+      "question_text": "¿Dispone el operador de la capacidad técnica de parada de emergencia ('kill switch') o anulación humana en tiempo real durante la operación?",
+      "answer": true
+    },
+    {
+      "id": "P9",
+      "article_ref": "Art. 27",
+      "question_text": "¿Se ha realizado formalmente una Evaluación de Impacto en los Derechos Fundamentales (FRIA - Fundamental Rights Impact Assessment) antes del despliegue?",
+      "answer": true
+    },
+    {
+      "id": "P10",
+      "article_ref": "Art. 15",
+      "question_text": "¿Se han ejecutado pruebas documentadas de ciberseguridad, robustez y resiliencia específicas para IA (ataques de inyección de prompts, alucinaciones, envenenamiento)?",
+      "answer": true
+    }
+  ],
+  "overall_risk": "ALTO RIESGO - Dominio Sensible / Anexo III EU AI Act",
+  "findings": [
+    {
+      "code": "GAP-ART12",
+      "article": "Artículo 12",
+      "title": "Falta de Logging Automatizado 6 Meses",
+      "severity": "ALTO",
+      "description": "No se garantiza la retención inmutable de logs por 6 meses.",
+      "remediation_action": "Desplegar middleware de auditoría con retención inmutable."
+    }
+  ],
+  "remediation_patches": [
+    {
+      "article": "Artículo 12",
+      "code_type": "Python FastAPI Middleware",
+      "title": "Sistema Inmutable de Logging de Auditoría (Retención 6 Meses)",
+      "filename": "eu_ai_act_logging_middleware.py",
+      "content": "# ==============================================================================\n# PARCHE DE REMEDIACIÓN: EU AI ACT - ARTÍCULO 12 (LOGS Y TRAZABILIDAD 6 MESES)\n# ==============================================================================\nimport logging\nimport json\nimport uuid\nfrom datetime import datetime, timezone\nfrom fastapi import Request, Response\nfrom starlette.middleware.base import BaseHTTPMiddleware\n\n# Configuración de Logger Inmutable conforme al Art. 12 del EU AI Act\nlogger = logging.getLogger(\"EU_AI_Act_AuditLogger\")\nlogger.setLevel(logging.INFO)\n\nhandler = logging.FileHandler(\"ai_system_audit_logs.jsonl\", encoding=\"utf-8\")\nformatter = logging.Formatter('%(message)s')\nhandler.setFormatter(formatter)\nlogger.addHandler(handler)\n\nclass EUAIActLoggingMiddleware(BaseHTTPMiddleware):\n    \"\"\"Middleware de trazabilidad e inmutabilidad con retención mínima de 6 meses.\"\"\"\n    async def dispatch(self, request: Request, call_next) -> Response:\n        session_id = request.headers.get(\"X-Session-ID\", str(uuid.uuid4()))\n        start_time = datetime.now(timezone.utc).isoformat()\n        \n        response = await call_next(request)\n        \n        log_payload = {\n            \"timestamp\": start_time,\n            \"session_id\": session_id,\n            \"user_agent\": request.headers.get(\"user-agent\", \"unknown\"),\n            \"client_ip\": request.client.host if request.client else \"0.0.0.0\",\n            \"endpoint\": str(request.url),\n            \"http_method\": request.method,\n            \"status_code\": response.status_code,\n            \"retention_policy\": \"OBLIGATORY_6_MONTHS_EU_AI_ACT_ART12\"\n        }\n        logger.info(json.dumps(log_payload))\n        return response\n"
+    }
+  ],
+  "annex_viii_payload": {
+    "registration_id": "EU-REG-6DBED2FB",
+    "provider_name": "Entidad Corporativa S.A.",
+    "provider_website": "https://python.org",
+    "ai_system_name": "Sistema IA - Entidad Corporativa S.A.",
+    "intended_purpose": "Evaluación de Dominio Sensible bajo el Anexo III del EU AI Act",
+    "high_risk_category": "ALTO RIESGO - Dominio Sensible / Anexo III EU AI Act",
+    "conformity_assessment_status": "EN_PROCESO_DE_AUDITORIA",
+    "eu_representative": "Director de Seguridad y CISO (Chief Information Security Officer)",
+    "timestamp": "2026-09-10T09:19:36.272271+00:00"
+  },
+  "hitl_approved": true,
+  "signature_token": "SHA256:4dc1aac48ad54b4baaafa2d3eefb91bc86f6c3d9ab82a7708e20e0a94cc42dfb",
+  "signature_timestamp": "2026-09-10T09:19:45.302811+00:00",
+  "signed_by": "Director de Seguridad y CISO"
+}

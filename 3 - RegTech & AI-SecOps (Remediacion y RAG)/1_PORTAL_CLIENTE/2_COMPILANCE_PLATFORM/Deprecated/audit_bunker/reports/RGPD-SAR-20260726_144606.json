@@ -1,0 +1,33 @@
+{
+  "title": "RGPD Article 15 Subject Access Request (SAR) & Art. 20 Data Portability Export",
+  "timestamp_iso": "2026-07-26T14:46:06.193149+00:00",
+  "subject_identifier": "audit_user@domain.local",
+  "target_repository": "E:\\PROYECTOS IA\\AUDITORIAS\\reports\\audit_events.db",
+  "dry_run": false,
+  "record_count": 2,
+  "personal_data_export": [
+    {
+      "source_type": "USER_PROFILE_DB",
+      "table_name": "users",
+      "data": {
+        "user_id": "USR-99218",
+        "full_name": "Juan Perez Garcia",
+        "email": "audit_user@domain.local",
+        "dni": "12345678Z",
+        "phone": "+34612345678",
+        "registration_date": "2024-01-15T10:00:00Z"
+      }
+    },
+    {
+      "source_type": "AUDIT_LOG_STORE",
+      "table_name": "access_logs",
+      "data": {
+        "session_id": "SESS-7712",
+        "ip_address": "192.168.1.50",
+        "user_agent": "Mozilla/5.0",
+        "last_login": "2026-07-25T16:20:00Z"
+      }
+    }
+  ],
+  "report_integrity_sha256": "4A9F0CE3B59D1D91A776B9BC7E44DC029B6BC1858E70A10CD4B0E8A3488DB3EE"
+}

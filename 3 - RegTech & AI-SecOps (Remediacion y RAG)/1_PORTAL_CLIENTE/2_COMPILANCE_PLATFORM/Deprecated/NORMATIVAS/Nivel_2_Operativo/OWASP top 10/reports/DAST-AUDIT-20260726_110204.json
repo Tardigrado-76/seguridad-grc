@@ -1,0 +1,11 @@
+{
+  "title": "OWASP Top 10 Dynamic Application Security Testing (DAST) Audit",
+  "timestamp_iso": "2026-07-26T11:02:04.875919+00:00",
+  "target_url": "https://api.example.com/v1/auth",
+  "http_method": "POST",
+  "dry_run": true,
+  "total_payloads_tested": 7,
+  "vulnerabilities_count": 0,
+  "vulnerabilities": [],
+  "report_integrity_sha256": "AB98D74CD9DA56893F8B1A2E64F7932D9C1CB4E8ACAB5AAB9DF9A495F678E535"
+}

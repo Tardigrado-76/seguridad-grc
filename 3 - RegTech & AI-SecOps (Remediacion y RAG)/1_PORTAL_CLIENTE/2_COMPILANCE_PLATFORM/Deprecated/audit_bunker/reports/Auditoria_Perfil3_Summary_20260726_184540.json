@@ -1,0 +1,188 @@
+{
+  "title": "Consolidado de Auditor\u00eda Perfil 3 (Multinacional Cr\u00edtica / Defensa / PQC - PRODUCCI\u00d3N REAL)",
+  "timestamp_iso": "2026-07-26T18:45:40.668927+00:00",
+  "mode": "PROD",
+  "workspace_directory": "E:\\PROYECTOS IA\\TODO BUNKER_OS\\no_software",
+  "reports_directory": "E:\\PROYECTOS IA\\AUDITORIAS\\reports",
+  "total_duration_seconds": 3.61,
+  "summary_kpi": {
+    "total_phases": 14,
+    "passed": 5,
+    "skipped": 3,
+    "failed": 6
+  },
+  "results": [
+    {
+      "id": "01",
+      "normativa": "PQC (FIPS)",
+      "script": "11_collect-pqc-evidence.sh",
+      "status": "SKIPPED",
+      "duration_seconds": 0.0,
+      "targets_sample": [],
+      "command_run": "NONE"
+    },
+    {
+      "id": "02",
+      "normativa": "Supply Chain",
+      "script": "generate_sbom.py",
+      "status": "PASSED",
+      "duration_seconds": 0.97,
+      "targets_sample": [
+        "Dockerfile",
+        "requirements.txt"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Supply Chain Security\\generate_sbom.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "03",
+      "normativa": "Supply Chain / NIS2",
+      "script": "cisa_kev_gate.py",
+      "status": "FAILED",
+      "duration_seconds": 0.14,
+      "targets_sample": [
+        "requirements.txt"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Supply Chain Security\\cisa_kev_gate.py --sbom E:\\PROYECTOS IA\\AUDITORIAS\\reports\\BunkerOS_SBOM_v1.json --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "04",
+      "normativa": "PQC (FIPS 203/204)",
+      "script": "pqc_crypto_agility_manager.py",
+      "status": "SKIPPED",
+      "duration_seconds": 0.0,
+      "targets_sample": [],
+      "command_run": "NONE"
+    },
+    {
+      "id": "05",
+      "normativa": "FIPS 140-3",
+      "script": "fips_mode_enforcer.py",
+      "status": "SKIPPED",
+      "duration_seconds": 0.0,
+      "targets_sample": [],
+      "command_run": "NONE"
+    },
+    {
+      "id": "06",
+      "normativa": "ENS Nivel Alto",
+      "script": "ens_fim_enforcer.ps1",
+      "status": "FAILED",
+      "duration_seconds": 1.1,
+      "targets_sample": [
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\ENS 1-3-5\\ens_fim_enforcer.ps1 -Mode ScanAndEnforce -OutputDir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "07",
+      "normativa": "EU AI Act",
+      "script": "ai_model_provenance_signer.py",
+      "status": "FAILED",
+      "duration_seconds": 0.1,
+      "targets_sample": [
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\EU IA Act\\ai_model_provenance_signer.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "08",
+      "normativa": "EU AI Act",
+      "script": "ai_compliance_auditor.py",
+      "status": "FAILED",
+      "duration_seconds": 0.09,
+      "targets_sample": [
+        "Auditoria_Importaciones.py",
+        "bunker_forensic_orchestrator.py",
+        "docker-compose.yml",
+        "informe_certificacion_final.json",
+        "bunker_bootstrap.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\EU IA Act\\ai_compliance_auditor.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "09",
+      "normativa": "OWASP LLM",
+      "script": "llm_autonomous_agent_jailbreak_honeypot.py",
+      "status": "PASSED",
+      "duration_seconds": 0.13,
+      "targets_sample": [
+        "Auditoria_Importaciones.py",
+        "requirements.txt",
+        "bunker_forensic_orchestrator.py",
+        "docker-compose.yml",
+        "informe_certificacion_final.json",
+        "bunker_bootstrap.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\OWASP LLM\\llm_autonomous_agent_jailbreak_honeypot.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "10",
+      "normativa": "EU AI Act",
+      "script": "eu_ai_act_model_watermarker.py",
+      "status": "PASSED",
+      "duration_seconds": 0.12,
+      "targets_sample": [
+        "requirements.txt",
+        "bunker_forensic_orchestrator.py",
+        "Auditoria_Importaciones.py",
+        "informe_certificacion_final.json",
+        "bunker_bootstrap.py"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\EU IA Act\\eu_ai_act_model_watermarker.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "11",
+      "normativa": "DORA / CRA",
+      "script": "dora_chaos_resilience_tester.py",
+      "status": "FAILED",
+      "duration_seconds": 0.1,
+      "targets_sample": [
+        "Auditoria_Importaciones.py",
+        "bunker_bootstrap.py",
+        "bunker_forensic_orchestrator.py",
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\DORA\\dora_chaos_resilience_tester.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "12",
+      "normativa": "DORA",
+      "script": "dora_automated_failover_drill.py",
+      "status": "PASSED",
+      "duration_seconds": 0.14,
+      "targets_sample": [
+        "Auditoria_Importaciones.py",
+        "bunker_bootstrap.py",
+        "bunker_forensic_orchestrator.py",
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\DORA\\dora_automated_failover_drill.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "13",
+      "normativa": "PQC (FIPS 204)",
+      "script": "fips_204_mldsa_git_commit_signer.py",
+      "status": "PASSED",
+      "duration_seconds": 0.12,
+      "targets_sample": [
+        "Auditoria_Importaciones.py",
+        "bunker_bootstrap.py",
+        "bunker_forensic_orchestrator.py",
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "python E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\PQC FIPS 203-204-205\\fips_204_mldsa_git_commit_signer.py --output-dir E:\\PROYECTOS IA\\AUDITORIAS\\reports"
+    },
+    {
+      "id": "14",
+      "normativa": "Supply Chain",
+      "script": "slsa_provenance_signer.sh",
+      "status": "FAILED",
+      "duration_seconds": 0.53,
+      "targets_sample": [
+        "informe_certificacion_final.json"
+      ],
+      "command_run": "bash E:\\PROYECTOS IA\\AUDITORIAS\\NORMATIVAS\\Supply Chain Security\\slsa_provenance_signer.sh"
+    }
+  ],
+  "report_integrity_sha256": "068A2499A4BBE80340E5BBFCECA923180342F9E4FD06BA5C754A11A72938401F"
+}

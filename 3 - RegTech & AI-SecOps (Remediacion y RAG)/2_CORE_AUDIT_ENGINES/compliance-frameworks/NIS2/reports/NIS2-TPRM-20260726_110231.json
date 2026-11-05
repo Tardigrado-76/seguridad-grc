@@ -1,0 +1,16 @@
+{
+  "title": "NIS2 Article 21 Third-Party Risk Management (TPRM) Vendor Assessment",
+  "timestamp_iso": "2026-07-26T11:02:31.974292+00:00",
+  "vendor_domain": "api.vendor-partner.com",
+  "dry_run": true,
+  "assessment": {
+    "vendor": "api.vendor-partner.com",
+    "risk_score": 95,
+    "risk_level": "LOW_RISK",
+    "compliance_status": "PASSED_NIS2_TPRM",
+    "headers_score": 70,
+    "tls_score": 25,
+    "details": "SIMULATED_VENDOR_SCAN_CLEAN (Dry-Run)"
+  },
+  "report_integrity_sha256": "0A9D569C95C8256D4E9088C5C1A6B0F960BB4BB96A9C3CD2E598302050D95869"
+}

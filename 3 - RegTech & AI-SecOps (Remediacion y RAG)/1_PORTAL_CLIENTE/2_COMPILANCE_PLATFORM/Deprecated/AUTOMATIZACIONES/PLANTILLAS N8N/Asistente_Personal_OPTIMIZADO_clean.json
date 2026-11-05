@@ -1,0 +1,824 @@
+{
+  "name": "Asistente Personal - OPTIMIZADO",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "asistente-persona",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -864,
+        96
+      ],
+      "id": "webhook-trigger-optimizado",
+      "name": "Webhook",
+      "webhookId": "asistente-personal-tardigrado",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "chat-id-field",
+              "name": "chatId",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "number"
+            },
+            {
+              "id": "text-field",
+              "name": "text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "message-field",
+              "name": "fullMessage",
+              "value": "={{ $json.message }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -480,
+        96
+      ],
+      "id": "edit-fields-optimizado",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.voice }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists"
+                    },
+                    "id": "audio-check-001"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "text-check-001",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -256,
+        96
+      ],
+      "id": "switch-audio-texto",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        -144
+      ],
+      "id": "obtener-audio-telegram",
+      "name": "Obtener Audio de Telegram",
+      "webhookId": "100d572d-1823-4197-902b-be9b5a6d630b",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZbUWPrVjL8F1GXX6",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        160,
+        -144
+      ],
+      "id": "transcribir-audio-whisper",
+      "name": "Transcribir audio",
+      "credentials": {
+        "openAiApi": {
+          "id": "A4U7vu31Y4KwCPwP",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "mensaje-transcrito",
+              "name": "mensaje",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        464,
+        112
+      ],
+      "id": "mapear-mensaje",
+      "name": "Mapear mensaje"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.mensaje }}",
+        "options": {
+          "systemMessage": "=Eres el asistente personal de Tardigrado. Siempre te hablar\u00e1 Tardigrado.\\n\\nLa fecha y hora de hoy es: {{ $now }}\\n\\n## Tus Capacidades:\\n\\n### \ud83d\udce7 Gesti\u00f3n de Email (Gmail)\\n- Enviar correos electr\u00f3nicos a cualquier destinatario\\n- Comprobar emails no le\u00eddos con filtros de fecha\\n- A\u00f1adir etiquetas a emails espec\u00edficos\\n\\n### \ud83d\udcc5 Gesti\u00f3n de Calendario (Google Calendar)\\n- Crear eventos con fecha, hora y descripci\u00f3n\\n- Consultar disponibilidad en rangos de fechas\\n- Actualizar eventos existentes\\n- Eliminar eventos\\n\\n## Instrucciones:\\n- Siempre confirma acciones importantes (enviar emails, eliminar eventos)\\n- Cuando crees eventos, pregunta por detalles si faltan (hora, duraci\u00f3n, descripci\u00f3n)\\n- Mant\u00e9n un tono profesional pero amigable\\n- Recuerda el contexto de conversaciones anteriores"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        736,
+        112
+      ],
+      "id": "ai-agent-optimizado",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.0-flash-exp:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        464,
+        336
+      ],
+      "id": "openrouter-gemini-model",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENROUTER_CREDENTIALS_ID",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook').item.json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        624,
+        336
+      ],
+      "id": "memory-buffer-optimizado",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "subscribe.catalog@gmail.com",
+          "mode": "list"
+        },
+        "start": "={{ $fromAI('Start', `Fecha y hora de inicio en formato ISO`, 'string') }}",
+        "end": "={{ $fromAI('End', `Fecha y hora de fin en formato ISO`, 'string') }}",
+        "additionalFields": {
+          "description": "={{ $fromAI('Description', `Descripci\u00f3n del evento`, 'string') }}",
+          "sendUpdates": "all",
+          "summary": "={{ $fromAI('Summary', `T\u00edtulo del evento`, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        944,
+        544
+      ],
+      "id": "calendar-crear-evento",
+      "name": "Calendar - Crear evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "RwUvj6s6vFiyVQ7K",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Utiliza esta herramienta para eliminar eventos del calendario.",
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "subscribe.catalog@gmail.com",
+          "mode": "list"
+        },
+        "eventId": "={{ $fromAI('Event_ID', `ID del evento a eliminar`, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        800,
+        544
+      ],
+      "id": "calendar-eliminar-evento",
+      "name": "Calendar - Eliminar evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "RwUvj6s6vFiyVQ7K",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "subscribe.catalog@gmail.com",
+          "mode": "list"
+        },
+        "eventId": "={{ $fromAI('Event_ID', `ID del evento a actualizar`, 'string') }}",
+        "updateFields": {
+          "end": "={{ $fromAI('New_End', `Nueva fecha/hora de fin`, 'string') }}",
+          "start": "={{ $fromAI('New_Start', `Nueva fecha/hora de inicio`, 'string') }}",
+          "summary": "={{ $fromAI('New_Summary', `Nuevo t\u00edtulo`, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1088,
+        544
+      ],
+      "id": "calendar-actualizar-evento",
+      "name": "Calendar - Actualizar evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "RwUvj6s6vFiyVQ7K",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "subscribe.catalog@gmail.com",
+          "mode": "list"
+        },
+        "returnAll": "={{ $fromAI('Return_All', `true para todos los eventos`, 'boolean') }}",
+        "timeMin": "={{ $fromAI('After', `Fecha inicio del rango (ISO)`, 'string') }}",
+        "timeMax": "={{ $fromAI('Before', `Fecha fin del rango (ISO)`, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1216,
+        544
+      ],
+      "id": "calendar-comprobar-disponibilidad",
+      "name": "Calendar - Comprobar disponibilidad",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "RwUvj6s6vFiyVQ7K",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $fromAI('To', `Direcci\u00f3n de email del destinatario`, 'string') }}",
+        "subject": "={{ $fromAI('Subject', `Asunto del email`, 'string') }}",
+        "emailType": "text",
+        "message": "={{ $fromAI('Message', `Cuerpo del mensaje`, 'string') }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Tardigrado Assistant"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        736
+      ],
+      "id": "gmail-enviar-email",
+      "name": "Gmail - Enviar email",
+      "webhookId": "c73868b8-70f7-4d7d-9bb3-cb86bd27780e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIALS_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ $fromAI('Return_All', `true para todos los emails`, 'boolean') }}",
+        "filters": {
+          "readStatus": "unread",
+          "receivedAfter": "={{ $fromAI('Received_After', `Fecha despu\u00e9s (ISO)`, 'string') }}",
+          "receivedBefore": "={{ $fromAI('Received_Before', `Fecha antes (ISO)`, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        736
+      ],
+      "id": "gmail-comprobar-emails",
+      "name": "Gmail - Comprobar emails",
+      "webhookId": "4ad58f98-a534-4ab4-a9ce-7912a71600db",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIALS_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $fromAI('Message_ID', `ID del mensaje`, 'string') }}",
+        "labelIds": "={{ $fromAI('Label_Names_or_IDs', `Etiquetas separadas por coma`, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1088,
+        736
+      ],
+      "id": "gmail-anadir-etiqueta",
+      "name": "Gmail - A\u00f1adir etiqueta",
+      "webhookId": "78828981-6044-4691-880a-1c73d21fce22",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIALS_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "task": "YOUR_GOOGLE_TASKS_LIST_ID",
+        "title": "={{ $fromAI('Title', `T\u00edtulo de la tarea`, 'string') }}",
+        "additionalFields": {
+          "notes": "={{ $fromAI('Notes', `Descripci\u00f3n de la tarea`, 'string') }}",
+          "status": "needsAction"
+        }
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        736
+      ],
+      "id": "tasks-crear-tarea",
+      "name": "Tasks - Crear tarea",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "YOUR_GOOGLE_TASKS_CREDENTIALS_ID",
+          "name": "Google Tasks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "task": "YOUR_GOOGLE_TASKS_LIST_ID",
+        "returnAll": "={{ $fromAI('Return_All', `true para todas las tareas`, 'boolean') }}",
+        "additionalFields": {
+          "showCompleted": false
+        }
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        544
+      ],
+      "id": "tasks-comprobar-pendientes",
+      "name": "Tasks - Comprobar tareas pendientes",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "YOUR_GOOGLE_TASKS_CREDENTIALS_ID",
+          "name": "Google Tasks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Marca una tarea como completada. Verifica el task ID primero.",
+        "operation": "update",
+        "task": "YOUR_GOOGLE_TASKS_LIST_ID",
+        "taskId": "={{ $fromAI('Task_ID', `ID de la tarea`, 'string') }}",
+        "updateFields": {
+          "completed": "={{ $now }}",
+          "status": "completed"
+        }
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        736
+      ],
+      "id": "tasks-completar-tarea",
+      "name": "Tasks - Completar tarea",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "YOUR_GOOGLE_TASKS_CREDENTIALS_ID",
+          "name": "Google Tasks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "task": "YOUR_GOOGLE_TASKS_LIST_ID",
+        "taskId": "={{ $fromAI('Task_ID', `ID de la tarea`, 'string') }}"
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        544
+      ],
+      "id": "tasks-eliminar-tarea",
+      "name": "Tasks - Eliminar tarea",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "YOUR_GOOGLE_TASKS_CREDENTIALS_ID",
+          "name": "Google Tasks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const originalText = $input.first().json.output;\n  if (typeof originalText !== 'string') return { json: { cleaned: '' } };\n  let cleaned = originalText\n    .replace(/<[^>]*>/g, '')\n    .replace(/\\r?\\n|\\r/g, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n  return { json: { cleaned } };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1184,
+        112
+      ],
+      "id": "limpiar-texto-respuesta",
+      "name": "Limpiar texto"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Webhook').item.json.message.chat.id }}",
+        "text": "={{ $json.cleaned }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1488,
+        112
+      ],
+      "id": "enviar-respuesta-telegram",
+      "name": "Enviar Respuesta Telegram",
+      "webhookId": "f2b96b30-b6b4-48fa-9afa-56901e775937",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZbUWPrVjL8F1GXX6",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Obtener Audio de Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mapear mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Audio de Telegram": {
+      "main": [
+        [
+          {
+            "node": "Transcribir audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribir audio": {
+      "main": [
+        [
+          {
+            "node": "Mapear mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapear mensaje": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Limpiar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar - Crear evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar - Eliminar evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar - Actualizar evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar - Comprobar disponibilidad": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Enviar email": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Comprobar emails": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - A\u00f1adir etiqueta": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tasks - Crear tarea": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tasks - Comprobar tareas pendientes": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tasks - Completar tarea": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tasks - Eliminar tarea": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiar texto": {
+      "main": [
+        [
+          {
+            "node": "Enviar Respuesta Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": true
+  },
+  "versionId": "1e317524-0596-4b89-959a-5127e813aef8",
+  "meta": {
+    "instanceId": "398ddbaa4b0cc2af118d06a2a9885c730f0899697157c3d5a7d289b0c96a58ef"
+  },
+  "tags": [
+    {
+      "updatedAt": "2026-01-21T15:25:00.000Z",
+      "createdAt": "2026-01-21T15:25:00.000Z",
+      "id": "asistente-completo-tag",
+      "name": "Asistente Completo"
+    },
+    {
+      "updatedAt": "2026-01-21T15:14:10.203Z",
+      "createdAt": "2026-01-21T15:14:10.203Z",
+      "id": "xdm2C75oWrC68tce",
+      "name": "webhook https"
+    }
+  ]
+}

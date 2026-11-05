@@ -1,0 +1,10 @@
+venv
+node_modules
+.next
+.git
+__pycache__
+*.pyc
+*.pyo
+*.db
+*.sqlite
+logs

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "compliance-frameworks"
+version = "1.0.0"
+description = "Modular EU regulatory compliance engines — DORA, NIS2, ENS, EU AI Act, PQC"
+authors = [{ name = "Jose Luis Rodriguez Casal", email = "josecasal.tech@gmail.com" }]
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "bandit>=1.8",
+    "ruff>=0.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "B", "S", "UP"]

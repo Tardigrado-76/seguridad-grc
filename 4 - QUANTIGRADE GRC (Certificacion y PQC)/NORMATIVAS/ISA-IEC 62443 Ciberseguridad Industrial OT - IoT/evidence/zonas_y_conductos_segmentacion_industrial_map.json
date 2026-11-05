@@ -1,0 +1,14 @@
+{
+  "isa_iec_62443_zonas_conductos": {
+    "total_zones": 5,
+    "zones": [
+      {"zone_id": "ZONE-01-ENTERPRISE-IT", "security_level": "SL-1", "description": "Red corporativa ERP/Oficina"},
+      {"zone_id": "ZONE-02-DMZ-OT", "security_level": "SL-3", "description": "DMZ Industrial con servidores de salto y repositorios de parches"},
+      {"zone_id": "ZONE-03-SCADA-SUPERVISION", "security_level": "SL-3", "description": "Estaciones de ingeniería y servidores SCADA/MES"},
+      {"zone_id": "ZONE-04-CONTROL-PLCS", "security_level": "SL-2", "description": "Controladores lógicos programables PLCs y RTUs"},
+      {"zone_id": "ZONE-05-SAFETY-SIS", "security_level": "SL-4", "description": "Sistemas instrumentados de seguridad (SIS)"}
+    ],
+    "conduits_protected_by_dpi_firewall": true,
+    "cross_zone_unauthorized_traffic_blocked": true
+  }
+}

@@ -1,0 +1,220 @@
+#!/usr/bin/env python3
+"""EU AI Act Article 50 Synthetic Content Watermarker & AI IP Protection Guard.
+
+Embeds and verifies cryptographic/steganographic watermarks into AI-generated text or model output payloads
+to satisfy EU AI Act Article 50 (Transparency Requirements for AI Generated Content) and protect IP.
+
+Standards: EU AI Act (Art. 50), C2PA (Coalition for Content Provenance and Authenticity), ISO/IEC 27001.
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime
+import hashlib
+import hmac
+import json
+from pathlib import Path
+from typing import Any, ClassVar
+
+
+class EUAIActModelWatermarker:
+    """Production-grade EU AI Act Article 50 Watermarking Engine."""
+
+    ZERO_WIDTH_WATERMARK_MAP: ClassVar[dict[str, str]] = {
+        "0": "\u200b",  # Zero-width space
+        "1": "\u200c",  # Zero-width non-joiner
+    }
+    REVERSE_WATERMARK_MAP: ClassVar[dict[str, str]] = {
+        v: k for k, v in ZERO_WIDTH_WATERMARK_MAP.items()
+    }
+
+    def __init__(
+        self,
+        watermark_secret: str | None = None,
+        dry_run: bool = False,
+        output_dir: str = "./watermark_reports",
+    ) -> None:
+        self.watermark_secret: str = (
+            watermark_secret or "EU_AI_ACT_ART50_WATERMARK_KEY_V1"
+        )
+        self.dry_run: bool = dry_run
+        self.output_dir: Path = Path(output_dir)
+        self.watermark_log: list[dict[str, Any]] = []
+
+    def _encode_signature_to_zero_width(self, text: str) -> str:
+        """Generate HMAC-SHA256 signature and convert to zero-width steganographic string."""
+        sig_hex = (
+            hmac.new(
+                self.watermark_secret.encode("utf-8"),
+                text.encode("utf-8"),
+                hashlib.sha256,
+            )
+            .hexdigest()[:16]
+            .upper()
+        )
+
+        binary_str = "".join(f"{ord(c):08b}" for c in sig_hex)
+        return "".join(self.ZERO_WIDTH_WATERMARK_MAP[b] for b in binary_str)
+
+    def inject_watermark(self, text_payload: str) -> dict[str, Any]:
+        """Inject Article 50 transparency watermark into synthetic text output."""
+        zw_watermark = self._encode_signature_to_zero_width(text_payload)
+
+        # Append hidden zero-width watermark sequence to the payload
+        watermarked_text = text_payload + zw_watermark
+
+        record: dict[str, Any] = {
+            "timestamp_iso": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "original_length": len(text_payload),
+            "watermarked_length": len(watermarked_text),
+            "watermark_injected": True,
+            "status": "WATERMARK_EMBEDDED_ART50",
+        }
+
+        if not self.dry_run:
+            record["watermarked_sample"] = (
+                watermarked_text[:100] + "... [STEGANOGRAPHIC WATERMARK ENCODED]"
+            )
+
+        self.watermark_log.append(record)
+        return {"watermarked_text": watermarked_text, "metadata": record}
+
+    def extract_and_verify_watermark(self, candidate_text: str) -> tuple[bool, str]:
+        """Extract hidden zero-width watermark and verify against cryptographic HMAC secret."""
+        try:
+            # Extract zero-width characters
+            zw_chars = [c for c in candidate_text if c in self.REVERSE_WATERMARK_MAP]
+            if not zw_chars:
+                return (
+                    False,
+                    "NO_WATERMARK_DETECTED: Text lacks Article 50 steganographic marker.",
+                )
+
+            bin_str = "".join(self.REVERSE_WATERMARK_MAP[c] for c in zw_chars)
+            if len(bin_str) % 8 != 0:
+                return False, "CORRUPTED_WATERMARK: Zero-width payload length invalid."
+
+            extracted_sig = "".join(
+                chr(int(bin_str[i : i + 8], 2)) for i in range(0, len(bin_str), 8)
+            )
+
+            # Strip zero-width chars to recover original text
+            clean_text = "".join(
+                c for c in candidate_text if c not in self.REVERSE_WATERMARK_MAP
+            )
+            expected_sig = (
+                hmac.new(
+                    self.watermark_secret.encode("utf-8"),
+                    clean_text.encode("utf-8"),
+                    hashlib.sha256,
+                )
+                .hexdigest()[:16]
+                .upper()
+            )
+
+            if extracted_sig != expected_sig:
+                return (
+                    False,
+                    f"TAMPERED_WATERMARK: Extracted '{extracted_sig}' != Expected '{expected_sig}'",
+                )
+
+            return True, "WATERMARK_AUTHENTIC_EU_AI_ACT"
+        except (ValueError, KeyError, UnicodeError) as exc:
+            return False, f"VERIFICATION_ERROR: {exc}"
+
+    def generate_evidence_reports(self) -> tuple[Path, Path, str]:
+        """Export evidence reports in JSON & MD with ISO-8601 and SHA-256 self-digest."""
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        timestamp_str: str = datetime.datetime.now(datetime.timezone.utc).strftime(
+            "%Y%m%d_%H%M%S"
+        )
+        iso_timestamp: str = datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+        json_path: Path = self.output_dir / f"EU-AI-WATERMARK-{timestamp_str}.json"
+        md_path: Path = self.output_dir / f"EU-AI-WATERMARK-{timestamp_str}.md"
+
+        report_payload: dict[str, Any] = {
+            "title": "EU AI Act Article 50 Synthetic Content Watermark Audit",
+            "timestamp_iso": iso_timestamp,
+            "dry_run": self.dry_run,
+            "watermark_operations": self.watermark_log,
+        }
+
+        # Write initial JSON
+        json_path.write_text(json.dumps(report_payload, indent=2), encoding="utf-8")
+
+        # Compute SHA-256 integrity hash
+        report_sha256: str = hashlib.sha256(json_path.read_bytes()).hexdigest().upper()
+
+        # Update JSON with integrity hash
+        report_payload["report_integrity_sha256"] = report_sha256
+        json_path.write_text(json.dumps(report_payload, indent=2), encoding="utf-8")
+
+        # Markdown Report
+        md_lines: list[str] = [
+            "# EU AI Act Article 50 Watermarking Audit Report",
+            "",
+            f"- **Timestamp (ISO-8601):** `{iso_timestamp}`",
+            f"- **Operations Processed:** `{len(self.watermark_log)}`",
+            f"- **Dry-Run Mode:** `{self.dry_run}`",
+            f"- **Report Integrity SHA-256:** `{report_sha256}`",
+            "",
+            "## Watermark Injection Log",
+            "",
+        ]
+
+        for item in self.watermark_log:
+            md_lines.append(
+                f"- **Status:** `{item['status']}` | Original Length: `{item['original_length']}` | Watermarked Length: `{item['watermarked_length']}`"
+            )
+
+        md_path.write_text("\n".join(md_lines), encoding="utf-8")
+        return json_path, md_path, report_sha256
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="EU AI Act Article 50 Watermarker & IP Protection Engine"
+    )
+    parser.add_argument(
+        "--action",
+        choices=["watermark", "verify"],
+        default="watermark",
+        help="Action to execute",
+    )
+    parser.add_argument(
+        "--input-text",
+        default="This synthetic text response was generated by AI.",
+        help="Text content",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Simulate watermarking without saving files",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default="./watermark_reports",
+        help="Directory for evidence reports",
+    )
+
+    args = parser.parse_args()
+
+    watermarker = EUAIActModelWatermarker(
+        dry_run=args.dry_run,
+        output_dir=args.output_dir,
+    )
+
+    if args.action == "watermark":
+        res = watermarker.inject_watermark(args.input_text)
+
+        _is_valid, _reason = watermarker.extract_and_verify_watermark(
+            res["watermarked_text"]
+        )
+
+    _json_path, _md_path, _sha256_digest = watermarker.generate_evidence_reports()
+
+
+if __name__ == "__main__":
+    main()

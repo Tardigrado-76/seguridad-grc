@@ -1,0 +1,110 @@
+{
+    "name": "Tavilga_Secure_Validation_Gateway",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "validate-quote",
+                "options": {}
+            },
+            "name": "Webhook: Receive Quote Request",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                200,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "select",
+                "table": "materiales",
+                "conditions": {
+                    "id": "={{$json.body.materialId}}"
+                }
+            },
+            "name": "Supabase: Fetch Official Price",
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                400,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "keepOnlySet": true,
+                "values": {
+                    "number": [
+                        {
+                            "name": "officialPrice",
+                            "value": "={{$node[\"Supabase: Fetch Official Price\"].json[\"precio_m2\"] * ( ($json.body.ancho * $json.body.alto * 2) + ($json.body.fondo * $json.body.alto * 2) ) / 10000}}"
+                        }
+                    ],
+                    "string": [
+                        {
+                            "name": "status",
+                            "value": "validated"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "name": "Logic: Re-calculate Budget",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 1,
+            "position": [
+                600,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "respondWith": "json",
+                "responseBody": "={\n  \"total\": {{$json.officialPrice}},\n  \"currency\": \"EUR\",\n  \"validated\": true,\n  \"timestamp\": \"{{$now}}\"\n}"
+            },
+            "name": "Response: Secure Quote",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1,
+            "position": [
+                800,
+                200
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook: Receive Quote Request": {
+            "main": [
+                [
+                    {
+                        "node": "Supabase: Fetch Official Price",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Supabase: Fetch Official Price": {
+            "main": [
+                [
+                    {
+                        "node": "Logic: Re-calculate Budget",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Logic: Re-calculate Budget": {
+            "main": [
+                [
+                    {
+                        "node": "Response: Secure Quote",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

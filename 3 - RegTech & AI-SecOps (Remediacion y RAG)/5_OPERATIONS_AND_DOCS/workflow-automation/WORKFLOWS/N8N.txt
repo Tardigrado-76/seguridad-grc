@@ -1,0 +1,123 @@
+INSTALL N8N Locally
+
+- Step 1: Install Node.js v24 (max) and npm
+	Download Node.js LTS version (v18+) from the official website: https://nodejs.org/
+	Follow the installation instructions for your OS.
+	Verify installation by running in your terminal or command prompt:
+	node -v
+	npm -v
+
+- Step 2: Install n8n Globally
+	Run the following command to install n8n globally on your system:
+	npm install -g n8n
+
+- Step 3: Start n8n
+	Launch n8n by typing:
+	n8n
+	By default, n8n runs on http://localhost:5678. Open this URL in your browser to access the n8n UI.
+
+nod
+Method 2: Install n8n Locally with Docker
+Docker containers offer isolation and consistent environments, making them ideal for local and production setups.
+
+- Step 1: Install Docker
+	Windows/macOS users: Download Docker Desktop from https://www.docker.com/products/docker-desktop
+	Linux users: Follow the official Docker installation guide for your distro (Ubuntu guide here)
+
+- Step 2: Pull and Run the n8n Docker Image
+	Open your terminal and execute:
+	docker run -it --rm -p 5678:5678 n8nio/n8n
+	This command downloads the latest n8n image (if not already cached) and runs it, exposing the UI on port 5678.
+
+- Step 3: Access n8n
+	Open http://localhost:5678 in your browser to start using n8n.
+
+Persistent Data with Docker
+To save your workflows and credentials persistently, mount a local volume:
+
+docker run -it --rm -p 5678:5678 -v ~/.n8n:/home/node/.n8n n8nio/n8n
+This mounts the .n8n directory from your home folder into the container, preserving your data across restarts.
+
+
+
+
+
+OTRA OPCION DE INSTALACION ES:
+
+🔹 Introducción
+¿Quieres automatizar tareas como la creación de videos para YouTube con IA? n8n es la herramienta perfecta para ello. En esta guía, te mostraré cómo instalar n8n en Windows, incluyendo los errores más comunes que puedes encontrar y cómo solucionarlos.
+
+📥 Paso 1: Instalar Node.js (Requisito Previo)
+n8n requiere Node.js (versión 16 o superior) para funcionar. Sigue estos pasos:
+
+Descarga Node.js desde nodejs.org (versión LTS recomendada).
+Ejecuta el instalador y marca la opción “Automatically install the necessary tools”.
+Verifica la instalación abriendo PowerShell y ejecutando:
+
+node –version
+
+npm –version
+
+Deberías ver las versiones instaladas (ej: v18.17.1 y 9.6.7).
+⚠️ Error Común: “La ejecución de scripts está deshabilitada en este sistema”
+Si al intentar instalar n8n ves este error, solucionalo así:
+
+Abre PowerShell como Administrador.
+Ejecuta:
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Confirma con Y.
+Esto permite ejecutar scripts locales sin comprometer la seguridad.
+
+🚀 Paso 2: Instalar n8n Globalmente
+Con Node.js listo, instala n8n ejecutando en PowerShell:
+
+npm install n8n -g
+
+¿Qué significa -g? Instala n8n globalmente en tu sistema.
+Tiempo estimado: 2-5 minutos (dependiendo de tu conexión).
+✅ Mensaje de éxito:
+
+added 1681 packages in 4m
+
+🔌 Paso 3: Iniciar n8n
+Ejecuta el siguiente comando para iniciar n8n:
+
+n8n start
+
+Acceso a la interfaz: Abre tu navegador y ve a:
+
+http://localhost:5678
+🚨 Solución de Errores Frecuentes
+❌ Error: “Port 5678 already in use”
+Solución:
+
+Identifica qué programa usa el puerto:
+
+netstat -ano | findstr 5678
+Cierra el proceso con:
+
+taskkill /PID [ID_del_Proceso] /F
+Reinicia n8n en otro puerto:
+
+n8n start –port=5679
+❌ Error: “npm no se reconoce como comando”
+Solución:
+
+Revisa que Node.js esté en el PATH del sistema.
+Reinicia PowerShell o tu PC.
+📌 Paso 4: Configuración Avanzada (Opcional)
+🔹 Usar una Carpeta Persistente para Datos
+Guarda tus workflows aunque reinicies la PC:
+
+n8n start –data-folder=C:\n8n_data
+
+🔹 Ejecutar n8n al Inicio (Como Servicio)
+Abre el Programador de Tareas (taskschd.msc).
+Crea una tarea que ejecute:
+
+n8n start –data-folder=C:\n8n_data
+🎯 Conclusión
+Ahora tienes n8n instalado y funcionando en Windows, listo para automatizar flujos como la creación de videos con IA. Si tienes dudas, déjalas en los comentarios.
+
+➡️ ¿Siguiente paso? Aprende a automatizar videos para YouTube con n8n y IA.

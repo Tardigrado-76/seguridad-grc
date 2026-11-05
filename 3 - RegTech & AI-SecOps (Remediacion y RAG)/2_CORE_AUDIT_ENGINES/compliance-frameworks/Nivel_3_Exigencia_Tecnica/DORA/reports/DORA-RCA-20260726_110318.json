@@ -1,0 +1,69 @@
+{
+  "title": "DORA Article 19 / 25 Root Cause Analysis (RCA) Post-Mortem Report",
+  "timestamp_iso": "2026-07-26T11:03:18.496111+00:00",
+  "incident_id": "INC-A3A3917B",
+  "dry_run": true,
+  "post_mortem": {
+    "incident_id": "INC-A3A3917B",
+    "created_iso": "2026-07-26T11:03:18.495476+00:00",
+    "dora_classification": "MAJOR_OPERATIONAL_DISRUPTION",
+    "ingest_metadata": {
+      "source": "SIMULATED_INCIDENT_TIMELINE",
+      "events_count": 4,
+      "raw_meta": {}
+    },
+    "root_cause_analysis": {
+      "category": "RESOURCE_EXHAUSTION_PERFORMANCE",
+      "summary": "Database Connection Pool Exhaustion triggered by unindexed query lock contention during peak load.",
+      "rto_achieved_sec": 600,
+      "rpo_achieved_sec": 0
+    },
+    "timeline": [
+      {
+        "timestamp_iso": "2026-07-26T10:48:18.495437+00:00",
+        "stage": "DISRUPTION_DETECTED",
+        "level": "CRITICAL",
+        "message": "Asymmetric spike in HTTP 504 Gateway Timeout errors detected on Primary API Cluster."
+      },
+      {
+        "timestamp_iso": "2026-07-26T10:53:18.495437+00:00",
+        "stage": "ROOT_CAUSE_IDENTIFIED",
+        "level": "WARNING",
+        "message": "Database connection pool exhaustion due to missing index on high-throughput query."
+      },
+      {
+        "timestamp_iso": "2026-07-26T10:58:18.495437+00:00",
+        "stage": "REMEDIATION_APPLIED",
+        "level": "INFO",
+        "message": "Applied emergency DB index hotfix and restarted connection pool instances."
+      },
+      {
+        "timestamp_iso": "2026-07-26T11:03:18.495437+00:00",
+        "stage": "SERVICE_RESTORED",
+        "level": "INFO",
+        "message": "All health probes returning HTTP 200 OK. RTO achieved: 10 minutes. RPO: 0 seconds."
+      }
+    ],
+    "remediation_action_items": [
+      {
+        "id": "ACT-01",
+        "owner": "DBA_Team",
+        "action": "Implement missing compound B-Tree index on transaction table.",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "ACT-02",
+        "owner": "DevSecOps",
+        "action": "Add connection pool exhaustion metric alert threshold at 80% utilization.",
+        "status": "IN_PROGRESS"
+      },
+      {
+        "id": "ACT-03",
+        "owner": "SRE_Team",
+        "action": "Incorporate connection pool failure scenario into bi-weekly DORA chaos tests.",
+        "status": "PLANNED"
+      }
+    ]
+  },
+  "report_integrity_sha256": "19661DF7B3A9842609B0C215C90D1B1795535EF77FCB827717C7E8FB506D7F29"
+}

@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-07-28T10:56:34.429501+00:00",
+  "dry_run": false,
+  "target_path": "E:\\PROYECTOS IA\\TODO BUNKER_OS\\no_software",
+  "analysis": {
+    "scanned_files_count": 7,
+    "detected_packages": [
+      "argon2-cffi",
+      "auditorias",
+      "core",
+      "security"
+    ],
+    "missing_packages": [
+      "auditorias",
+      "core",
+      "security"
+    ],
+    "is_compliant": false
+  },
+  "report_sha256": "B075B279DD76900C247636026B67D289FE8AF3AADD28318AEBB917D4F126E86D"
+}

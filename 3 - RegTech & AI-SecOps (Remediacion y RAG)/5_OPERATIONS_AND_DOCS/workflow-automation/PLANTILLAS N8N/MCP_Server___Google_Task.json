@@ -1,0 +1,194 @@
+{
+  "name": "MCP Server - Google Task",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "fc4f0cb6-c5a5-4032-b6f0-75c78c70ed11"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        -80
+      ],
+      "id": "30176e0c-f761-4e04-aa01-cb5c763ad18b",
+      "name": "MCP Server Trigger",
+      "webhookId": "fc4f0cb6-c5a5-4032-b6f0-75c78c70ed11"
+    },
+    {
+      "parameters": {
+        "task": "MDMzNjI2NzQwMTkzMDU3MTE3NTU6MDow",
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
+        "additionalFields": {
+          "status": "needsAction"
+        }
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        200,
+        180
+      ],
+      "id": "ac74c908-7041-4c19-b7fe-4b218408c1e6",
+      "name": "Google Tasks - Crear tarea",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "gJFCSkve4mNuOqt7",
+          "name": "Google Tasks account - divisual@divisualproject.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "task": "MDMzNjI2NzQwMTkzMDU3MTE3NTU6MDow",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "additionalFields": {
+          "showCompleted": false
+        }
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        60,
+        180
+      ],
+      "id": "e317b648-1d37-44ee-9c5e-cb0271a98d21",
+      "name": "Google Tasks - Comprobar tareas pendientes",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "gJFCSkve4mNuOqt7",
+          "name": "Google Tasks account - divisual@divisualproject.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "verifica el task ID con el nombre de la tarea.",
+        "operation": "update",
+        "task": "MDMzNjI2NzQwMTkzMDU3MTE3NTU6MDow",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}",
+        "updateFields": {
+          "completed": "={{ $now }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        180
+      ],
+      "id": "69748f82-ccbb-4d93-86f6-8979fa81d3d3",
+      "name": "Google Tasks - Actualizar tareas",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "gJFCSkve4mNuOqt7",
+          "name": "Google Tasks account - divisual@divisualproject.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "task": "MDMzNjI2NzQwMTkzMDU3MTE3NTU6MDow",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        180
+      ],
+      "id": "4e2e02c9-cd86-4ad5-8223-9b9223953b7e",
+      "name": "Google Tasks - Eliminar tarea",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "gJFCSkve4mNuOqt7",
+          "name": "Google Tasks account - divisual@divisualproject.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# 🚀 La Tribu Divisual\n\n## Accede a **La Tribu Divisual** para aprender a crear agentes más avanzados y generar ingresos con ellos.\n\n# 👉 [Click aquí para unirte a la Lista de espera](https://divisualproject.academy/)\n",
+        "height": 280,
+        "width": 740,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -220
+      ],
+      "id": "d2d138ac-99fd-473c-9742-6d40d3b93713",
+      "name": "Sticky Note10"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Tasks - Crear tarea": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Tasks - Comprobar tareas pendientes": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Tasks - Actualizar tareas": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Tasks - Eliminar tarea": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "35d0cbc0-502b-4e03-bbf8-65328c2bd7cf",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2723e5c0cdf73e609a9d6131a4145b2656ca7463c71fa761a441dc255964ffd8"
+  },
+  "id": "WaeSl6qV5MAXgZ8F",
+  "tags": [
+    {
+      "createdAt": "2025-06-01T18:57:05.689Z",
+      "updatedAt": "2025-06-01T18:57:05.689Z",
+      "id": "uhDg4e01CCZHetVc",
+      "name": "Curso Adrián Sáenz"
+    }
+  ]
+}

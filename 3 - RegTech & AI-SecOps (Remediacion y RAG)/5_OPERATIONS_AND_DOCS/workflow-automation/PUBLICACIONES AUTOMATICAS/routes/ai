@@ -1,0 +1,107 @@
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
+const axios = require('axios');
+const FormData = require('form-data');
+const fs = require('fs');
+
+const upload = multer({ dest: 'uploads/' });
+
+// Función para generar descripción con IA gratuita (Hugging Face)
+async function generateCaptionWithAI(imagePath) {
+  try {
+    // Opción 1: Usar Hugging Face Inference API (GRATIS con límites)
+    const HF_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN || '';
+    
+    if (HF_API_TOKEN) {
+      const imageBuffer = fs.readFileSync(imagePath);
+      
+      const response = await axios.post(
+        'https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-large',
+        imageBuffer,
+        {
+          headers: {
+            'Authorization': `Bearer ${HF_API_TOKEN}`,
+            'Content-Type': 'application/octet-stream'
+          }
+        }
+      );
+      
+      if (response.data && response.data[0]?.generated_text) {
+        return translateAndEnhanceCaption(response.data[0].generated_text);
+      }
+    }
+    
+    // Opción 2: Fallback a descripción genérica creativa
+    return generateGenericCaption();
+    
+  } catch (error) {
+    console.error('Error generando descripción:', error.message);
+    return generateGenericCaption();
+  }
+}
+
+// Traducir y mejorar la descripción
+function translateAndEnhanceCaption(englishCaption) {
+  // Traducciones básicas y mejoras
+  const enhancements = [
+    '✨ ',
+    '🌟 ',
+    '📸 ',
+    '💫 ',
+    '🎨 '
+  ];
+  
+  const endings = [
+    ' #contenido #inspiración #creatividad',
+    ' #momento #especial #compartir',
+    ' #vida #experiencias #recuerdos',
+    ' #fotografia #arte #pasión',
+    ' #nuevaventura #discover #explore'
+  ];
+  
+  const randomEmoji = enhancements[Math.floor(Math.random() * enhancements.length)];
+  const randomEnding = endings[Math.floor(Math.random() * endings.length)];
+  
+  return `${randomEmoji}${englishCaption}${randomEnding}`;
+}
+
+// Generar descripción genérica creativa
+function generateGenericCaption() {
+  const captions = [
+    '✨ Compartiendo momentos especiales que hacen la vida única. ¡Espero que os inspire! 📸 #momentos #vida #inspiración',
+    '🌟 Cada imagen cuenta una historia. Esta es la mía de hoy. ¿Cuál es la tuya? 💫 #historias #compartir #experiencias',
+    '📸 Capturando la belleza de los pequeños detalles que nos rodean. #fotografia #arte #belleza',
+    '💫 Un nuevo día, nuevas experiencias para compartir con todos vosotros. #nuevaventura #compartir #comunidad',
+    '🎨 La creatividad no tiene límites. Dejándome llevar por el momento. #creatividad #arte #pasión',
+    '✨ Momentos que merecen ser compartidos. Gracias por estar aquí. #gracias #comunidad #momentos',
+    '🌟 Descubriendo, creando, compartiendo. Así es como vivo cada día. #descubrir #crear #vivir'
+  ];
+  
+  return captions[Math.floor(Math.random() * captions.length)];
+}
+
+// Ruta para generar descripción
+router.post('/generate-caption', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se subió ningún archivo' });
+    }
+    
+    const caption = await generateCaptionWithAI(req.file.path);
+    
+    // Eliminar archivo temporal
+    fs.unlinkSync(req.file.path);
+    
+    res.json({ caption });
+    
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ 
+      caption: generateGenericCaption(),
+      note: 'Se usó descripción genérica debido a un error'
+    });
+  }
+});
+
+module.exports = router;

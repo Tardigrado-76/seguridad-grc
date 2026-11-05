@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfidentialityLabel xmlns="urn:nato:stanag:4774:confidentialitymetadatalabel:1:0">
+  <PolicyIdentifier>NATO-CIVILIAN-MILITARY-SECURITY-POLICY</PolicyIdentifier>
+  <Classification>NATO_RESTRICTED</Classification>
+  <ReleasableTo>
+    <Country>ESP</Country>
+    <Country>NATO</Country>
+  </ReleasableTo>
+  <Originator>ESP-MCCE-OPS-COMMAND</Originator>
+  <CreationDateTime>2026-10-28T00:00:00Z</CreationDateTime>
+</ConfidentialityLabel>

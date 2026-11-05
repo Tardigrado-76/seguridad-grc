@@ -1,0 +1,20 @@
+{
+  "title": "EU AI Act Model Provenance & Anti-Poisoning Audit",
+  "timestamp_iso": "2026-07-26T10:53:39.997711+00:00",
+  "model_path": "ai_sec_guard.py",
+  "dry_run": true,
+  "audit_records": [
+    {
+      "model_name": "ai_sec_guard.py",
+      "digests": {
+        "sha256": "24BF8D1EDD3FDAA0A186444D5A6D83ED026D19E23151F2B9EEC7D7DB46578854",
+        "sha512": "C7C06E23F78F55149F3DD771A08D70DC0B8EC2002174189970FAC03B6B9156560068AEA28903509120939F0D522F414CD82E7B7EBDE6154B5752EDCDF9617FEA",
+        "size_bytes": "9259"
+      },
+      "signature_hmac_sha256": "CF6E3AAF401AE348C26F5E276B8B051BBE70704BADF32C7667A02DAA7F15F48E",
+      "created_iso": "2026-07-26T10:53:39.961171+00:00",
+      "provenance_status": "SIGNED"
+    }
+  ],
+  "report_integrity_sha256": "E559008A6007359FD8A00601C32E1225C45AF014E487D18F0051E44BED51CCC6"
+}

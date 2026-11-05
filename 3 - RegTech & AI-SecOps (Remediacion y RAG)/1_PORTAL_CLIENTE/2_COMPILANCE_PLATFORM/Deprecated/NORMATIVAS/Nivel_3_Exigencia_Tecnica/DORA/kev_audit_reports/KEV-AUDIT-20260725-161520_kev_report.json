@@ -1,0 +1,12 @@
+{
+  "audit_id": "KEV-AUDIT-20260725-161520",
+  "timestamp": "2026-07-25T14:15:21.243853+00:00",
+  "requirements_file": "requirements.txt",
+  "total_packages_checked": 0,
+  "cisa_kev_total_catalog_size": 1653,
+  "vulnerable_matches_count": 0,
+  "integrity_hash": "2456c43cdd495629ea5938ad9fbcc3cf9aa79efcc734d400ec803ceefab6f015",
+  "alerts": [],
+  "fail_secure_triggered": false,
+  "compliance_verdict": "APROBADO_SIN_VULNERABILIDADES_KEV"
+}
